@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4dp"
+    tools:context=".User">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/user_btn"
+                android:text="User"
+
+                android:textAllCaps="false"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/user_blockk_btn"
+                android:text="Block"
+                android:textAllCaps="false"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/user_detail_ll"
+            android:layout_below="@+id/ll_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+
+                android:text="Name :"
+                android:textSize="18sp"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+
+                android:text="Phone :"
+                android:textSize="18sp"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+
+                android:text="City :"
+                android:textSize="18sp"
+                android:padding="4dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_info_ll"
+                android:layout_below="@+id/ll_btn"
+                android:layout_toRightOf="@+id/user_detail_ll"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/user_name_tv"
+                    android:textSize="18dp"
+                    android:padding="4dp"
+                    android:text="Mukesh Gupta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/user_ph_tv"
+                    android:textSize="18dp"
+                    android:padding="4dp"
+                    android:text="1231231231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/user_loc_tv"
+                    android:textSize="18dp"
+                    android:padding="4dp"
+                    android:text="Noida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@id/ll_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_toRightOf="@id/user_info_ll">
+                <Button
+                    android:id="@+id/user_view_bnt"
+                    android:text="View"
+                    android:background="@drawable/userbutton"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/user_block_btn"
+                    android:text="Block"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/userbutton"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/user_detail_ll"
+                android:orientation="horizontal"
+                android:layout_marginTop="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/user_detail_btn"
+                    android:text="Detail"
+                    android:background="@drawable/userbutton"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/user_call_btn"
+                    android:text="Call"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/userbutton"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/user_mess_btn"
+                    android:text="Message"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/userbutton"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/user_pc_btn"
+                    android:text="PC"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/userbutton"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

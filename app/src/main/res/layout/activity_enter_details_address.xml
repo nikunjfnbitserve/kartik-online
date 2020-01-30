@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="4dp"
+    tools:context=".EnterDetailsAddress">
+
+  <LinearLayout
+      android:layout_marginTop="48dp"
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+
+    <EditText
+        android:drawableLeft="@drawable/billaddress"
+        android:hint="  BILLING FULL ADDRESS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:drawableLeft="@drawable/daddress"
+        android:hint="DELIVERY ADDRESS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:drawableLeft="@drawable/city"
+        android:hint="CITY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:drawableLeft="@drawable/postal"
+        android:hint="   POSTAL CODE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:drawableLeft="@drawable/transportname"
+        android:hint="  TRANSPORT NAME"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:drawableLeft="@drawable/transportaddress"
+        android:hint="   TRANSPORT ADDRESS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:drawableLeft="@drawable/truck"
+        android:hint=" TRANSPORT NUMBER OR PRIVATE MARKA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/enter_dsave"
+        android:text="SAVE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+  </LinearLayout>
+
+
+
+</LinearLayout>

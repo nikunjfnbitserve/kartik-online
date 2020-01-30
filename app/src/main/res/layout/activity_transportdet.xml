@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Transportdet">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transport Details"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:padding="4dp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="240dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/colorPrimary" >
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Name :"
+            android:padding="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/transport_name_tv"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="match_parent"
+            android:text="Selv , Madras Transport "
+            android:layout_weight="0.6"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:text="Address :"
+            android:padding="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/transport_address_tv"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="0.6"
+            android:text="216 Sadar Bazar"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Number :"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp" />
+
+        <TextView
+            android:padding="4dp"
+            android:id="@+id/transport_phone_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:textColor="@color/colorPrimary"
+            android:text="9999225264"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Private Marka :"
+            android:textStyle="bold"
+            android:padding="4dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/transport_private_marka_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:padding="4dp"
+            android:textColor="@color/colorPrimary"
+            android:text="Shubham "
+            android:textSize="16dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="GST No. :"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:padding="4dp"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/transport_gst_no_tv"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:textColor="@color/colorPrimary"
+            android:text="GST1524488"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:text="Notes :- "
+        android:textStyle="bold"
+        android:padding="4dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/transport_note_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:textSize="16sp"
+        android:padding="4dp"
+        android:gravity="start"
+        android:textColor="@color/colorPrimary"
+        android:hint="Your notes for this detail."
+        android:background="@drawable/edittext_outline"
+        android:layout_marginTop="12dp" />
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <Button
+            android:id="@+id/transport_order_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Order" />
+
+        <Button
+            android:id="@+id/transport_confirm_btn"
+            android:text="Confirm"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/transport_cancel_btn"
+            android:text="Cancel"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:background="#cccccc" >
+        </View>
+
+        <View
+            android:id="@+id/order_cv"
+            android:layout_marginStart="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="1dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shape_circle" >
+        </View>
+
+        <View
+            android:id="@+id/payment_cv"
+            android:layout_marginTop="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shape_circle" >
+        </View>
+
+
+        <View
+            android:id="@+id/deliver_cv"
+            android:layout_marginTop="1dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shape_circle" >
+        </View>
+
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/transport_print_b"
+        android:layout_marginTop="24dp"
+        android:text="Print"
+        android:layout_marginStart="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="46sp"/>
+
+</LinearLayout>

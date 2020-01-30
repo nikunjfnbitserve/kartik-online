@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:gravity="center"
+    tools:context=".EnterDetailCompany">
+
+    <LinearLayout
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <EditText
+        android:id="@+id/enter_dcomp_shopn_et"
+        android:hint="      SHOP NAME"
+        android:drawableLeft="@drawable/shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/enter_dcomp_representativen_et"
+        android:hint="     REPRENSENTATIVE NAME"
+        android:drawableLeft="@drawable/representativename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/enter_dcomp_whatsappno_et"
+        android:drawableLeft="@drawable/whatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="     WHATSAPP NUMBER" />
+
+        <EditText
+            android:id="@+id/enter_dcomp_othern_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/number"
+            android:hint="    OTHER NUMBER" />
+
+        <EditText
+        android:id="@+id/enter_dcomp_gst_et"
+        android:drawableLeft="@drawable/gst"
+        android:hint="     GST NO."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/enter_dcomp_email_et"
+        android:drawableLeft="@drawable/mail"
+        android:hint="      EMAIL ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+        <Button
+
+            android:text="SAVE"
+            android:layout_marginTop="48dp"
+            android:id="@+id/enter_dcomp_savebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

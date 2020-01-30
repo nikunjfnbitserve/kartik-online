@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Login2FireStore">
+
+    <ImageView
+        android:src="@drawable/kartik_online_logo"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="48sp"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Admin Panel"
+        />
+
+    <EditText
+        android:id="@+id/l_email_et"
+        android:hint="LOGIN ID "
+        android:layout_marginTop="32dp"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:id="@+id/l_pwd_et"
+        android:hint="PASSWORD"
+        android:inputType="textPassword"
+        android:layout_marginTop="28dp"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/l_login_btn"
+        android:text="LOGIN"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/login_forget_password_tv"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"/>
+    <TextView
+        android:id="@+id/l_tv"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account ? create here "/>
+
+
+</LinearLayout>

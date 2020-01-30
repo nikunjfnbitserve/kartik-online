@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CartEstimate">
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:padding="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+
+                    android:id="@+id/od_ship_im"
+                    android:background="@drawable/ic_launcher_foreground"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/cart_estbrand_tv"
+                        android:text="Adidas Originals EQT"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:id="@+id/cart_prod_pri_tv"
+                        android:text="₹ 9999"
+                        android:padding="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+
+                                android:text="Size :"
+                                android:textStyle="bold"
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="Color :"
+                                android:textStyle="bold"
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="Qty: "
+                                android:textStyle="bold"
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:text="Total item :"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/cart_siz_tv"
+                                android:text=" 11 X 3 "
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/cart_color_tv"
+                                android:text="Blue"
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/cart_qty_tv"
+                                android:text="180"
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/cart_totItem_tv"
+                                android:text=" 2"
+                                android:textStyle="bold"
+                                android:padding="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/cart_ritem_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#363939"
+        android:drawableStart="@drawable/delete"
+        android:text="Remove Item"
+        android:textAllCaps="false"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/cart_conshop_btn"
+        android:layout_marginTop="32dp"
+        android:textAllCaps="false"
+        android:text="Continue Shopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textSize="22dp"
+        android:text="Price Detail"
+        android:textStyle="bold" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Sub Total :"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="GST % :"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Total Amount :"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cart_subT_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="99827"
+            android:padding="4dp"
+            android:textSize="16sp"
+             />
+
+        <TextView
+            android:id="@+id/cart_gst_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:padding="4dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/cart_toAtm_tv"
+            android:text="9877"
+            android:textSize="16sp"
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/cart_addnote_btn"
+        android:background="@drawable/buttonbackground"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="48dp"
+        android:text="  ADD NOTES"
+        android:drawableLeft="@drawable/ic_edit_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+
+    <LinearLayout
+
+        android:id="@+id/ll_btn"
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cart_clear_btn"
+            android:text="Clear All"
+            android:drawableLeft="@drawable/delete"
+            android:background="#363939"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:layout_weight="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/cart_porder_btn"
+            android:text="Place Order"
+            android:background="@drawable/background_et"
+            android:textAllCaps="false"
+            android:layout_weight="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

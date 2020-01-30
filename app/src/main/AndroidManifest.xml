@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.kartikonlinefirebase">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".KartikOnlineFrontHomePage"></activity>
+        <activity android:name=".CatalogueNameInformation" />
+        <activity android:name=".OrderDetailPanel" />
+        <activity android:name=".MyOrder" />
+        <activity android:name=".OrderDetails" />
+        <activity android:name=".PaymentMode" />
+        <activity android:name=".CatalogueNameInventory" />
+        <activity android:name=".Visitors" />
+        <activity android:name=".Transportdet" />
+        <activity android:name=".User" />
+        <activity android:name=".CartEstimate" />
+        <activity android:name=".CataloguenameNotes" />
+        <activity android:name=".OrderSuccessPage" />
+        <activity android:name=".EnterDetailsAddress" />
+        <activity android:name=".EnterDetailCompany" />
+        <activity android:name=".Checkout" />
+        <activity android:name=".Admin_Home" />
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Register2FireStore" />
+        <activity android:name=".Login2FireStore" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>
