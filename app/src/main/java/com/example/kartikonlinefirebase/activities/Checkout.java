@@ -1,14 +1,16 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class OrderSuccessPage extends AppCompatActivity {
+import com.example.kartikonlinefirebase.R;
+
+public class Checkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_success_page);
+        setContentView(R.layout.activity_checkout);
     }
 }

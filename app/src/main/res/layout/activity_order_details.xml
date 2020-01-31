@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="2dp"
     android:layout_height="match_parent"
-    tools:context=".OrderDetails">
+    tools:context=".activities.OrderDetails">
     <androidx.cardview.widget.CardView
         android:id="@+id/or_card"
         android:elevation="4dp"

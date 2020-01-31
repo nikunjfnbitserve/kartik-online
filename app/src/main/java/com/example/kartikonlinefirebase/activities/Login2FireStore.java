@@ -1,8 +1,7 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.GetChars;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kartikonlinefirebase.MainActivity;
+import com.example.kartikonlinefirebase.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +65,7 @@ public class Login2FireStore extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Login2FireStore.this, "Login successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                         else{
                             Toast.makeText(Login2FireStore.this, "Register user first", Toast.LENGTH_SHORT).show();
@@ -79,7 +79,7 @@ public class Login2FireStore extends AppCompatActivity {
         lTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register2FireStore.class));
+                startActivity(new Intent(getApplicationContext(), Register2FireStore.class));
             }
         });
     }

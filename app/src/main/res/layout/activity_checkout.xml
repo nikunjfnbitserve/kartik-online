@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:weightSum="2"
     android:padding="2dp"
-    tools:context=".Checkout">
+    tools:context=".activities.Checkout">
     <LinearLayout
         android:gravity="center"
         android:layout_width="wrap_content"

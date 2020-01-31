@@ -1,14 +1,17 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabItem;
+import com.example.kartikonlinefirebase.R;
+import com.example.kartikonlinefirebase.adapters.OrderListViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Admin_Home extends AppCompatActivity {
+public class AdminFragment extends Fragment {
 
     @BindView(R.id.admin_vis_tv)
     TextView adminVisTv;
@@ -30,7 +33,7 @@ public class Admin_Home extends AppCompatActivity {
     Switch adStoreS;
     @BindView(R.id.ad_cod_s)
     Switch adCodS;
-  //  @BindView(R.id.admin_ol_tab)
+    //  @BindView(R.id.admin_ol_tab)
     //TabItem adminOlTab;
     //@BindView(R.id.admin_co_tab)
     //TabItem adminCoTab;
@@ -39,21 +42,25 @@ public class Admin_Home extends AppCompatActivity {
     @BindView(R.id.v_pager)
     ViewPager vPager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin__home);
-        ButterKnife.bind(this);
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_layout, container, false);
+
+        ButterKnife.bind(getActivity());
         initViewPager();
+
+        return  view;
+
     }
+
     private void initViewPager() {
         ArrayList<Fragment> fragments =new ArrayList<>();
         fragments.add(new ConfirmOrderFragment());
         fragments.add(new AdminFragment());
 
 
-        OrderListViewPagerAdapter pagerAdapter = new OrderListViewPagerAdapter(getSupportFragmentManager(),this, fragments);
+        OrderListViewPagerAdapter pagerAdapter = new OrderListViewPagerAdapter(getActivity().getSupportFragmentManager(),getContext(), fragments);
         vPager.setAdapter(pagerAdapter);
 
 

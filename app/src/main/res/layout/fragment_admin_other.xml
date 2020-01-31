@@ -22,6 +22,7 @@
             android:drawableRight="@drawable/addsymbol"
             android:inputType="none"
             android:clickable="true"
+            android:editable="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -32,6 +33,7 @@
             android:drawableRight="@drawable/addsymbol"
             android:inputType="none"
             android:clickable="true"
+            android:editable="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
@@ -42,6 +44,7 @@
             android:drawableRight="@drawable/addsymbol"
             android:inputType="none"
             android:clickable="true"
+            android:editable="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

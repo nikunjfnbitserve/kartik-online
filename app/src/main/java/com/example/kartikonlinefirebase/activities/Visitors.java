@@ -1,14 +1,16 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EnterDetailsAddress extends AppCompatActivity {
+import com.example.kartikonlinefirebase.R;
+
+public class Visitors extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter_details_address);
+        setContentView(R.layout.activity_visitors);
     }
 }

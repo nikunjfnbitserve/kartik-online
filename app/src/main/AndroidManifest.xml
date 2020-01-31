@@ -9,33 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KartikOnlineFrontHomePage"></activity>
-        <activity android:name=".CatalogueNameInformation" />
-        <activity android:name=".OrderDetailPanel" />
-        <activity android:name=".MyOrder" />
-        <activity android:name=".OrderDetails" />
-        <activity android:name=".PaymentMode" />
-        <activity android:name=".CatalogueNameInventory" />
-        <activity android:name=".Visitors" />
-        <activity android:name=".Transportdet" />
-        <activity android:name=".User" />
-        <activity android:name=".CartEstimate" />
-        <activity android:name=".CataloguenameNotes" />
-        <activity android:name=".OrderSuccessPage" />
-        <activity android:name=".EnterDetailsAddress" />
-        <activity android:name=".EnterDetailCompany" />
-        <activity android:name=".Checkout" />
-        <activity android:name=".Admin_Home" />
-        <activity android:name=".ForgetPassword" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".activities.KartikOnlineFrontHomePage"></activity>
+        <activity android:name=".activities.CatalogueNameInformation" />
+        <activity android:name=".activities.OrderDetailPanel" />
+        <activity android:name=".activities.MyOrder" />
+        <activity android:name=".activities.OrderDetails" />
+        <activity android:name=".activities.PaymentMode" />
+        <activity android:name=".activities.CatalogueNameInventory" />
+        <activity android:name=".activities.Visitors" />
+        <activity android:name=".activities.Transportdet" />
+        <activity android:name=".activities.User" />
+        <activity android:name=".activities.CartEstimate" />
+        <activity android:name=".activities.CataloguenameNotes" />
+        <activity android:name=".activities.OrderSuccessPage" />
+        <activity android:name=".activities.EnterDetailsAddress" />
+        <activity android:name=".activities.EnterDetailCompany" />
+        <activity android:name=".activities.Checkout" />
+        <activity android:name=".activities.Admin_Home" />
+        <activity android:name=".activities.ForgetPassword" />
+        <activity android:name=".activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register2FireStore" />
-        <activity android:name=".Login2FireStore" />
+        <activity android:name=".activities.Register2FireStore" />
+        <activity android:name=".activities.Login2FireStore" />
         <activity android:name=".MainActivity" />
     </application>
 

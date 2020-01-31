@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="4dp"
-    tools:context=".CataloguenameNotes">
+    tools:context=".activities.CataloguenameNotes">
     <TextView
         android:text="More Product Image"
         android:padding="4dp"

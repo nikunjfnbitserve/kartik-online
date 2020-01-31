@@ -4,7 +4,7 @@
     android:padding="16dp"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Login2FireStore">
+    tools:context=".activities.Login2FireStore">
 
     <ImageView
         android:src="@drawable/kartik_online_logo"
@@ -25,6 +25,7 @@
     <EditText
         android:id="@+id/l_email_et"
         android:hint="LOGIN ID "
+        android:text="mayank@gmail.com"
         android:layout_marginTop="32dp"
         android:textSize="16sp"
         android:layout_gravity="center"
@@ -35,6 +36,7 @@
     <EditText
         android:id="@+id/l_pwd_et"
         android:hint="PASSWORD"
+        android:text="12345678"
         android:inputType="textPassword"
         android:layout_marginTop="28dp"
         android:layout_gravity="center"

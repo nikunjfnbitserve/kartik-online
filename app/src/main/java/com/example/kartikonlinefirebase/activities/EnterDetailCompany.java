@@ -1,8 +1,10 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.kartikonlinefirebase.R;
 
 public class EnterDetailCompany extends AppCompatActivity {
 

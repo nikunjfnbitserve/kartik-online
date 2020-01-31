@@ -1,14 +1,16 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MyOrder extends AppCompatActivity {
+import com.example.kartikonlinefirebase.R;
+
+public class User extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_order);
+        setContentView(R.layout.activity_user);
     }
 }

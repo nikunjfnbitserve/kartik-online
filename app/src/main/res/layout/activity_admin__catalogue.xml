@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".Admin_Catalogue">
+    tools:context=".activities.Admin_Catalogue">
    <androidx.cardview.widget.CardView
        android:padding="2dp"
        android:layout_gravity="center"

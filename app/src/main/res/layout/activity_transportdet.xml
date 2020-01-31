@@ -5,7 +5,7 @@
     android:padding="8dp"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Transportdet">
+    tools:context=".activities.Transportdet">
 
     <TextView
         android:layout_width="wrap_content"

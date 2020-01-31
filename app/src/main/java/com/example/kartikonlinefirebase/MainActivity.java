@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kartikonlinefirebase.activities.Admin_Home;
+import com.example.kartikonlinefirebase.activities.Login2FireStore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -57,23 +59,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mLoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mLoBtn.setOnClickListener((View v) -> {
 
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
-                startActivity(intent);
-                finish();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
+            startActivity(intent);
+            finish();
 
-            }
+
         });
 
-        adminPanel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Admin_Home.class));
-            }
+        adminPanel.setOnClickListener((View v) -> {
+
+            startActivity(new Intent(getApplicationContext(), Admin_Home.class));
+
         });
     }
 }

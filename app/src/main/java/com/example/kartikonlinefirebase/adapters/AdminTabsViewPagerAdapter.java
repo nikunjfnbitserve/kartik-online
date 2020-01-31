@@ -1,4 +1,4 @@
-package com.example.kartikonlinefirebase;
+package com.example.kartikonlinefirebase.adapters;
 
 import android.content.Context;
 
@@ -8,18 +8,18 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class OrderListViewPagerAdapter extends FragmentPagerAdapter {
+public class AdminTabsViewPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
     private List<Fragment> fragments;
 
-    public OrderListViewPagerAdapter(FragmentManager fm, Context context, List<Fragment> fragments) {
+    public AdminTabsViewPagerAdapter(FragmentManager fm, Context context, List<Fragment> fragments) {
         super(fm);
 
         this.context = context;
         this.fragments = fragments;
-    }
 
+    }
 
     @Override
     public Fragment getItem(int position) {
