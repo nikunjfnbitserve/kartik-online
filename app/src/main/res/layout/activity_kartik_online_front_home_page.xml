@@ -75,10 +75,11 @@
        android:orientation="vertical"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
+
        <EditText
            android:background="#ffffff"
            android:padding="4dp"
-           android:hint="Search,product seller etc"
+           android:hint="Search product, seller, etc."
            android:drawableRight="@drawable/search_24dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"/>

@@ -108,7 +108,7 @@
 
     </LinearLayout>
 
-
+<!--
     <LinearLayout
         android:layout_weight="0.1"
         android:orientation="vertical"
@@ -122,5 +122,6 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+-->
 
 </LinearLayout>

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdminFragment extends Fragment {
+public class AdminOrderlistFragment extends Fragment {
 
     @BindView(R.id.admin_vis_tv)
     TextView adminVisTv;
@@ -57,7 +57,7 @@ public class AdminFragment extends Fragment {
     private void initViewPager() {
         ArrayList<Fragment> fragments =new ArrayList<>();
         fragments.add(new ConfirmOrderFragment());
-        fragments.add(new AdminFragment());
+        fragments.add(new AdminOrderlistFragment());
 
 
         OrderListViewPagerAdapter pagerAdapter = new OrderListViewPagerAdapter(getActivity().getSupportFragmentManager(),getContext(), fragments);

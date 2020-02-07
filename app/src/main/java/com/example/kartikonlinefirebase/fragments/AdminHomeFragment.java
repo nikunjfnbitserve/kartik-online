@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 import com.example.kartikonlinefirebase.R;
 
 
-public class AdminHome extends Fragment {
+public class AdminHomeFragment extends Fragment {
 
 
-    public AdminHome() {
+    public AdminHomeFragment() {
         // Required empty public constructor
     }
 

@@ -27,8 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
         <LinearLayout
             android:layout_weight="1"
             android:padding="4dp"
@@ -88,7 +87,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Color"
-                android:textSize="24sp" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/cat_color_et"
@@ -102,7 +102,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select Categories"
-                android:textSize="24sp" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/cat_select_et"
@@ -116,8 +117,9 @@
                 android:id="@+id/cat_s_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selct kids, ladies etc."
-                android:textSize="24sp" />
+                android:text="Select Gender"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/cat_sk_et"
@@ -180,8 +182,9 @@
             <TextView
                 android:id="@+id/cat_cs_tv"
                 android:layout_width="wrap_content"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Color Selection" />
 
             <EditText
@@ -193,10 +196,11 @@
             <TextView
                 android:id="@+id/cat_st_tv"
                 android:layout_width="wrap_content"
-                android:textSize="24sp"
-                android:layout_marginTop="24dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
                 android:layout_height="wrap_content"
-                android:text="Sort Tag" />
+                android:text="Sort Tags" />
 
             <EditText
                 android:layout_marginTop="8dp"
@@ -210,8 +214,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sole Name"
-                android:layout_marginTop="24dp"
-                android:textSize="24sp" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
             <EditText
                 android:layout_marginTop="8dp"
@@ -225,13 +229,13 @@
         android:text="Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold"/>
     <TextView
         android:layout_width="wrap_content"
         android:background="@drawable/edittext_outline"
         android:text="This is an product description available for product details. this is an product description available for product details"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

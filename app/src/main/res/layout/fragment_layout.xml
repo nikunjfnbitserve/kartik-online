@@ -96,15 +96,15 @@
                    android:textColor="#fff"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:background="@drawable/orderlist_view_button_bg" />
 
-                   android:background="#000000" />
 
                <Button
                    android:id="@+id/f_delete_b"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_marginTop="16dp"
-                   android:background="#F64E19"
+                   android:layout_marginTop="8dp"
+                   android:background="@drawable/orderlist_delete_button_bg"
                    android:drawableStart="@drawable/delete"
                    android:text="Delete"
                    android:textAllCaps="false"
