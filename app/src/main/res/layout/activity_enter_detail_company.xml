@@ -17,14 +17,14 @@
     <EditText
         android:id="@+id/enter_dcomp_shopn_et"
         android:hint="      SHOP NAME"
-        android:drawableLeft="@drawable/shop"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/enter_dcomp_representativen_et"
         android:hint="     REPRENSENTATIVE NAME"
-        android:drawableLeft="@drawable/representativename"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

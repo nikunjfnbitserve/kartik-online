@@ -96,10 +96,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
-        android:background="#2D2D2D"
+        android:background="@drawable/buttonbackground"
         android:padding="4dp"
         android:text="LOGOUT"
-        android:textColor="#fff" />
+        android:textColor="@color/colorAccent" />
 
 
 </LinearLayout>

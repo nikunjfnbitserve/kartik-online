@@ -14,10 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kartikonlinefirebase.MainActivity;
 import com.example.kartikonlinefirebase.R;
+import com.example.kartikonlinefirebase.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+
+import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,12 +43,37 @@ public class Login2FireStore extends AppCompatActivity {
     @BindView(R.id.l_tv)
     TextView lTv;
     FirebaseAuth fAuth;
+    FirebaseFirestore fstore;
+    User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fAuth= FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+
+        if(fAuth.getCurrentUser()!=null) {
+            currentUser = new User();
+
+            DocumentReference documentReference = fstore.collection("users").document(fAuth.getUid());
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
+                    currentUser.setUserName(documentSnapshot.getString("userName"));
+                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
+
+                }
+            });
+
+            currentUser.setUserEmail(fAuth.);
+            makeUserOnline();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+
         setContentView(R.layout.activity_login2_fire_store);
         ButterKnife.bind(this);
-        fAuth= FirebaseAuth.getInstance();
+
 
         lLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +101,7 @@ public class Login2FireStore extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(Login2FireStore.this, "Login successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                         }
                         else{
                             Toast.makeText(Login2FireStore.this, "Register user first", Toast.LENGTH_SHORT).show();
@@ -83,4 +119,35 @@ public class Login2FireStore extends AppCompatActivity {
             }
         });
     }
+
+    public void makeUserOnline(User mUser){
+
+        DocumentReference query = FirebaseFirestore.getInstance().collection("users").document(mUser.getUserId());
+        mUser.setOnline(true);
+        mUser.setLastActive(0);
+        query.set(mUser);
+        FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("online");
+
+        FirebaseDatabase.getInstance().getReference("/status/" + mUser.userId)
+                .onDisconnect()     // Set up the disconnect hook
+                .setValue("offline");
+
+    }
+
+    public void makeUserOffline(User mUser){
+
+        DocumentReference query = FirebaseFirestore.getInstance().collection("users").document(mUser.getUserId());
+        mUser.setOnline(false);
+        mUser.setLastActive(System.currentTimeMillis());
+        query.set(mUser);
+        FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("offline");
+
+
+
+    }
+
 }
+
+
+
+

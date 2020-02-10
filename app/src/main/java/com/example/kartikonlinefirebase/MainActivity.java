@@ -52,16 +52,16 @@ public class MainActivity extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                mNTv.setText(documentSnapshot.getString("name"));
-                mETv.setText(documentSnapshot.getString("e_mail"));
-                mPhTv.setText(documentSnapshot.getString("ph"));
+                mNTv.setText(documentSnapshot.getString("userName"));
+                mETv.setText(documentSnapshot.getString("userEmail"));
+                mPhTv.setText(documentSnapshot.getString("password"));
 
             }
         });
 
         mLoBtn.setOnClickListener((View v) -> {
 
-            FirebaseAuth.getInstance().signOut();
+            fAuth.getInstance().signOut();
             Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
             startActivity(intent);
             finish();
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         adminPanel.setOnClickListener((View v) -> {
 
             startActivity(new Intent(getApplicationContext(), Admin_Home.class));
+            finish();
 
         });
     }

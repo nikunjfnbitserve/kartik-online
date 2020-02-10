@@ -80,7 +80,7 @@
 
 
         <EditText
-            android:id="@+id/r_ph_et"
+            android:id="@+id/r_pass_et"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             android:padding="8dp" />
 
         <EditText
-            android:id="@+id/r_pwd_et"
+            android:id="@+id/r_cn_pwd_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

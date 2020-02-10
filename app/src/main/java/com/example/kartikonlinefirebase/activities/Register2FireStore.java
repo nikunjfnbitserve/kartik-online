@@ -31,10 +31,10 @@ public class Register2FireStore extends AppCompatActivity {
     EditText rUnEt;
     @BindView(R.id.r_email_et)
     EditText rEmailEt;
-    @BindView(R.id.r_ph_et)
-    EditText rPhEt;
-    @BindView(R.id.r_pwd_et)
-    EditText rPwdEt;
+    @BindView(R.id.r_pass_et)
+    EditText rPassEt;
+    @BindView(R.id.r_cn_pwd_et)
+    EditText rCnPassEt;
     @BindView(R.id.r_reg_btn)
     Button rRegBtn;
     FirebaseAuth  fAuth;
@@ -52,15 +52,16 @@ public class Register2FireStore extends AppCompatActivity {
         fstore=FirebaseFirestore.getInstance();
         if(fAuth.getCurrentUser()!=null)
         {
+
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
         rRegBtn.setOnClickListener((View v) -> {
 
             final String email=rEmailEt.getText().toString().trim();
-            final String password=rPwdEt.getText().toString().trim();
+            final String password=rCnPassEt.getText().toString().trim();
             final String name=rUnEt.getText().toString().trim();
-            final String phone=rPhEt.getText().toString().trim();
+            final String pass=rPassEt.getText().toString().trim();
 
             if(TextUtils.isEmpty(email)){
                 rEmailEt.setError("email is required");
@@ -68,12 +69,12 @@ public class Register2FireStore extends AppCompatActivity {
             }
 
             if(TextUtils.isEmpty(password)){
-                rPwdEt.setError("password is required");
+                rCnPassEt.setError("password is required");
                 return;
             }
             if(password.length()<6)
             {
-                rPwdEt.setError("Password must be >= 6 character ");
+                rCnPassEt.setError("Password must be >= 6 character ");
                 return;
             }
 
@@ -84,9 +85,9 @@ public class Register2FireStore extends AppCompatActivity {
                     userID=fAuth.getCurrentUser().getUid();
                     DocumentReference documentReference=fstore.collection("users").document(userID);
                     HashMap<String,Object> user= new HashMap<>();
-                    user.put("name",name);
-                    user.put("e_mail",email);
-                    user.put("ph",phone);
+                    user.put("userName",name);
+                    user.put("userEmail",email);
+                    user.put("password",pass);
                     documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
