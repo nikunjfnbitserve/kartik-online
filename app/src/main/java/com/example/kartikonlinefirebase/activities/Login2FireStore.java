@@ -60,13 +60,13 @@ public class Login2FireStore extends AppCompatActivity {
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
                     currentUser.setUserName(documentSnapshot.getString("userName"));
-                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
+                    //currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
 
                 }
             });
 
-            currentUser.setUserEmail(fAuth.);
-            makeUserOnline();
+
+            makeUserOnline(currentUser);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
