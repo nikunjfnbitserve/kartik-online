@@ -3,6 +3,7 @@ package com.example.kartikonlinefirebase.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,8 @@ public class Login2FireStore extends AppCompatActivity {
     TextView lTv;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
+    String userID;
+
     User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,21 +55,27 @@ public class Login2FireStore extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
 
         if(fAuth.getCurrentUser()!=null) {
+            userID = fAuth.getCurrentUser().getUid();
             currentUser = new User();
 
-            DocumentReference documentReference = fstore.collection("users").document(fAuth.getUid());
-            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+           final DocumentReference documentReference = fstore.collection("users").document(userID);
+            Log.d("Login2FireStoreError", documentReference+"");
+            documentReference.addSnapshotListener(Login2FireStore.this, new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    Log.d("Login2FireStoreError", e+"");
+                    //Log.d("Login2FireStoreActivity", documentSnapshot.getString("userEmail"));
                     currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
                     currentUser.setUserName(documentSnapshot.getString("userName"));
-                    //currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
+                    currentUser.setUserPassword(documentSnapshot.getString("password"));
+                    currentUser.setUserId(documentSnapshot.getString("userId"));
+//                    currentUser.setOnline(documentSnapshot.getBoolean("isOnline"));
+//                    currentUser.setLastActive(Long.parseLong(documentSnapshot.getString("lastActive")));
 
                 }
             });
-
-
-            makeUserOnline(currentUser);
+            Log.d("Login2FireStoreActivity", currentUser.toString());
+            makeUserOnline(currentUser,documentReference);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -120,15 +129,15 @@ public class Login2FireStore extends AppCompatActivity {
         });
     }
 
-    public void makeUserOnline(User mUser){
+    public void makeUserOnline(User mUser, DocumentReference documentReference){
 
-        DocumentReference query = FirebaseFirestore.getInstance().collection("users").document(mUser.getUserId());
+
         mUser.setOnline(true);
         mUser.setLastActive(0);
-        query.set(mUser);
+        documentReference.set(mUser);
         FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("online");
 
-        FirebaseDatabase.getInstance().getReference("/status/" + mUser.userId)
+        FirebaseDatabase.getInstance().getReference("/status/" + mUser.getUserId())
                 .onDisconnect()     // Set up the disconnect hook
                 .setValue("offline");
 

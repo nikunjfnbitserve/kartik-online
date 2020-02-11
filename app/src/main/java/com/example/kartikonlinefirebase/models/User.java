@@ -2,12 +2,12 @@ package com.example.kartikonlinefirebase.models;
 
 public class User {
 
-    public String userId;
-    public String userEmail;
-    public boolean isOnline;
-    public long lastActive;
-    public String userName;
-    public String userPassword;
+    private String userId;
+    private String userEmail;
+    private boolean isOnline = false;
+    private long lastActive;
+    private String userName;
+    private String userPassword;
 
 
 
