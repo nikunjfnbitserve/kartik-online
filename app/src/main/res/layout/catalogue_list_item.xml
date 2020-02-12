@@ -70,7 +70,8 @@
                 <Button
                     android:id="@+id/acat_bpreview_btn"
                     android:text="Preview"
-                    android:background="@drawable/backgroundbtn"
+                    android:background="@drawable/orderlist_delete_button_bg"
+                    android:textColor="#ffffff"
                     android:textAllCaps="false"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp" />
@@ -78,7 +79,8 @@
                 <Button
                     android:id="@+id/act_bedit_btn"
                     android:text="Edit"
-                    android:background="@drawable/backgroundbtn"
+                    android:background="@drawable/orderlist_view_button_bg"
+                    android:textColor="#ffffff"
                     android:textAllCaps="false"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="8dp"

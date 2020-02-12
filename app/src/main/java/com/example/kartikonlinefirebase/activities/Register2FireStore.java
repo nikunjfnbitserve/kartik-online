@@ -81,22 +81,25 @@ public class Register2FireStore extends AppCompatActivity {
             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener((Task<AuthResult> task) -> {
 
                 if(task.isSuccessful()) {
-                    Toast.makeText(Register2FireStore.this, "User Created .", Toast.LENGTH_SHORT).show();
-                    userID=fAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference=fstore.collection("users").document(userID);
+                    Toast.makeText(Register2FireStore.this, "User Created in Auth .", Toast.LENGTH_SHORT).show();
+                    userID = fAuth.getCurrentUser().getUid();
+                    DocumentReference documentReference = fstore.collection("users").document(userID);
                     HashMap<String,Object> user= new HashMap<>();
                     user.put("userName",name);
                     user.put("userEmail",email);
                     user.put("password",pass);
+                    //user.put("lastActive", )
                     documentReference.set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            Toast.makeText(Register2FireStore.this, "User Created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register2FireStore.this, "User set in user table ", Toast.LENGTH_SHORT).show();
 
                         }
                     });
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                    startActivity(new Intent(getApplicationContext(), Admin_Home.class));
+                    finish();
 
                 }
                 else {

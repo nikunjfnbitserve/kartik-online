@@ -1,5 +1,6 @@
 package com.example.kartikonlinefirebase.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import com.example.kartikonlinefirebase.fragments.AdminCatalogueFragment;
 import com.example.kartikonlinefirebase.fragments.AdminHomeFragment;
 import com.example.kartikonlinefirebase.fragments.AdminOtherFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -67,6 +69,12 @@ public class Admin_Home extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "home clicked", Toast.LENGTH_SHORT).show();
                 return true;
+
+            case R.id.item_logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
+                startActivity(intent);
+                finish();
 
 
 

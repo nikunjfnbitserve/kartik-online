@@ -54,28 +54,28 @@ public class Login2FireStore extends AppCompatActivity {
         fAuth= FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
 
-        if(fAuth.getCurrentUser()!=null) {
+        if(fAuth.getCurrentUser() != null) {
             userID = fAuth.getCurrentUser().getUid();
-            currentUser = new User();
+//            currentUser = new User();
 
            final DocumentReference documentReference = fstore.collection("users").document(userID);
             Log.d("Login2FireStoreError", documentReference+"");
-            documentReference.addSnapshotListener(Login2FireStore.this, new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                    Log.d("Login2FireStoreError", e+"");
-                    //Log.d("Login2FireStoreActivity", documentSnapshot.getString("userEmail"));
-                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
-                    currentUser.setUserName(documentSnapshot.getString("userName"));
-                    currentUser.setUserPassword(documentSnapshot.getString("password"));
-                    currentUser.setUserId(documentSnapshot.getString("userId"));
-//                    currentUser.setOnline(documentSnapshot.getBoolean("isOnline"));
-//                    currentUser.setLastActive(Long.parseLong(documentSnapshot.getString("lastActive")));
-
-                }
-            });
-            Log.d("Login2FireStoreActivity", currentUser.toString());
-            makeUserOnline(currentUser,documentReference);
+//            documentReference.addSnapshotListener(Login2FireStore.this, new EventListener<DocumentSnapshot>() {
+////                @Override
+////                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+////                    Log.d("Login2FireStoreError", e+"");
+////                    //Log.d("Login2FireStoreActivity", documentSnapshot.getString("userEmail"));
+////                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
+////                    currentUser.setUserName(documentSnapshot.getString("userName"));
+////                    currentUser.setUserPassword(documentSnapshot.getString("password"));
+////                    currentUser.setUserId(documentSnapshot.getString("userId"));
+////                    currentUser.setOnline(documentSnapshot.getBoolean("isOnline"));
+////                    currentUser.setLastActive(Long.parseLong(documentSnapshot.getString("lastActive")));
+////
+////                }
+////            });
+//            Log.d("Login2FireStoreActivity", currentUser.toString());
+//            makeUserOnline(currentUser,documentReference);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -129,31 +129,29 @@ public class Login2FireStore extends AppCompatActivity {
         });
     }
 
-    public void makeUserOnline(User mUser, DocumentReference documentReference){
-
-
-        mUser.setOnline(true);
-        mUser.setLastActive(0);
-        documentReference.set(mUser);
-        FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("online");
-
-        FirebaseDatabase.getInstance().getReference("/status/" + mUser.getUserId())
-                .onDisconnect()     // Set up the disconnect hook
-                .setValue("offline");
-
-    }
-
-    public void makeUserOffline(User mUser){
-
-        DocumentReference query = FirebaseFirestore.getInstance().collection("users").document(mUser.getUserId());
-        mUser.setOnline(false);
-        mUser.setLastActive(System.currentTimeMillis());
-        query.set(mUser);
-        FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("offline");
-
-
-
-    }
+//    public void makeUserOnline(User mUser, DocumentReference documentReference){
+//
+//
+//        mUser.setOnline(true);
+//        mUser.setLastActive(0);
+//        documentReference.set(mUser);
+//        FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("online");
+//
+//        FirebaseDatabase.getInstance().getReference("/status/" + mUser.getUserId())
+//                .onDisconnect()     // Set up the disconnect hook
+//                .setValue("offline");
+//
+//    }
+//
+//    public void makeUserOffline(User mUser){
+//
+//        DocumentReference query = FirebaseFirestore.getInstance().collection("users").document(mUser.getUserId());
+//        mUser.setOnline(false);
+//        mUser.setLastActive(System.currentTimeMillis());
+//        query.set(mUser);
+//        FirebaseDatabase.getInstance().getReference("status/" + mUser.getUserId()).setValue("offline");
+//
+//    }
 
 }
 

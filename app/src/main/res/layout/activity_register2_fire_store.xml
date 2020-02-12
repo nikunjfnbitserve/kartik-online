@@ -112,9 +112,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="18dp"
-            android:background="#2D2D2D"
+            android:background="@drawable/buttonbackground"
             android:text="SIGN IN"
-            android:textColor="#fff"
+            android:textColor="#000000"
             android:textStyle="bold" />
 
 
