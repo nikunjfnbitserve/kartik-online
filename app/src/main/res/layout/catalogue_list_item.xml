@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
-    tools:context=".activities.Admin_Catalogue">
+    android:padding="8dp">
+
     <androidx.cardview.widget.CardView
         android:padding="2dp"
         android:layout_gravity="center"
@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/acat_brand_tv"
+                    android:id="@+id/tv_catalog_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
@@ -68,7 +68,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/acat_bpreview_btn"
+                    android:id="@+id/btn_preview"
                     android:text="Preview"
                     android:background="@drawable/orderlist_delete_button_bg"
                     android:textColor="#ffffff"
@@ -77,7 +77,7 @@
                     android:layout_height="25dp" />
 
                 <Button
-                    android:id="@+id/act_bedit_btn"
+                    android:id="@+id/btn_edit"
                     android:text="Edit"
                     android:background="@drawable/orderlist_view_button_bg"
                     android:textColor="#ffffff"
@@ -89,7 +89,7 @@
             </LinearLayout>
 
             <Switch
-                android:id="@+id/acat_swith_btn"
+                android:id="@+id/switch_published"
                 android:padding="8dp"
                 android:text="Published "
                 android:layout_marginLeft="48dp"

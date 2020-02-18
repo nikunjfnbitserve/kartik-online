@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="8dp"
     android:layout_height="match_parent"
-    tools:context=".activities.CatalogueNameInformation">
+    tools:context=".activities.CatalogueItemInfo">
     <TextView
         android:id="@+id/cat_item_tv"
         android:layout_width="wrap_content"

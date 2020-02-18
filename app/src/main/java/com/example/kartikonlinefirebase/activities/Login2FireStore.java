@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -48,37 +49,50 @@ public class Login2FireStore extends AppCompatActivity {
     String userID;
 
     User currentUser;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if(currentUser != null) {
+            userID = fAuth.getCurrentUser().getUid();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fAuth= FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
 
-        if(fAuth.getCurrentUser() != null) {
-            userID = fAuth.getCurrentUser().getUid();
+//        if(fAuth.getCurrentUser() != null) {
+//            userID = fAuth.getCurrentUser().getUid();
 //            currentUser = new User();
-
-           final DocumentReference documentReference = fstore.collection("users").document(userID);
-            Log.d("Login2FireStoreError", documentReference+"");
-//            documentReference.addSnapshotListener(Login2FireStore.this, new EventListener<DocumentSnapshot>() {
-////                @Override
-////                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-////                    Log.d("Login2FireStoreError", e+"");
-////                    //Log.d("Login2FireStoreActivity", documentSnapshot.getString("userEmail"));
-////                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
-////                    currentUser.setUserName(documentSnapshot.getString("userName"));
-////                    currentUser.setUserPassword(documentSnapshot.getString("password"));
-////                    currentUser.setUserId(documentSnapshot.getString("userId"));
-////                    currentUser.setOnline(documentSnapshot.getBoolean("isOnline"));
-////                    currentUser.setLastActive(Long.parseLong(documentSnapshot.getString("lastActive")));
-////
-////                }
-////            });
+//
+//           final DocumentReference documentReference = fstore.collection("users").document(userID);
+//            Log.d("Login2FireStoreError", documentReference+"");
+//           documentReference.addSnapshotListener(Login2FireStore.this, new EventListener<DocumentSnapshot>() {
+//                @Override
+//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+//                    Log.d("Login2FireStoreError", e+"");
+//                    //Log.d("Login2FireStoreActivity", documentSnapshot.getString("userEmail"));
+//                    currentUser.setUserEmail(documentSnapshot.getString("userEmail"));
+//                    currentUser.setUserName(documentSnapshot.getString("userName"));
+//                    currentUser.setUserPassword(documentSnapshot.getString("password"));
+//                    currentUser.setUserId(documentSnapshot.getString("userId"));
+//                    currentUser.setOnline(documentSnapshot.getBoolean("isOnline"));
+//                    currentUser.setLastActive(Long.parseLong(documentSnapshot.getString("lastActive")));
+//
+//                }
+//            });
 //            Log.d("Login2FireStoreActivity", currentUser.toString());
 //            makeUserOnline(currentUser,documentReference);
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            finish();
+//        }
 
         setContentView(R.layout.activity_login2_fire_store);
         ButterKnife.bind(this);
@@ -99,15 +113,16 @@ public class Login2FireStore extends AppCompatActivity {
                     lPwdEt.setError("password is required");
                     return;
                 }
-                if(password.length()<6)
+                if(password.length() < 6)
                 {
-                    lPwdEt.setError("password must be >=6");
+                    lPwdEt.setError("password must be greater than 6");
                     return;
                 }
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            lLoginBtn.setClickable(false);
                             Toast.makeText(Login2FireStore.this, "Login successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
@@ -124,6 +139,7 @@ public class Login2FireStore extends AppCompatActivity {
         lTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(getApplicationContext(), Register2FireStore.class));
             }
         });

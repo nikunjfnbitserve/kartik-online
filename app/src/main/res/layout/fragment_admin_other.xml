@@ -114,11 +114,13 @@
     </LinearLayout>
 
 
+    <!--
     <LinearLayout
         android:layout_weight="0.1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/adother_logout"
             android:text="Logout"
@@ -127,5 +129,6 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    -->
 
 </LinearLayout>
