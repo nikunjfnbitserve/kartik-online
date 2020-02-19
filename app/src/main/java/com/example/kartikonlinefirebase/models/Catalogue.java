@@ -1,13 +1,25 @@
 package com.example.kartikonlinefirebase.models;
 
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Catalogue {
 
+    @SerializedName("catalogueId")
+    @Expose
     private String catalogueId;
+    @SerializedName("catalogueTitle")
+    @Expose
     private String catalogueTitle;
+    @SerializedName("isPublished")
+    @Expose
     private Boolean isPublished;
+    @SerializedName("visitors")
+    @Expose
     private Integer visitors;
+    @SerializedName("items")
+    @Expose
     private List<Item> items = null;
 
     public String getCatalogueId() {
@@ -49,11 +61,5 @@ public class Catalogue {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-
-
-    public Catalogue( String title){
-
-    }
-
 
 }

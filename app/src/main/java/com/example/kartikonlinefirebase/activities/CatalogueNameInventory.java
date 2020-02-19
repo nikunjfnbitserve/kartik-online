@@ -11,6 +11,6 @@ public class CatalogueNameInventory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalogue_name_inventory);
+        setContentView(R.layout.activity_catalogue_item_inventory);
     }
 }

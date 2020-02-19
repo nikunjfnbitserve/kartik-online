@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:padding="8dp"
     android:orientation="vertical"
-    tools:context=".activities.CatalogueItemInfo">
+    tools:context=".fragments.CatalogueItemInfoFragment">
     <TextView
-        android:id="@+id/cat_item_tv"
+        android:id="@+id/tv_item_name_label"
         android:layout_width="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -17,10 +17,10 @@
 
     <EditText
         android:layout_marginTop="4dp"
-        android:id="@+id/cat_item_et"
-
+        android:id="@+id/et_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <LinearLayout
         android:weightSum="2"
         android:layout_margin="4dp"
@@ -37,7 +37,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/cat_price_tv"
+                android:id="@+id/tv_item_price_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
@@ -45,15 +45,13 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/cat_price_et"
+                android:id="@+id/et_item_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/cat_cnqty_tv"
+                android:id="@+id/tv_item_cn_qty_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CN Qty."
@@ -61,14 +59,13 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/cat_cnqty_et"
+                android:id="@+id/et_item_cn_qty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/cat_size_tv"
+                android:id="@+id/tv_item_size_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Size"
@@ -76,15 +73,13 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:id="@+id/cat_size_et"
+                android:id="@+id/et_item_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/catalogue_color_tv"
+                android:id="@+id/tv_item_color_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Color"
@@ -92,14 +87,14 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/cat_color_et"
+                android:id="@+id/et_item_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/cat_select_tv"
+                android:id="@+id/tv_item_cat_sel_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select Categories"
@@ -107,15 +102,13 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/cat_select_et"
+                android:id="@+id/et_item_cat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-
                 android:layout_marginTop="8dp" />
 
             <TextView
-                android:id="@+id/cat_s_tv"
+                android:id="@+id/tv_item_gender_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select Gender"
@@ -123,13 +116,13 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/cat_sk_et"
+                android:id="@+id/et_item_gender"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="8dp" />
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_weight="1"
             android:layout_marginStart="4dp"
@@ -138,7 +131,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/cat_disc_pr_tv"
+                android:id="@+id/tv_item_disc_price_label"
                 android:layout_width="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -146,13 +139,12 @@
                 android:text="DiscountPrice" />
 
             <EditText
-                android:id="@+id/cat_disc_et"
+                android:id="@+id/et_item_disc_price"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
             <TextView
-                android:id="@+id/cat_sqty_tv"
+                android:id="@+id/tv_item_qty_label"
                 android:layout_width="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -161,12 +153,11 @@
 
             <EditText
                 android:layout_marginTop="8dp"
-
-                android:id="@+id/cat_sqty_et"
+                android:id="@+id/et_item_set_qty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/cat_ss_tv"
+                android:id="@+id/tv_item_size_sel_label"
                 android:layout_width="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -175,13 +166,11 @@
 
             <EditText
                 android:layout_marginTop="8dp"
-                android:id="@+id/cat_ss_et"
-
-
+                android:id="@+id/et_item_size_sel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/cat_cs_tv"
+                android:id="@+id/tv_item_color_sel_label"
                 android:layout_width="wrap_content"
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
@@ -190,28 +179,26 @@
 
             <EditText
                 android:layout_marginTop="8dp"
-
-                android:id="@+id/cat_cs_et"
+                android:id="@+id/et_item_color_sel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
+
             <TextView
-                android:id="@+id/cat_st_tv"
+                android:id="@+id/tv_item_sort_tags_label"
                 android:layout_width="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
-
                 android:layout_height="wrap_content"
                 android:text="Sort Tags" />
 
             <EditText
                 android:layout_marginTop="8dp"
-
-                android:id="@+id/cat_st_et"
+                android:id="@+id/et_item_sort_tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/cat_sn_tv"
+                android:id="@+id/tv_item_sole_name_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sole Name"
@@ -220,8 +207,7 @@
 
             <EditText
                 android:layout_marginTop="8dp"
-
-                android:id="@+id/catalogue_s_et"
+                android:id="@+id/et_item_sole_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -230,11 +216,12 @@
         android:text="Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tv_item_desc_label"
         android:textSize="18sp"
         android:textStyle="bold"/>
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
-
+        android:id="@+id/et_item_desc"
         android:text="This is an product description available for product details. this is an product description available for product details"
         android:textSize="18sp"
         android:layout_height="wrap_content"/>

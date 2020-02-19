@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.adapters.AdminTabsViewPagerAdapter;
 import com.example.kartikonlinefirebase.fragments.AdminCatalogueFragment;
@@ -18,9 +16,7 @@ import com.example.kartikonlinefirebase.fragments.AdminHomeFragment;
 import com.example.kartikonlinefirebase.fragments.AdminOtherFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

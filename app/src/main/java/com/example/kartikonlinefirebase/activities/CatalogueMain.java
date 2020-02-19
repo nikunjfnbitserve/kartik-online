@@ -95,6 +95,7 @@ public class CatalogueMain extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mFirebaseDatabaseReference;
+    private EditText catalogueText;
     private FirebaseRecyclerAdapter<Catalogue, CatalogueViewHolder> mFirebaseAdapter;
 
 
@@ -103,6 +104,7 @@ public class CatalogueMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogue_main);
         textGallery = (TextView) findViewById(R.id.tv_add_gall);
+        catalogueText = (EditText) findViewById(R.id.et_add_title);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -205,6 +207,8 @@ public class CatalogueMain extends AppCompatActivity {
 //
 //                                }
 //                            });
+
+                    startActivity(new Intent(this, EditProductInfoActivity.class));
                 }
             }
         }

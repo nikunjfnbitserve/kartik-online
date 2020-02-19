@@ -1,26 +1,64 @@
 package com.example.kartikonlinefirebase.models;
 
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Item {
 
+    @SerializedName("itemId")
+    @Expose
     private String itemId;
+    @SerializedName("availableQuantity")
+    @Expose
     private Integer availableQuantity;
+    @SerializedName("cartonQuanity")
+    @Expose
     private Integer cartonQuanity;
+    @SerializedName("catagories")
+    @Expose
     private List<Catagory> catagories = null;
+    @SerializedName("color")
+    @Expose
     private String color;
+    @SerializedName("colorSelection")
+    @Expose
     private String colorSelection;
+    @SerializedName("description")
+    @Expose
     private String description;
+    @SerializedName("discountPrice")
+    @Expose
     private Double discountPrice;
+    @SerializedName("imageUrl")
+    @Expose
     private String imageUrl;
+    @SerializedName("isOutOfStock")
+    @Expose
     private Boolean isOutOfStock;
+    @SerializedName("itemName")
+    @Expose
     private String itemName;
+    @SerializedName("price")
+    @Expose
     private Integer price;
+    @SerializedName("setQuantity")
+    @Expose
     private Integer setQuantity;
+    @SerializedName("size")
+    @Expose
     private String size;
+    @SerializedName("sizeSelection")
+    @Expose
     private String sizeSelection;
+    @SerializedName("soleName")
+    @Expose
     private String soleName;
+    @SerializedName("sortTags")
+    @Expose
     private String sortTags;
+    @SerializedName("type")
+    @Expose
     private String type;
 
     public String getItemId() {

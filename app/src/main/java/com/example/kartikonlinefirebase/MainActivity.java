@@ -114,3 +114,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+//TODO(1): Make a common ViewPagerAdapter for existing view pagers and tablayouts
+//TODO(2): Safely remove activities which are already been copied inside fragments

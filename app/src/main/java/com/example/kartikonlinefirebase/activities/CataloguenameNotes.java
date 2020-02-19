@@ -11,6 +11,6 @@ public class CataloguenameNotes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cataloguename_notes);
+        setContentView(R.layout.activity_catalogue_item_notes);
     }
 }
