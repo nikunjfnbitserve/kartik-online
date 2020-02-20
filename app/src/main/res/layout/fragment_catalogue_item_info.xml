@@ -1,229 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp"
-    android:orientation="vertical"
-    tools:context=".fragments.CatalogueItemInfoFragment">
-    <TextView
-        android:id="@+id/tv_item_name_label"
-        android:layout_width="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:text="Item Name" />
-
-    <EditText
-        android:layout_marginTop="4dp"
-        android:id="@+id/et_item_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:weightSum="2"
-        android:layout_margin="4dp"
-        android:padding="4dp"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:orientation="vertical"
+        tools:context=".fragments.CatalogueItemInfoFragment">
+
+        <TextView
+            android:id="@+id/tv_item_name_label"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Item Name" />
+
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/et_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
-            android:layout_weight="1"
+            android:weightSum="2"
+            android:layout_margin="4dp"
             android:padding="4dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_item_price_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_item_price"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_weight="1"
+                android:padding="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_item_cn_qty_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CN Qty."
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_item_price_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/et_item_cn_qty"
+                <EditText
+                    android:id="@+id/et_item_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_cn_qty_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CN Qty."
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_item_cn_qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_size_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/et_item_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_color_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Color"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_item_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_cat_sel_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Categories"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_item_cat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_gender_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Gender"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_item_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:padding="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_item_disc_price_label"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="DiscountPrice" />
 
-            <TextView
-                android:id="@+id/tv_item_size_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Size"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/et_item_disc_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+                <TextView
+                    android:id="@+id/tv_item_qty_label"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="Set Qty." />
 
-            <EditText
-                android:id="@+id/et_item_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/et_item_set_qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_item_size_sel_label"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="Size Selection" />
 
-            <TextView
-                android:id="@+id/tv_item_color_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Color"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/et_item_size_sel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_item_color_sel_label"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Color Selection" />
 
-            <EditText
-                android:id="@+id/et_item_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/et_item_color_sel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-                android:layout_marginTop="8dp" />
+                <TextView
+                    android:id="@+id/tv_item_sort_tags_label"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="Sort Tags" />
 
-            <TextView
-                android:id="@+id/tv_item_cat_sel_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Categories"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/et_item_sort_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/et_item_cat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_item_sole_name_label"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="Sole Name"/>
 
-            <TextView
-                android:id="@+id/tv_item_gender_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Gender"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_item_sole_name"
+                    android:layout_marginTop="8dp"/>
 
-            <EditText
-                android:id="@+id/et_item_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginStart="4dp"
-            android:padding="4dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_item_desc_label"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Description"/>
+
+        <EditText
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_item_disc_price_label"
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:text="DiscountPrice" />
+            android:layout_height="wrap_content"
+            android:id="@+id/et_item_desc"
+            android:text="This is an product description "
+            android:textSize="18sp"/>
 
-            <EditText
-                android:id="@+id/et_item_disc_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
-            <TextView
-                android:id="@+id/tv_item_qty_label"
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:text="Set Qty." />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:id="@+id/et_item_set_qty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_item_size_sel_label"
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:text="Size Selection" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:id="@+id/et_item_size_sel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_item_color_sel_label"
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Color Selection" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:id="@+id/et_item_color_sel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/tv_item_sort_tags_label"
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:text="Sort Tags" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:id="@+id/et_item_sort_tags"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_item_sole_name_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sole Name"
-                android:textStyle="bold"
-                android:textSize="18sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:id="@+id/et_item_sole_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:text="Description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_item_desc_label"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:id="@+id/et_item_desc"
-        android:text="This is an product description available for product details. this is an product description available for product details"
-        android:textSize="18sp"
-        android:layout_height="wrap_content"/>
 
-</LinearLayout>
+
+</ScrollView>

@@ -9,18 +9,22 @@ public class Catalogue {
     @SerializedName("catalogueId")
     @Expose
     private String catalogueId;
+
     @SerializedName("catalogueTitle")
     @Expose
     private String catalogueTitle;
+
     @SerializedName("isPublished")
     @Expose
     private Boolean isPublished;
+
     @SerializedName("visitors")
     @Expose
     private Integer visitors;
-    @SerializedName("items")
+
+    @SerializedName("products")
     @Expose
-    private List<Item> items = null;
+    private List<Product> products = null;
 
     public String getCatalogueId() {
         return catalogueId;
@@ -54,12 +58,12 @@ public class Catalogue {
         this.visitors = visitors;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
 }

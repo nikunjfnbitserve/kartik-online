@@ -1,26 +1,25 @@
 package com.example.kartikonlinefirebase.fragments;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kartikonlinefirebase.R;
-import com.example.kartikonlinefirebase.models.Catalogue;
-import com.example.kartikonlinefirebase.models.Item;
+import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +30,19 @@ import butterknife.ButterKnife;
 public class CatalogueItemInfoFragment extends Fragment {
 
 
-    private Item item;
-    private List<Item> productList;
+    private Product product;
+    private List<Product> productList;
+
+    private EditText productNameText, productPriceText, productDiscountPriceText,
+            productCartonQuantityText, productSetQuantityText,
+            productSizeText, productSizeSelectionText, productColorText,
+            productColorSelectionText, productCatagoryText, productSortTagsText,
+            productGenderText,productSoleNameText, productDescriptionText ;
+
+
 
     @BindView(R.id.tv_item_name_label)
     TextView itemNameTextLabel;
-
-
 
 
     public CatalogueItemInfoFragment() {
@@ -50,14 +55,16 @@ public class CatalogueItemInfoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_catalogue_item_info, container, false);
 
+        setHasOptionsMenu(true);
+
         ButterKnife.bind(getActivity());
 
-        if(Config.mStaticProductList.size() == 0 && Config.mStaticProductList != null){
-
+        if(Config.mStaticProductList.size() == 0){
             productList = new ArrayList<>();
-            item = new Item();
+            product = new Product();
         } else {
             productList = Config.getmStaticProductList();
+            Log.e("static product list", "prev prod " +productList.isEmpty());
         }
 
         //TODO: get data from firebase for already existing items in a catalogue
@@ -69,41 +76,66 @@ public class CatalogueItemInfoFragment extends Fragment {
 
 
 
-        EditText itemNameText = (EditText) view.findViewById(R.id.et_item_name);
-        EditText itemPriceText = (EditText) view.findViewById(R.id.et_item_price);
-        EditText itemDiscountPriceText = (EditText) view.findViewById(R.id.et_item_disc_price);
-        EditText itemCartonQuantityText = (EditText) view.findViewById(R.id.et_item_cn_qty);
-        EditText itemSetQuantityText = (EditText) view.findViewById(R.id.et_item_set_qty);
-        EditText itemSizeText = (EditText) view.findViewById(R.id.et_item_size);
-        EditText itemSizeSelectionText = (EditText) view.findViewById(R.id.et_item_size_sel);
-        EditText itemColorText = (EditText) view.findViewById(R.id.et_item_color);
-        EditText itemColorSelectionText = (EditText) view.findViewById(R.id.et_item_color_sel);
-        EditText itemCatagoryText = (EditText) view.findViewById(R.id.et_item_cat);
-        EditText itemSortTagsText = (EditText) view.findViewById(R.id.et_item_sort_tags);
-        EditText itemGenderText = (EditText) view.findViewById(R.id.et_item_gender);
-        EditText itemSoleNameText = (EditText) view.findViewById(R.id.et_item_sole_name);
-        EditText itemDescriptionText = (EditText) view.findViewById(R.id.et_item_desc);
-
-        item.setItemName(itemNameText.getText().toString());
-        item.setPrice(Integer.valueOf(itemPriceText.getText().toString()));
-        item.setDiscountPrice(Double.valueOf(itemDiscountPriceText.getText().toString()));
-        item.setCartonQuanity(Integer.valueOf(itemCartonQuantityText.getText().toString()));
-        item.setSetQuantity(Integer.valueOf(itemSetQuantityText.getText().toString()));
-        item.setSize(itemSizeText.getText().toString());
-        item.setSizeSelection(itemSizeSelectionText.getText().toString());
-        item.setColor(itemColorText.getText().toString());
-        item.setColorSelection(itemColorSelectionText.getText().toString());
-        item.setSortTags(itemSortTagsText.getText().toString());
-        item.setType(itemGenderText.getText().toString());
-        item.setSoleName(itemSoleNameText.getText().toString());
-        item.setDescription(itemDescriptionText.getText().toString());
-
-        productList.add(item);
-        Config.setmStaticProductList(productList);
-
-
+        productNameText = (EditText) view.findViewById(R.id.et_item_name);
+        productPriceText = (EditText) view.findViewById(R.id.et_item_price);
+        productDiscountPriceText = (EditText) view.findViewById(R.id.et_item_disc_price);
+        productCartonQuantityText = (EditText) view.findViewById(R.id.et_item_cn_qty);
+        productSetQuantityText = (EditText) view.findViewById(R.id.et_item_set_qty);
+        productSizeText = (EditText) view.findViewById(R.id.et_item_size);
+        productSizeSelectionText = (EditText) view.findViewById(R.id.et_item_size_sel);
+        productColorText = (EditText) view.findViewById(R.id.et_item_color);
+        productColorSelectionText = (EditText) view.findViewById(R.id.et_item_color_sel);
+        productCatagoryText = (EditText) view.findViewById(R.id.et_item_cat);
+        productSortTagsText = (EditText) view.findViewById(R.id.et_item_sort_tags);
+        productGenderText = (EditText) view.findViewById(R.id.et_item_gender);
+        productSoleNameText = (EditText) view.findViewById(R.id.et_item_sole_name);
+        productDescriptionText = (EditText) view.findViewById(R.id.et_item_desc);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.item_check:
+                setItemFromItemForm();
+                Toast.makeText(getActivity(), "item info saved", Toast.LENGTH_SHORT).show();
+                Log.e("CatalogueInfo", "item info saved " + product.getproductName());
+                return true;
+
+
+            default: break;
+        }
+
+        return false;
+    }
+
+    public void setItemFromItemForm(){
+
+        product.setproductName(productNameText.getText().toString());
+        product.setPrice(Integer.parseInt(productPriceText.getText().toString()));
+        product.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
+        product.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
+        product.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
+        product.setSize(productSizeText.getText().toString());
+        product.setSizeSelection(productSizeSelectionText.getText().toString());
+        product.setColor(productColorText.getText().toString());
+        product.setColorSelection(productColorSelectionText.getText().toString());
+        product.setSortTags(productSortTagsText.getText().toString());
+        product.setType(productGenderText.getText().toString());
+        product.setSoleName(productSoleNameText.getText().toString());
+        product.setDescription(productDescriptionText.getText().toString());
+
+        productList.add(product);
+        Config.setmStaticProduct(product);
+        Config.setmStaticProductList(productList);
+
     }
 
 }

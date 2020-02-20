@@ -20,4 +20,8 @@
         android:title="Share"
         android:icon="@drawable/ic_share" />
 
+    <item
+        android:id="@+id/item_publish"
+        android:title="Publish catalogue"/>
+
 </menu>

@@ -1,5 +1,6 @@
 package com.example.kartikonlinefirebase.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.kartikonlinefirebase.R;
@@ -56,6 +59,18 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "product saved", Toast.LENGTH_SHORT).show();
+        super.onBackPressed();
+    }
+
+    public boolean onSupportNavigateUp() {
+        //Toast.makeText(this, "item saved", Toast.LENGTH_SHORT).show();
+        onBackPressed();
+        return true;
+    }
+
 
 
     private void initViewPager() {
@@ -75,9 +90,25 @@ public class EditProductInfoActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setText("Notes");
     }
 
+
+
     @Override
-    public void onBackPressed() {
-        Toast.makeText(this, "item saved", Toast.LENGTH_LONG).show();
-        super.onBackPressed();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_info_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.item_check: return false;
+
+            default: return super.onOptionsItemSelected(item);
+
+
+        }
+
+
     }
 }

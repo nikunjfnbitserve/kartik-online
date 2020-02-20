@@ -8,6 +8,7 @@ public class Catagory {
     @SerializedName("categoryId")
     @Expose
     private String categoryId;
+
     @SerializedName("categoryName")
     @Expose
     private String categoryName;

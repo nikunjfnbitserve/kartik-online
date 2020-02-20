@@ -4,69 +4,86 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Item {
+public class Product {
 
-    @SerializedName("itemId")
+    @SerializedName("productId")
     @Expose
-    private String itemId;
+    private String productId;
+
     @SerializedName("availableQuantity")
     @Expose
     private Integer availableQuantity;
+
     @SerializedName("cartonQuanity")
     @Expose
     private Integer cartonQuanity;
+
     @SerializedName("catagories")
     @Expose
     private List<Catagory> catagories = null;
+
     @SerializedName("color")
     @Expose
     private String color;
+
     @SerializedName("colorSelection")
     @Expose
     private String colorSelection;
+
     @SerializedName("description")
     @Expose
     private String description;
+
     @SerializedName("discountPrice")
     @Expose
     private Double discountPrice;
+
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
+
     @SerializedName("isOutOfStock")
     @Expose
     private Boolean isOutOfStock;
-    @SerializedName("itemName")
+
+    @SerializedName("productName")
     @Expose
-    private String itemName;
+    private String productName;
+
     @SerializedName("price")
     @Expose
     private Integer price;
+
     @SerializedName("setQuantity")
     @Expose
     private Integer setQuantity;
+
     @SerializedName("size")
     @Expose
     private String size;
+
     @SerializedName("sizeSelection")
     @Expose
     private String sizeSelection;
+
     @SerializedName("soleName")
     @Expose
     private String soleName;
+
     @SerializedName("sortTags")
     @Expose
     private String sortTags;
+
     @SerializedName("type")
     @Expose
     private String type;
 
-    public String getItemId() {
-        return itemId;
+    public String getproductId() {
+        return productId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setproductId(String productId) {
+        this.productId = productId;
     }
 
     public Integer getAvailableQuantity() {
@@ -141,12 +158,12 @@ public class Item {
         this.isOutOfStock = isOutOfStock;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getproductName() {
+        return productName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setproductName(String productName) {
+        this.productName = productName;
     }
 
     public Integer getPrice() {
