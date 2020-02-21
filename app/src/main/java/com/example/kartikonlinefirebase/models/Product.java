@@ -9,80 +9,75 @@ public class Product {
     @SerializedName("productId")
     @Expose
     private String productId;
-
     @SerializedName("availableQuantity")
     @Expose
     private Integer availableQuantity;
-
     @SerializedName("cartonQuanity")
     @Expose
     private Integer cartonQuanity;
-
-    @SerializedName("catagories")
+    @SerializedName("categoryName")
     @Expose
-    private List<Catagory> catagories = null;
-
+    private String categoryName;
     @SerializedName("color")
     @Expose
     private String color;
-
     @SerializedName("colorSelection")
     @Expose
     private String colorSelection;
-
     @SerializedName("description")
     @Expose
     private String description;
-
     @SerializedName("discountPrice")
     @Expose
     private Double discountPrice;
-
-    @SerializedName("imageUrl")
+    @SerializedName("images")
     @Expose
-    private String imageUrl;
-
+    private List<Image> images = null;
     @SerializedName("isOutOfStock")
     @Expose
     private Boolean isOutOfStock;
-
     @SerializedName("productName")
     @Expose
     private String productName;
-
     @SerializedName("price")
     @Expose
     private Integer price;
-
     @SerializedName("setQuantity")
     @Expose
     private Integer setQuantity;
-
     @SerializedName("size")
     @Expose
     private String size;
-
     @SerializedName("sizeSelection")
     @Expose
     private String sizeSelection;
-
     @SerializedName("soleName")
     @Expose
     private String soleName;
-
     @SerializedName("sortTags")
     @Expose
     private String sortTags;
-
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("notes")
+    @Expose
+    private String notes;
+    @SerializedName("videoUrl")
+    @Expose
+    private String videoUrl;
+    @SerializedName("isShowOutOfStock")
+    @Expose
+    private Boolean isShowOutOfStock;
+    @SerializedName("isForceAllowOrder")
+    @Expose
+    private Boolean isForceAllowOrder;
 
-    public String getproductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setproductId(String productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -102,12 +97,12 @@ public class Product {
         this.cartonQuanity = cartonQuanity;
     }
 
-    public List<Catagory> getCatagories() {
-        return catagories;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCatagories(List<Catagory> catagories) {
-        this.catagories = catagories;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getColor() {
@@ -142,12 +137,12 @@ public class Product {
         this.discountPrice = discountPrice;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<Image> getImages() {
+        return images;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     public Boolean getIsOutOfStock() {
@@ -158,11 +153,11 @@ public class Product {
         this.isOutOfStock = isOutOfStock;
     }
 
-    public String getproductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setproductName(String productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 
@@ -220,6 +215,38 @@ public class Product {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public Boolean getIsShowOutOfStock() {
+        return isShowOutOfStock;
+    }
+
+    public void setIsShowOutOfStock(Boolean isShowOutOfStock) {
+        this.isShowOutOfStock = isShowOutOfStock;
+    }
+
+    public Boolean getIsForceAllowOrder() {
+        return isForceAllowOrder;
+    }
+
+    public void setIsForceAllowOrder(Boolean isForceAllowOrder) {
+        this.isForceAllowOrder = isForceAllowOrder;
     }
 
 }

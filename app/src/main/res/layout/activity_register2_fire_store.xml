@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="4dp"
-    android:gravity="center"
-    >
+    android:gravity="center">
+
     <ImageView
         android:src="@drawable/kartik_online_logo"
         android:padding="8dp"
         android:layout_gravity="center|bottom"
         android:layout_width="240dp"
         android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,34 +25,30 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <Button
-        android:text="Facebook"
-        android:drawableLeft="@drawable/fb"
-        android:layout_marginTop="18dp"
-        android:textAllCaps="false"
-        android:padding="8dp"
-        android:background="@drawable/buttonbackground"
-        android:layout_width="240dp"
-        android:layout_height="48dp"/>
+
+
     <com.google.android.gms.common.SignInButton
         android:text="Google"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="14dp"
         android:textAllCaps="false"
-        android:background="@drawable/buttonbackground"
-        android:layout_width="240dp"
-        android:layout_height="48dp"/>
-    <View
-        android:layout_marginTop="18dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_width="248dp"
+        android:layout_height="56dp"/>
 
-        android:background="@android:color/background_dark"/>
+    <Button
+        android:text="Facebook"
+        android:drawableLeft="@drawable/ic_facebook"
+        android:layout_marginTop="14dp"
+        android:textAllCaps="false"
+        android:padding="14dp"
+        android:background="@drawable/buttonbackground_fb"
+        android:layout_height="48dp"
+        android:layout_width="240dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="14dp"
         android:padding="8dp">
 
         <TextView
@@ -62,22 +60,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/r_un_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="USER NAME"
-            android:padding="8dp" />
+            android:hint="Username"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/r_email_et"
             android:padding="8dp"
             android:layout_marginTop="4dp"
-            android:hint="EMAIL ADDRESS"
+            android:hint="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/r_pass_et"
@@ -85,17 +102,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:hint="PASSWORD"
-            android:padding="8dp" />
+            android:hint="Password"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/r_cn_pwd_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:hint="CONFIRM PASSWORD"
+            android:hint="Confirm password"
             android:inputType="textPassword"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:layout_marginTop="18dp"
@@ -103,8 +132,7 @@
             android:gravity="center"
             android:text="By Signing in you agree the terms and condition and privacy policy"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/r_reg_btn"

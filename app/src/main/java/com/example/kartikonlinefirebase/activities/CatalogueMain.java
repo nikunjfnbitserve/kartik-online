@@ -40,6 +40,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.kartikonlinefirebase.utils.Config.mStaticCatalogue;
+
 public class CatalogueMain extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE = 3;
@@ -76,15 +78,14 @@ public class CatalogueMain extends AppCompatActivity {
 
         mCatalogue = new Catalogue();
         mCatalogueList = new ArrayList<>();
-        Config.mStaticProductList = new ArrayList<>();
-        Config.mCatalogueList = new ArrayList<>();
+
 
         SnapshotParser<Product> parser = new SnapshotParser<Product>() {
             @Override
             public Product parseSnapshot(DataSnapshot dataSnapshot) {
                 Product product = dataSnapshot.getValue(Product.class);
                 if (product != null) {
-                    product.setproductId(dataSnapshot.getKey());
+                    product.setProductId(dataSnapshot.getKey());
                 }
                 return product;
             }
@@ -156,6 +157,7 @@ public class CatalogueMain extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 if(data != null){
                     final Uri uri = data.getData();
+                    Config.selectedImageUri = uri;
                     Log.d("CatalogueMain", "Uri: " + uri.toString());
 
                     //TODO : add firestore logic here
@@ -226,13 +228,23 @@ public class CatalogueMain extends AppCompatActivity {
 
             case R.id.item_check:
                 Toast.makeText(this, "catalogue saved", Toast.LENGTH_SHORT).show();
+                saveCatalogue();
                 return true;
+
+            case R.id.item_publish:
+                mStaticCatalogue.setIsPublished(true);
 
 
             default: return super.onOptionsItemSelected(item);
         }
     }
 
+    private void saveCatalogue() {
+
+        mStaticCatalogue.setCatalogueTitle(catalogueText.getText().toString());
+
+
+    }
 
 
 }

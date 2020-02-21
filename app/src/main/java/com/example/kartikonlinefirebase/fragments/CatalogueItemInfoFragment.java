@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kartikonlinefirebase.R;
+import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
 
@@ -27,11 +28,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.kartikonlinefirebase.utils.Config.mStaticCatalogue;
+import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
+
 public class CatalogueItemInfoFragment extends Fragment {
 
 
-    private Product product;
+
     private List<Product> productList;
+    EditProductInfoActivity editProductInfoActivity;
 
     private EditText productNameText, productPriceText, productDiscountPriceText,
             productCartonQuantityText, productSetQuantityText,
@@ -41,8 +46,7 @@ public class CatalogueItemInfoFragment extends Fragment {
 
 
 
-    @BindView(R.id.tv_item_name_label)
-    TextView itemNameTextLabel;
+
 
 
     public CatalogueItemInfoFragment() {
@@ -57,11 +61,13 @@ public class CatalogueItemInfoFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
+        editProductInfoActivity = (EditProductInfoActivity) getActivity();
+
         ButterKnife.bind(getActivity());
 
         if(Config.mStaticProductList.size() == 0){
             productList = new ArrayList<>();
-            product = new Product();
+
         } else {
             productList = Config.getmStaticProductList();
             Log.e("static product list", "prev prod " +productList.isEmpty());
@@ -106,7 +112,7 @@ public class CatalogueItemInfoFragment extends Fragment {
             case R.id.item_check:
                 setItemFromItemForm();
                 Toast.makeText(getActivity(), "item info saved", Toast.LENGTH_SHORT).show();
-                Log.e("CatalogueInfo", "item info saved " + product.getproductName());
+                Log.e("CatalogueInfo", "item info saved " + editProductInfoActivity.product.getProductName());
                 return true;
 
 
@@ -118,23 +124,25 @@ public class CatalogueItemInfoFragment extends Fragment {
 
     public void setItemFromItemForm(){
 
-        product.setproductName(productNameText.getText().toString());
-        product.setPrice(Integer.parseInt(productPriceText.getText().toString()));
-        product.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
-        product.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
-        product.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
-        product.setSize(productSizeText.getText().toString());
-        product.setSizeSelection(productSizeSelectionText.getText().toString());
-        product.setColor(productColorText.getText().toString());
-        product.setColorSelection(productColorSelectionText.getText().toString());
-        product.setSortTags(productSortTagsText.getText().toString());
-        product.setType(productGenderText.getText().toString());
-        product.setSoleName(productSoleNameText.getText().toString());
-        product.setDescription(productDescriptionText.getText().toString());
+        editProductInfoActivity.product.setProductName(productNameText.getText().toString());
+        editProductInfoActivity.product.setPrice(Integer.parseInt(productPriceText.getText().toString()));
+        editProductInfoActivity.product.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
+        editProductInfoActivity.product.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
+        editProductInfoActivity.product.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
+        editProductInfoActivity.product.setSize(productSizeText.getText().toString());
+        editProductInfoActivity.product.setSizeSelection(productSizeSelectionText.getText().toString());
+        editProductInfoActivity.product.setColor(productColorText.getText().toString());
+        editProductInfoActivity.product.setColorSelection(productColorSelectionText.getText().toString());
+        editProductInfoActivity.product.setSortTags(productSortTagsText.getText().toString());
+        editProductInfoActivity.product.setType(productGenderText.getText().toString());
+        editProductInfoActivity.product.setSoleName(productSoleNameText.getText().toString());
+        editProductInfoActivity.product.setDescription(productDescriptionText.getText().toString());
+        editProductInfoActivity.product.setCategoryName(productCatagoryText.getText().toString());
 
-        productList.add(product);
-        Config.setmStaticProduct(product);
-        Config.setmStaticProductList(productList);
+//        productList.add(product);
+//
+//        Config.setmStaticProduct(product);
+//        Config.setmStaticProductList(productList);
 
     }
 

@@ -1,186 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.CatalogueNameInventory"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".activities.CatalogueNameInventory">
-
-    <TextView
-        android:id="@+id/stock_tv_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="Stock Availabilty"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginTop="32dp"
-        android:focusable="true"
-        android:gravity="left"
-
-        android:padding="4dp"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
+            android:id="@+id/stock_tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingTop="5dp"
-            android:singleLine="false"
-            android:text="Out of Stock"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1" />
+            android:text="Stock Availabilty"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:focusable="false"
-            android:id="@+id/out_of_stock_cb"
-            android:clickable="false"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="32dp"
+            android:focusable="true"
+            android:gravity="left"
+            android:padding="4dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Out of Stock"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <Switch
+                android:id="@+id/switch_out_of_stock"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:weightSum="2"
+            android:layout_marginTop="32dp"
+            android:padding="4dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="Availablity Quantity :"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_available_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:hint="tap to enter qty"
+                android:inputType="number"
+                android:padding="4dp"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="Show out of stock to catalogue visitor"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <Switch
+                android:id="@+id/switch_show_out_of_stock"
+                android:layout_gravity="center"
+                android:layout_weight="0.4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="Force allow order on out of stock product"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <Switch
+                android:id="@+id/switch_force_allow_order"
+                android:layout_gravity="center"
+                android:layout_weight="0.4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginTop="32dp"
-        android:focusable="true"
-        android:gravity="left"
-        android:padding="4dp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingTop="5dp"
-            android:singleLine="false"
-            android:text="Available"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:focusable="false"
-            android:id="@+id/available_cb"
-            android:clickable="false"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="left"
-        android:weightSum="2"
-        android:layout_marginTop="32dp"
-        android:padding="4dp"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_weight="1"
-            android:text="Availablity Quantity :"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/stock_aq_et"
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:padding="4dp" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <LinearLayout
-        android:weightSum="2"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Out of Stock"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
-        <Switch
-            android:id="@+id/out_of_stock_s"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:weightSum="1"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="295dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:text="Show out of stock product to catalogue visitor"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        <Switch
-            android:id="@+id/show_out_stock_s"
-            android:layout_gravity="center"
-            android:layout_weight="0.4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:weightSum="1"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="295dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:text="Allow order on out of stok on Your out of order product"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <Switch
-            android:id="@+id/allow_out_of_stock_s"
-            android:layout_gravity="center"
-            android:layout_weight="0.4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-
-
-
-</LinearLayout>
+</ScrollView>
