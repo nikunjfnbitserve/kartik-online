@@ -26,6 +26,10 @@ public class Catalogue {
     @Expose
     private List<Product> products = null;
 
+    public Catalogue(){
+
+    }
+
     public String getCatalogueId() {
         return catalogueId;
     }

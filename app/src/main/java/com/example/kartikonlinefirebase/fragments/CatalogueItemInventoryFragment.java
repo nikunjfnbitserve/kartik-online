@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 
+import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
+
 
 public class CatalogueItemInventoryFragment extends Fragment {
 
@@ -77,10 +79,10 @@ public class CatalogueItemInventoryFragment extends Fragment {
 
     private void setItemInventoryInfo() {
 
-        editProductInfoActivity.product.setAvailableQuantity(Integer.parseInt(availableQtyText.getText().toString()));
-        editProductInfoActivity.product.setIsOutOfStock(outOfStockSwitch.isChecked());
-        editProductInfoActivity.product.setIsShowOutOfStock(showOutOfStockSwitch.isChecked());
-        editProductInfoActivity.product.setIsForceAllowOrder(forceAllowOrderSwitch.isChecked());
+        mStaticProduct.setAvailableQuantity(Integer.parseInt(availableQtyText.getText().toString()));
+        mStaticProduct.setIsOutOfStock(outOfStockSwitch.isChecked());
+        mStaticProduct.setIsShowOutOfStock(showOutOfStockSwitch.isChecked());
+        mStaticProduct.setIsForceAllowOrder(forceAllowOrderSwitch.isChecked());
     }
 
 }

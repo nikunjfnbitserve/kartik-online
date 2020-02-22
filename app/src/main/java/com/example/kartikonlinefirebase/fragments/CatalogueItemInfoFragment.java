@@ -124,20 +124,20 @@ public class CatalogueItemInfoFragment extends Fragment {
 
     public void setItemFromItemForm(){
 
-        editProductInfoActivity.product.setProductName(productNameText.getText().toString());
-        editProductInfoActivity.product.setPrice(Integer.parseInt(productPriceText.getText().toString()));
-        editProductInfoActivity.product.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
-        editProductInfoActivity.product.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
-        editProductInfoActivity.product.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
-        editProductInfoActivity.product.setSize(productSizeText.getText().toString());
-        editProductInfoActivity.product.setSizeSelection(productSizeSelectionText.getText().toString());
-        editProductInfoActivity.product.setColor(productColorText.getText().toString());
-        editProductInfoActivity.product.setColorSelection(productColorSelectionText.getText().toString());
-        editProductInfoActivity.product.setSortTags(productSortTagsText.getText().toString());
-        editProductInfoActivity.product.setType(productGenderText.getText().toString());
-        editProductInfoActivity.product.setSoleName(productSoleNameText.getText().toString());
-        editProductInfoActivity.product.setDescription(productDescriptionText.getText().toString());
-        editProductInfoActivity.product.setCategoryName(productCatagoryText.getText().toString());
+        mStaticProduct.setProductName(productNameText.getText().toString());
+        mStaticProduct.setPrice(Integer.parseInt(productPriceText.getText().toString()));
+        mStaticProduct.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
+        mStaticProduct.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
+        mStaticProduct.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
+        mStaticProduct.setSize(productSizeText.getText().toString());
+        mStaticProduct.setSizeSelection(productSizeSelectionText.getText().toString());
+        mStaticProduct.setColor(productColorText.getText().toString());
+        mStaticProduct.setColorSelection(productColorSelectionText.getText().toString());
+        mStaticProduct.setSortTags(productSortTagsText.getText().toString());
+        mStaticProduct.setType(productGenderText.getText().toString());
+        mStaticProduct.setSoleName(productSoleNameText.getText().toString());
+        mStaticProduct.setDescription(productDescriptionText.getText().toString());
+        mStaticProduct.setCategoryName(productCatagoryText.getText().toString());
 
 //        productList.add(product);
 //

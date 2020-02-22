@@ -115,4 +115,9 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
 
     }
+
+
+    public interface onMenuSaveButonClickListener{
+        public void onMenuButonClick();
+    }
 }

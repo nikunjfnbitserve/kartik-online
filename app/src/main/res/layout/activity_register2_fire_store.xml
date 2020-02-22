@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,108 +45,116 @@
         android:layout_height="48dp"
         android:layout_width="240dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_gravity="center"
+        android:text=" Sign Up With Email"
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="14dp"
-        android:padding="8dp">
+        android:layout_marginTop="40dp"/>
 
-        <TextView
-            android:layout_gravity="center"
-            android:text=" Sign Up With Email"
-            android:padding="4dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
 
-        <EditText
-            android:id="@+id/r_un_et"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:imeOptions="actionNext"/>
+            android:orientation="vertical"
+            android:padding="4dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/r_un_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:imeOptions="actionNext"/>
 
-        <EditText
-            android:id="@+id/r_email_et"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:hint="Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:imeOptions="actionNext"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+            <EditText
+                android:id="@+id/r_email_et"
+                android:padding="8dp"
+                android:layout_marginTop="4dp"
+                android:hint="Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:imeOptions="actionNext"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/r_pass_et"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:hint="Password"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:imeOptions="actionNext"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/r_cn_pwd_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:hint="Confirm password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:imeOptions="actionNext"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <CheckBox
-            android:layout_marginTop="18dp"
-            android:id="@+id/r_check"
-            android:gravity="center"
-            android:text="By Signing in you agree the terms and condition and privacy policy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/r_reg_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/buttonbackground"
-            android:text="SIGN IN"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/r_pass_et"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="Password"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:imeOptions="actionNext"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/r_cn_pwd_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="Confirm password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:imeOptions="actionNext"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:layout_marginTop="18dp"
+                android:id="@+id/r_check"
+                android:gravity="center"
+                android:text="By Signing in you agree the terms and condition and privacy policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/r_reg_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/buttonbackground"
+                android:text="Sign In"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
