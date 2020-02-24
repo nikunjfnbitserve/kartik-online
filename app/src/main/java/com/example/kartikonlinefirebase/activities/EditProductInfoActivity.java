@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.adapters.AdminTabsViewPagerAdapter;
 import com.example.kartikonlinefirebase.adapters.ProductTabsViewPagerAdapter;
@@ -24,22 +22,16 @@ import com.example.kartikonlinefirebase.fragments.CatalogueItemNotesFragment;
 import com.example.kartikonlinefirebase.models.Product;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import io.opencensus.common.ToLongFunction;
+
 
 public class EditProductInfoActivity extends AppCompatActivity {
 
-    @BindView(R.id.tabs)
     TabLayout tabLayout;
-
-    @BindView(R.id.v_pager_prod)
     ViewPager mViewPager;
-
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     public Product product;
@@ -48,7 +40,11 @@ public class EditProductInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product_info);
-        ButterKnife.bind(this);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        mViewPager = (ViewPager) findViewById(R.id.v_pager_prod);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Edit Product Info");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,17 +79,15 @@ public class EditProductInfoActivity extends AppCompatActivity {
         fragments.add(new CatalogueItemInventoryFragment());
         fragments.add(new CatalogueItemNotesFragment());
 
-
         ProductTabsViewPagerAdapter productTabs = new ProductTabsViewPagerAdapter(getSupportFragmentManager(),this, fragments);
         mViewPager.setAdapter(productTabs);
-
 
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setText("Product Info");
         tabLayout.getTabAt(1).setText("Inventory");
         tabLayout.getTabAt(2).setText("Notes");
-    }
 
+    }
 
 
     @Override
@@ -109,13 +103,9 @@ public class EditProductInfoActivity extends AppCompatActivity {
             case R.id.item_check: return false;
 
             default: return super.onOptionsItemSelected(item);
-
-
         }
 
-
     }
-
 
     public interface onMenuSaveButonClickListener{
         public void onMenuButonClick();

@@ -6,40 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.adapters.OrderListViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AdminOrderlistFragment extends Fragment {
 
-    @BindView(R.id.admin_vis_tv)
-    TextView adminVisTv;
-    @BindView(R.id.admin_live_tv)
-    TextView adminLiveTv;
-    @BindView(R.id.admin_total_tv)
-    TextView adminTotalTv;
-    @BindView(R.id.ad_ac_s)
-    Switch adAcS;
-    @BindView(R.id.ad_store_s)
-    Switch adStoreS;
-    @BindView(R.id.ad_cod_s)
-    Switch adCodS;
+    TextView adminVisTv, adminLiveTv, adminTotalTv;
+
+    Switch adAcS, adStoreS, adCodS;
     //  @BindView(R.id.admin_ol_tab)
     //TabItem adminOlTab;
     //@BindView(R.id.admin_co_tab)
     //TabItem adminCoTab;
-    @BindView(R.id.tab_layout)
     TabLayout tabLayout;
-    @BindView(R.id.v_pager)
     ViewPager vPager;
 
 
@@ -47,7 +30,15 @@ public class AdminOrderlistFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_layout, container, false);
 
-        ButterKnife.bind(getActivity());
+        adminVisTv = (TextView) view.findViewById(R.id.admin_vis_tv);
+        adminLiveTv = (TextView) view.findViewById(R.id.admin_live_tv);
+        adminTotalTv = (TextView) view.findViewById(R.id.admin_total_tv);
+        adAcS = (Switch) view.findViewById(R.id.ad_ac_s);
+        adStoreS = (Switch) view.findViewById(R.id.ad_store_s);
+        adCodS = (Switch) view.findViewById(R.id.ad_cod_s);
+        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        vPager = (ViewPager) view.findViewById(R.id.v_pager);
+
         initViewPager();
 
         return  view;
@@ -59,10 +50,8 @@ public class AdminOrderlistFragment extends Fragment {
         fragments.add(new ConfirmOrderFragment());
         fragments.add(new AdminOrderlistFragment());
 
-
         OrderListViewPagerAdapter pagerAdapter = new OrderListViewPagerAdapter(getActivity().getSupportFragmentManager(),getContext(), fragments);
         vPager.setAdapter(pagerAdapter);
-
 
         tabLayout.setupWithViewPager(vPager);
         tabLayout.getTabAt(0).setText("OrderList");

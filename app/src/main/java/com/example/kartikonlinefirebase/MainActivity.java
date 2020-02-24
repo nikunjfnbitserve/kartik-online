@@ -6,11 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.kartikonlinefirebase.activities.Admin_Home;
 import com.example.kartikonlinefirebase.activities.Login2FireStore;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,33 +23,27 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.example.kartikonlinefirebase.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.m_n_tv)
-    TextView mNTv;
-    @BindView(R.id.m_e_tv)
-    TextView mETv;
-    @BindView(R.id.m_ph_tv)
-    TextView mPhTv;
-    @BindView(R.id.m_lo_btn)
+    TextView mNTv, mPhTv, mETv, adminPanel;
     Button mLoBtn;
-
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     FirebaseUser user;
-    String userID;
-    String userName;
-    @BindView(R.id.admin_panel)
-    TextView adminPanel;
+    String userID, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
+        mNTv = (TextView) findViewById(R.id.m_n_tv);
+        mETv = (TextView) findViewById(R.id.m_e_tv) ;
+        mPhTv = (TextView) findViewById(R.id.m_ph_tv);
+        adminPanel = (TextView) findViewById(R.id.admin_panel);
+        mLoBtn = (Button) findViewById(R.id.m_lo_btn);
+
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
@@ -93,24 +85,25 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        mLoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
+                startActivity(intent);
+                finish();
 
-
-        mLoBtn.setOnClickListener((View v) -> {
-
-            fAuth.signOut();
-            Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
-            startActivity(intent);
-            finish();
-
-
+            }
         });
 
-        adminPanel.setOnClickListener((View v) -> {
-            adminPanel.setEnabled(false);
+        adminPanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adminPanel.setEnabled(false);
+                startActivity(new Intent(getApplicationContext(), Admin_Home.class));
+                finish();
 
-            startActivity(new Intent(getApplicationContext(), Admin_Home.class));
-            finish();
-
+            }
         });
     }
 }

@@ -9,10 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.kartikonlinefirebase.MainActivity;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.models.User;
@@ -29,20 +26,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-import javax.annotation.Nullable;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class Login2FireStore extends AppCompatActivity {
 
-    @BindView(R.id.l_email_et)
     EditText lEmailEt;
-    @BindView(R.id.l_pwd_et)
     EditText lPwdEt;
-    @BindView(R.id.l_login_btn)
     Button lLoginBtn;
-    @BindView(R.id.l_tv)
     TextView lTv;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
@@ -65,8 +54,14 @@ public class Login2FireStore extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login2_fire_store);
         fAuth= FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
+
+        lEmailEt = (EditText) findViewById(R.id.l_email_et);
+        lPwdEt = (EditText) findViewById(R.id.l_pwd_et);
+        lLoginBtn = (Button) findViewById(R.id.l_login_btn);
+        lTv = (TextView) findViewById(R.id.l_tv);
 
 //        if(fAuth.getCurrentUser() != null) {
 //            userID = fAuth.getCurrentUser().getUid();
@@ -93,9 +88,6 @@ public class Login2FireStore extends AppCompatActivity {
 //            startActivity(new Intent(getApplicationContext(), MainActivity.class));
 //            finish();
 //        }
-
-        setContentView(R.layout.activity_login2_fire_store);
-        ButterKnife.bind(this);
 
 
         lLoginBtn.setOnClickListener(new View.OnClickListener() {

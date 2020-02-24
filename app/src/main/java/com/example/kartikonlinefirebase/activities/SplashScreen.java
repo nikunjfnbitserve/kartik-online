@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.kartikonlinefirebase.R;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -14,15 +16,18 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-         final int SPLASH_DISPLAY_LENGTH = 500;
 
+        Logger.addLogAdapter(new AndroidLogAdapter());
+        final int SPLASH_DISPLAY_LENGTH = 500;
 
-        new Handler().postDelayed(() -> {
-                /* Create an Intent that will start the Menu-Activity. */
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
                 Intent mainIntent = new Intent(getApplicationContext(), Login2FireStore.class);
                 SplashScreen.this.startActivity(mainIntent);
                 SplashScreen.this.finish();
 
-        }, SPLASH_DISPLAY_LENGTH);
+             }
+         }, SPLASH_DISPLAY_LENGTH);
     }
 }

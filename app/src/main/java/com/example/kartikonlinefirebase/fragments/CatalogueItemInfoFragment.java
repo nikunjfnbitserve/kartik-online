@@ -1,10 +1,11 @@
 package com.example.kartikonlinefirebase.fragments;
 
-
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,24 +17,18 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
+import com.example.kartikonlinefirebase.viewmodals.PageViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import static com.example.kartikonlinefirebase.utils.Config.mStaticCatalogue;
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
 
 public class CatalogueItemInfoFragment extends Fragment {
-
-
 
     private List<Product> productList;
     EditProductInfoActivity editProductInfoActivity;
@@ -44,15 +39,18 @@ public class CatalogueItemInfoFragment extends Fragment {
             productColorSelectionText, productCatagoryText, productSortTagsText,
             productGenderText,productSoleNameText, productDescriptionText ;
 
-
-
-
+    private PageViewModel pageViewModel;
 
 
     public CatalogueItemInfoFragment() {
 
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        pageViewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,8 +60,6 @@ public class CatalogueItemInfoFragment extends Fragment {
         setHasOptionsMenu(true);
 
         editProductInfoActivity = (EditProductInfoActivity) getActivity();
-
-        ButterKnife.bind(getActivity());
 
         if(Config.mStaticProductList.size() == 0){
             productList = new ArrayList<>();
@@ -78,9 +74,6 @@ public class CatalogueItemInfoFragment extends Fragment {
         //TODO: create a spinner for categories
         //TODO: populate spinner array from firebase realtimedatabase
         //TODO: in AdminOtherFragment create categories to add to firebase realtimedatabase
-
-
-
 
         productNameText = (EditText) view.findViewById(R.id.et_item_name);
         productPriceText = (EditText) view.findViewById(R.id.et_item_price);
@@ -112,7 +105,7 @@ public class CatalogueItemInfoFragment extends Fragment {
             case R.id.item_check:
                 setItemFromItemForm();
                 Toast.makeText(getActivity(), "item info saved", Toast.LENGTH_SHORT).show();
-                Log.e("CatalogueInfo", "item info saved " + editProductInfoActivity.product.getProductName());
+                Log.e("CatalogueInfo", "item info saved " + mStaticProduct.getProductName());
                 return true;
 
 

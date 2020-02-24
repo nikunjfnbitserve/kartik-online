@@ -66,8 +66,8 @@ public class CatalogueItemInventoryFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.item_check:
                 setItemInventoryInfo();
-                Toast.makeText(getActivity(), "item info saved", Toast.LENGTH_SHORT).show();
-                Log.e("CatalogueInfo", "item info saved " + editProductInfoActivity.product.getProductName());
+                Toast.makeText(getActivity(), "item inventory saved", Toast.LENGTH_SHORT).show();
+                Log.e("CatalogueInventory", "item inventory saved " + mStaticProduct.toString());
                 return true;
 
 

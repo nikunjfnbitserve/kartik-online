@@ -17,22 +17,11 @@ import com.example.kartikonlinefirebase.fragments.AdminOtherFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class Admin_Home extends AppCompatActivity {
 
-
-  //  @BindView(R.id.admin_ol_tab)
-    //TabItem adminOlTab;
-    //@BindView(R.id.admin_co_tab)
-    //TabItem adminCoTab;
-    @BindView(R.id.tabs)
     TabLayout tabLayout;
-    @BindView(R.id.v_pager_admin)
     ViewPager mViewPager;
-
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Override
@@ -42,7 +31,9 @@ public class Admin_Home extends AppCompatActivity {
 
         //TODO: add navigaion drawer to this activity
 
-        ButterKnife.bind(this);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        mViewPager = (ViewPager) findViewById(R.id.v_pager_admin);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Admin");
 
