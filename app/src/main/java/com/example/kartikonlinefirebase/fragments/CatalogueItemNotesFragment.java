@@ -3,6 +3,7 @@ package com.example.kartikonlinefirebase.fragments;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.utils.Config;
+import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.logger.Logger;
 
@@ -25,9 +27,16 @@ public class CatalogueItemNotesFragment extends Fragment {
 
     private EditText productNotesText;
     EditProductInfoActivity editProductInfoActivity;
+    private ProductViewModel productViewModel;
 
     public CatalogueItemNotesFragment() {
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
     }
 
 
@@ -57,7 +66,7 @@ public class CatalogueItemNotesFragment extends Fragment {
                 setItemMoreDetails();
                 Config.setmStaticProduct(editProductInfoActivity.product);
                 Toast.makeText(getActivity(), "item note saved", Toast.LENGTH_SHORT).show();
-                Logger.e("CatalogueNotes "+ mStaticProduct.toString());
+                Logger.e("CatalogueNotes "+ productViewModel.getProductName().getValue());
                 return true;
 
             default: break;
@@ -69,6 +78,8 @@ public class CatalogueItemNotesFragment extends Fragment {
     private void setItemMoreDetails() {
 
         mStaticProduct.setNotes(productNotesText.getText().toString());
+        productViewModel.setNotes(productNotesText.getText().toString());
+
 
     }
 

@@ -2,8 +2,6 @@ package com.example.kartikonlinefirebase.fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -15,17 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
-import com.example.kartikonlinefirebase.viewmodals.PageViewModel;
+import com.example.kartikonlinefirebase.viewmodels.CatalogueProductViewModel;
+import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.kartikonlinefirebase.utils.Config.mStaticCatalogue;
+
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
 
 public class CatalogueItemInfoFragment extends Fragment {
@@ -39,7 +37,8 @@ public class CatalogueItemInfoFragment extends Fragment {
             productColorSelectionText, productCatagoryText, productSortTagsText,
             productGenderText,productSoleNameText, productDescriptionText ;
 
-    private PageViewModel pageViewModel;
+    private CatalogueProductViewModel catalogueProductViewModel;
+    private ProductViewModel productViewModel;
 
 
     public CatalogueItemInfoFragment() {
@@ -49,7 +48,8 @@ public class CatalogueItemInfoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageViewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel.class);
+        catalogueProductViewModel = ViewModelProviders.of(requireActivity()).get(CatalogueProductViewModel.class);
+        productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class CatalogueItemInfoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_catalogue_item_info, container, false);
 
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
 
         editProductInfoActivity = (EditProductInfoActivity) getActivity();
 
@@ -90,30 +90,33 @@ public class CatalogueItemInfoFragment extends Fragment {
         productSoleNameText = (EditText) view.findViewById(R.id.et_item_sole_name);
         productDescriptionText = (EditText) view.findViewById(R.id.et_item_desc);
 
+
+
+
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.item_check:
-                setItemFromItemForm();
-                Toast.makeText(getActivity(), "item info saved", Toast.LENGTH_SHORT).show();
-                Log.e("CatalogueInfo", "item info saved " + mStaticProduct.getProductName());
-                return true;
-
-
-            default: break;
-        }
-
-        return false;
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()){
+//            case R.id.item_check:
+//                setItemFromItemForm();
+//                Toast.makeText(getActivity(), "item info saved", Toast.LENGTH_SHORT).show();
+//                Log.e("CatalogueInfo", "item info saved " + mStaticProduct.getProductName());
+//                return true;
+//
+//
+//            default: break;
+//        }
+//
+//        return false;
+//    }
 
     public void setItemFromItemForm(){
 
@@ -131,6 +134,21 @@ public class CatalogueItemInfoFragment extends Fragment {
         mStaticProduct.setSoleName(productSoleNameText.getText().toString());
         mStaticProduct.setDescription(productDescriptionText.getText().toString());
         mStaticProduct.setCategoryName(productCatagoryText.getText().toString());
+
+        productViewModel.setProductName(productNameText.getText().toString());
+        productViewModel.setPrice(Integer.parseInt(productPriceText.getText().toString()));
+        productViewModel.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
+        productViewModel.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
+        productViewModel.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
+        productViewModel.setSize(productSizeText.getText().toString());
+        productViewModel.setSizeSelection(productSizeSelectionText.getText().toString());
+        productViewModel.setColor(productColorText.getText().toString());
+        productViewModel.setColorSelection(productColorSelectionText.getText().toString());
+        productViewModel.setSortTags(productSortTagsText.getText().toString());
+        productViewModel.setType(productGenderText.getText().toString());
+        productViewModel.setSoleName(productSoleNameText.getText().toString());
+        productViewModel.setDescription(productDescriptionText.getText().toString());
+        productViewModel.setCategoryName(productCatagoryText.getText().toString());
 
 //        productList.add(product);
 //

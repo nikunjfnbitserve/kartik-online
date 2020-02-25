@@ -33,6 +33,9 @@ public class EditProductInfoActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager mViewPager;
     Toolbar toolbar;
+    CatalogueItemInfoFragment itemInfoFragment;
+    CatalogueItemInventoryFragment itemInventoryFragment;
+    CatalogueItemNotesFragment itemNotesFragment;
 
     public Product product;
 
@@ -50,6 +53,11 @@ public class EditProductInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         product = new Product();
         initViewPager();
+
+        itemInfoFragment = new CatalogueItemInfoFragment();
+
+        itemInfoFragment = (CatalogueItemInfoFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.frag_catalogue_item_info);
 
 //        Gson gson = new Gson();
 //        Type type = new TypeToken<List<Student>>() {}.getType();
@@ -79,7 +87,8 @@ public class EditProductInfoActivity extends AppCompatActivity {
         fragments.add(new CatalogueItemInventoryFragment());
         fragments.add(new CatalogueItemNotesFragment());
 
-        ProductTabsViewPagerAdapter productTabs = new ProductTabsViewPagerAdapter(getSupportFragmentManager(),this, fragments);
+        ProductTabsViewPagerAdapter productTabs = new ProductTabsViewPagerAdapter(
+                getSupportFragmentManager(),this, fragments);
         mViewPager.setAdapter(productTabs);
 
         tabLayout.setupWithViewPager(mViewPager);
@@ -100,7 +109,9 @@ public class EditProductInfoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.item_check: return false;
+            case R.id.item_check:
+                itemInfoFragment.setItemFromItemForm();
+                return true;
 
             default: return super.onOptionsItemSelected(item);
         }

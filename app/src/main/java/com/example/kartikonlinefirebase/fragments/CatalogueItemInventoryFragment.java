@@ -4,6 +4,7 @@ package com.example.kartikonlinefirebase.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
+import com.example.kartikonlinefirebase.viewmodels.CatalogueProductViewModel;
+import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
 
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
 
@@ -27,6 +30,7 @@ public class CatalogueItemInventoryFragment extends Fragment {
     EditProductInfoActivity editProductInfoActivity;
     private Switch outOfStockSwitch, showOutOfStockSwitch, forceAllowOrderSwitch;
     private EditText availableQtyText;
+    private ProductViewModel productViewModel;
 
 
 
@@ -34,6 +38,11 @@ public class CatalogueItemInventoryFragment extends Fragment {
 
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
+    }
 
 
 
@@ -83,6 +92,13 @@ public class CatalogueItemInventoryFragment extends Fragment {
         mStaticProduct.setIsOutOfStock(outOfStockSwitch.isChecked());
         mStaticProduct.setIsShowOutOfStock(showOutOfStockSwitch.isChecked());
         mStaticProduct.setIsForceAllowOrder(forceAllowOrderSwitch.isChecked());
+
+        productViewModel.setAvailableQuantity(Integer.parseInt(availableQtyText.getText().toString()));
+        productViewModel.setIsOutOfStock(outOfStockSwitch.isChecked());
+        productViewModel.setIsShowOutOfStock(showOutOfStockSwitch.isChecked());
+        productViewModel.setIsForceAllowOrder(forceAllowOrderSwitch.isChecked());
+
+
     }
 
 }
