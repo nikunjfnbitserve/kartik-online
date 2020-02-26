@@ -16,20 +16,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
+import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
 import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
 import com.example.kartikonlinefirebase.viewmodels.CatalogueProductViewModel;
 import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
 
-public class CatalogueItemInfoFragment extends Fragment {
+public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveButonClickListener {
 
     private List<Product> productList;
     EditProductInfoActivity editProductInfoActivity;
+
+
 
     private EditText productNameText, productPriceText, productDiscountPriceText,
             productCartonQuantityText, productSetQuantityText,
@@ -150,6 +154,8 @@ public class CatalogueItemInfoFragment extends Fragment {
         productViewModel.setDescription(productDescriptionText.getText().toString());
         productViewModel.setCategoryName(productCatagoryText.getText().toString());
 
+        Logger.e("CatalogueItemInfo "+ productViewModel.getNotes().getValue());
+
 //        productList.add(product);
 //
 //        Config.setmStaticProduct(product);
@@ -157,4 +163,9 @@ public class CatalogueItemInfoFragment extends Fragment {
 
     }
 
+
+    @Override
+    public void onMenuButonClick() {
+        setItemFromItemForm();
+    }
 }

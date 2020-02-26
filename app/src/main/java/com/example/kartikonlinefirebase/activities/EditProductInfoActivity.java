@@ -19,6 +19,7 @@ import com.example.kartikonlinefirebase.fragments.AdminOtherFragment;
 import com.example.kartikonlinefirebase.fragments.CatalogueItemInfoFragment;
 import com.example.kartikonlinefirebase.fragments.CatalogueItemInventoryFragment;
 import com.example.kartikonlinefirebase.fragments.CatalogueItemNotesFragment;
+import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
 import com.example.kartikonlinefirebase.models.Product;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -33,11 +34,10 @@ public class EditProductInfoActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager mViewPager;
     Toolbar toolbar;
-    CatalogueItemInfoFragment itemInfoFragment;
-    CatalogueItemInventoryFragment itemInventoryFragment;
-    CatalogueItemNotesFragment itemNotesFragment;
+//    OnMenuSaveButonClickListener mCallback;
 
-    public Product product;
+//    public Product product;
+    ArrayList<Fragment> fragments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +51,16 @@ public class EditProductInfoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Edit Product Info");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        product = new Product();
+
+//        mCallback = (OnMenuSaveButonClickListener) this;
+
+//        product = new Product();
+        fragments.add(new CatalogueItemInfoFragment());
+        fragments.add(new CatalogueItemInventoryFragment());
+        fragments.add(new CatalogueItemNotesFragment());
         initViewPager();
 
-        itemInfoFragment = new CatalogueItemInfoFragment();
 
-        itemInfoFragment = (CatalogueItemInfoFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.frag_catalogue_item_info);
 
 //        Gson gson = new Gson();
 //        Type type = new TypeToken<List<Student>>() {}.getType();
@@ -82,10 +85,6 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
 
     private void initViewPager() {
-        ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new CatalogueItemInfoFragment());
-        fragments.add(new CatalogueItemInventoryFragment());
-        fragments.add(new CatalogueItemNotesFragment());
 
         ProductTabsViewPagerAdapter productTabs = new ProductTabsViewPagerAdapter(
                 getSupportFragmentManager(),this, fragments);
@@ -95,6 +94,7 @@ public class EditProductInfoActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setText("Product Info");
         tabLayout.getTabAt(1).setText("Inventory");
         tabLayout.getTabAt(2).setText("Notes");
+
 
     }
 
@@ -110,7 +110,9 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.item_check:
-                itemInfoFragment.setItemFromItemForm();
+//                mCallback.onMenuButonClick();
+                int selectedTab = tabLayout.getSelectedTabPosition();
+                ((OnMenuSaveButonClickListener) fragments.get(selectedTab)).onMenuButonClick();
                 return true;
 
             default: return super.onOptionsItemSelected(item);
@@ -118,7 +120,7 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
     }
 
-    public interface onMenuSaveButonClickListener{
-        public void onMenuButonClick();
-    }
+
+
+
 }

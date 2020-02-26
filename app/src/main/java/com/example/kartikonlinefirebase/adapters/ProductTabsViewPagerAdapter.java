@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
+
 import java.util.List;
 
 public class ProductTabsViewPagerAdapter extends FragmentPagerAdapter {
@@ -14,8 +16,8 @@ public class ProductTabsViewPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
 
     public ProductTabsViewPagerAdapter(FragmentManager fm, Context context, List<Fragment> fragments) {
-        super(fm);
 
+        super(fm);
         this.context = context;
         this.fragments = fragments;
 
