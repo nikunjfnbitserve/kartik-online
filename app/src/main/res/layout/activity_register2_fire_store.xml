@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="4dp"
     android:gravity="center">
 
@@ -15,39 +14,11 @@
         android:padding="8dp"
         android:layout_gravity="center|bottom"
         android:layout_width="240dp"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="4dp"
-        android:text=" Sign Up With Social Account"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-
-
-    <com.google.android.gms.common.SignInButton
-        android:text="Google"
-        android:layout_marginTop="14dp"
-        android:textAllCaps="false"
-        android:layout_width="248dp"
-        android:layout_height="56dp"/>
-
-    <Button
-        android:text="Facebook"
-        android:drawableLeft="@drawable/ic_facebook"
-        android:layout_marginTop="14dp"
-        android:textAllCaps="false"
-        android:padding="14dp"
-        android:background="@drawable/buttonbackground_fb"
-        android:layout_height="48dp"
-        android:layout_width="240dp" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_gravity="center"
-        android:text=" Sign Up With Email"
+        android:text="@string/signup_with_email_text"
         android:padding="4dp"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -55,12 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"/>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,7 +68,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -136,9 +104,9 @@
 
             <CheckBox
                 android:layout_marginTop="18dp"
-                android:id="@+id/r_check"
+                android:id="@+id/check_terms_and_condtions"
                 android:gravity="center"
-                android:text="By Signing in you agree the terms and condition and privacy policy"
+                android:text="@string/signin_warn_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -149,7 +117,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/buttonbackground"
-                android:text="Sign In"
+                android:text="@string/signup_text"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 

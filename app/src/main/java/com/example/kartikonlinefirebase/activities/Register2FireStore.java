@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class Register2FireStore extends AppCompatActivity {
 
     EditText rUserNameEt, rEmailEt, rPassEt, rConfirmPassEt;
     Button rRegBtn;
+    CheckBox agreeToTermsCheck;
 
     FirebaseAuth  fAuth;
     FirebaseUser currentUser;
@@ -46,6 +48,7 @@ public class Register2FireStore extends AppCompatActivity {
         rPassEt = (EditText) findViewById(R.id.r_pass_et);
         rConfirmPassEt = (EditText) findViewById(R.id.r_cn_pwd_et);
         rRegBtn = (Button) findViewById(R.id.r_reg_btn);
+        agreeToTermsCheck = (CheckBox) findViewById(R.id.check_terms_and_condtions);
 
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -87,8 +90,6 @@ public class Register2FireStore extends AppCompatActivity {
                 password = rPassEt.getText().toString().trim();
                 confirmPassword = rConfirmPassEt.getText().toString().trim();
 
-
-
                 if(TextUtils.isEmpty(name)){
                     rUserNameEt.setError("user name is required");
                 }
@@ -105,12 +106,17 @@ public class Register2FireStore extends AppCompatActivity {
                     rConfirmPassEt.setError("pass dont match");
 
                 }
+                else if(!agreeToTermsCheck.isChecked()){
+                    agreeToTermsCheck.setError("please agree to the terms to sign in");
+
+                }
                 else {
                     fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
+                                rRegBtn.setEnabled(false);
                                 Toast.makeText(Register2FireStore.this, "User Created in Auth .", Toast.LENGTH_SHORT).show();
                                 userID = fAuth.getCurrentUser().getUid();
                                 DocumentReference documentReference = fstore.collection("users").document(userID);
@@ -128,7 +134,7 @@ public class Register2FireStore extends AppCompatActivity {
                                     }
                                 });
 
-                                startActivity(new Intent(getApplicationContext(), Admin_Home.class));
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
 
                             } else {

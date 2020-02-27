@@ -2,52 +2,75 @@ package com.example.kartikonlinefirebase;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.kartikonlinefirebase.activities.Admin_Home;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.kartikonlinefirebase.activities.Login2FireStore;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.kartikonlinefirebase.adapters.AdminTabsViewPagerAdapter;
+import com.example.kartikonlinefirebase.fragments.AdminCatalogueFragment;
+import com.example.kartikonlinefirebase.fragments.AdminHomeFragment;
+import com.example.kartikonlinefirebase.fragments.AdminOtherFragment;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.example.kartikonlinefirebase.R;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView mNTv, mPhTv, mETv, adminPanel;
-    Button mLoBtn;
+    ViewPager mViewPager;
+    TabLayout tabLayout;
+
+    private AppBarConfiguration mAppBarConfiguration;
+
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     FirebaseUser user;
     String userID, userName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNTv = (TextView) findViewById(R.id.m_n_tv);
-        mETv = (TextView) findViewById(R.id.m_e_tv) ;
-        mPhTv = (TextView) findViewById(R.id.m_ph_tv);
-        adminPanel = (TextView) findViewById(R.id.admin_panel);
-        mLoBtn = (Button) findViewById(R.id.m_lo_btn);
-
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
         userID = fAuth.getCurrentUser().getUid();
+
+        //TODO: add navigaion drawer to this activity
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        mViewPager = (ViewPager) findViewById(R.id.v_pager_admin);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Admin");
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+//        mAppBarConfiguration = new AppBarConfiguration.Builder()
+//                .setDrawerLayout(drawer)
+//                .build();
+//        NavController navController = Navigation.findNavController(this,R.id.container_main);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
+
+        initViewPager();
 
 //        DocumentReference documentReference = fstore.collection("users").document(userID);
 //
@@ -66,45 +89,53 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                });
 
-        if(user != null){
+    }
 
-            mNTv.setText(user.getDisplayName());
-            mETv.setText(user.getEmail());
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.admin_home_menu, menu);
 
+        return true;
+    }
 
-//            DocumentReference documentReference = fstore.collection("users").document(userID);
-//            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-//                @Override
-//                public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
-//
-//
-//
-//                }
-//            });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        }
+        int itemId = item.getItemId();
 
-        mLoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fAuth.signOut();
+        switch (itemId){
+
+            case R.id.item_home:
+
+                Toast.makeText(getApplicationContext(), "home clicked", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.item_logout:
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), Login2FireStore.class);
                 startActivity(intent);
                 finish();
 
-            }
-        });
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
-        adminPanel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adminPanel.setEnabled(false);
-                startActivity(new Intent(getApplicationContext(), Admin_Home.class));
-                finish();
+    }
 
-            }
-        });
+    private void initViewPager() {
+        ArrayList<Fragment> fragments =new ArrayList<>();
+        fragments.add(new AdminHomeFragment());
+        fragments.add(new AdminCatalogueFragment());
+        fragments.add(new AdminOtherFragment());
+
+        AdminTabsViewPagerAdapter adminTabs = new AdminTabsViewPagerAdapter(getSupportFragmentManager(),this, fragments);
+        mViewPager.setAdapter(adminTabs);
+
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setText("Home");
+        tabLayout.getTabAt(1).setText("Catalogue");
+        tabLayout.getTabAt(2).setText("Other");
     }
 }
 

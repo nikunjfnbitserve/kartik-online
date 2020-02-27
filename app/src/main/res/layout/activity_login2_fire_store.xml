@@ -19,22 +19,32 @@
         android:textColor="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to Admin Panel" />
+        android:text="@string/welcome_msg_admin" />
 
-    <EditText
-        android:id="@+id/l_email_et"
-        android:hint="LOGIN ID "
-        android:text="mayank@gmail.com"
-        android:layout_marginTop="32dp"
-        android:textSize="16sp"
-        android:layout_gravity="center"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/l_email_et"
+            android:hint="Email"
+            android:text="mayank@gmail.com"
+            android:textSize="16sp"
+            android:layout_gravity="center" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
 
     <EditText
         android:id="@+id/l_pwd_et"
-        android:hint="PASSWORD"
+        android:hint="Password"
         android:text="12345678"
         android:inputType="textPassword"
         android:layout_marginTop="28dp"
@@ -43,9 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/l_login_btn"
-        android:text="LOGIN"
+        android:text="@string/login_text"
         android:background="@drawable/buttonbackground"
         android:textColor="@color/colorAccent"
         android:layout_marginTop="32dp"
@@ -61,17 +73,18 @@
         android:textColor="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"/>
+        android:text="@string/forgot_pass_text"/>
+
     <TextView
-        android:id="@+id/l_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_create_account"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account ? create here "/>
+        android:text="@string/create_acc_text"/>
 
 
 </LinearLayout>

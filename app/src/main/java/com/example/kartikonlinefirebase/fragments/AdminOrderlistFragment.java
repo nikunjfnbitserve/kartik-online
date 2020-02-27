@@ -17,7 +17,7 @@ public class AdminOrderlistFragment extends Fragment {
 
     TextView adminVisTv, adminLiveTv, adminTotalTv;
 
-    Switch adAcS, adStoreS, adCodS;
+    
     //  @BindView(R.id.admin_ol_tab)
     //TabItem adminOlTab;
     //@BindView(R.id.admin_co_tab)
@@ -33,9 +33,7 @@ public class AdminOrderlistFragment extends Fragment {
         adminVisTv = (TextView) view.findViewById(R.id.admin_vis_tv);
         adminLiveTv = (TextView) view.findViewById(R.id.admin_live_tv);
         adminTotalTv = (TextView) view.findViewById(R.id.admin_total_tv);
-        adAcS = (Switch) view.findViewById(R.id.ad_ac_s);
-        adStoreS = (Switch) view.findViewById(R.id.ad_store_s);
-        adCodS = (Switch) view.findViewById(R.id.ad_cod_s);
+
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         vPager = (ViewPager) view.findViewById(R.id.v_pager);
 
