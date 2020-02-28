@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/nav_switch_group"
+        android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:title="Activate ₹1 difference On/Off" >
-        </item>
+            android:id="@+id/nav_diff"
+            android:title="Activate ₹1 difference"
+            app:actionViewClass="android.widget.Switch" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Store On/Off" />
+            android:id="@+id/nav_store"
+            android:title="Store"
+            app:actionViewClass="android.widget.Switch"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Cash on Delivery" />
+            android:id="@+id/nav_cod"
+            android:title="Cash On delivery"
+            app:actionViewClass="android.widget.Switch"/>
+
+        <item
+            android:id="@+id/nav_courier"
+            android:title="Courier"
+            app:actionViewClass="android.widget.Switch"/>
+
     </group>
+
+    <group
+        android:id="@+id/nav_about_group"
+        android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_terms_and_cond"
+        android:title="Terms and Conditions" />
+    <item
+        android:id="@+id/nav_about_us"
+        android:title="About Us" />
+
+    </group>
+
 </menu>

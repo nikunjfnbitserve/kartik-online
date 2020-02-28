@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -122,45 +123,87 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 //        return false;
 //    }
 
-    public void setItemFromItemForm(){
+    public void setItemFromItemForm() {
 
-        mStaticProduct.setProductName(productNameText.getText().toString());
-        mStaticProduct.setPrice(Integer.parseInt(productPriceText.getText().toString()));
-        mStaticProduct.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
-        mStaticProduct.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
-        mStaticProduct.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
-        mStaticProduct.setSize(productSizeText.getText().toString());
-        mStaticProduct.setSizeSelection(productSizeSelectionText.getText().toString());
-        mStaticProduct.setColor(productColorText.getText().toString());
-        mStaticProduct.setColorSelection(productColorSelectionText.getText().toString());
-        mStaticProduct.setSortTags(productSortTagsText.getText().toString());
-        mStaticProduct.setType(productGenderText.getText().toString());
-        mStaticProduct.setSoleName(productSoleNameText.getText().toString());
-        mStaticProduct.setDescription(productDescriptionText.getText().toString());
-        mStaticProduct.setCategoryName(productCatagoryText.getText().toString());
+//        mStaticProduct.setProductName(productNameText.getText().toString());
+//        mStaticProduct.setPrice(Integer.parseInt(productPriceText.getText().toString()));
+//        mStaticProduct.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
+//        mStaticProduct.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
+//        mStaticProduct.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
+//        mStaticProduct.setSize(productSizeText.getText().toString());
+//        mStaticProduct.setSizeSelection(productSizeSelectionText.getText().toString());
+//        mStaticProduct.setColor(productColorText.getText().toString());
+//        mStaticProduct.setColorSelection(productColorSelectionText.getText().toString());
+//        mStaticProduct.setSortTags(productSortTagsText.getText().toString());
+//        mStaticProduct.setType(productGenderText.getText().toString());
+//        mStaticProduct.setSoleName(productSoleNameText.getText().toString());
+//        mStaticProduct.setDescription(productDescriptionText.getText().toString());
+//        mStaticProduct.setCategoryName(productCatagoryText.getText().toString());
 
-        productViewModel.setProductName(productNameText.getText().toString());
-        productViewModel.setPrice(Integer.parseInt(productPriceText.getText().toString()));
-        productViewModel.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
-        productViewModel.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
-        productViewModel.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
-        productViewModel.setSize(productSizeText.getText().toString());
-        productViewModel.setSizeSelection(productSizeSelectionText.getText().toString());
-        productViewModel.setColor(productColorText.getText().toString());
-        productViewModel.setColorSelection(productColorSelectionText.getText().toString());
-        productViewModel.setSortTags(productSortTagsText.getText().toString());
-        productViewModel.setType(productGenderText.getText().toString());
-        productViewModel.setSoleName(productSoleNameText.getText().toString());
-        productViewModel.setDescription(productDescriptionText.getText().toString());
-        productViewModel.setCategoryName(productCatagoryText.getText().toString());
-
-        Logger.e("CatalogueItemInfo "+ productViewModel.getNotes().getValue());
+        if (TextUtils.isEmpty(productNameText.getText())) {
+            productNameText.setError("item Name can't be empty");
+        } else if (TextUtils.isEmpty(productPriceText.getText())) {
+            productPriceText.setError("price can't be empty");
+        } else if (TextUtils.isEmpty(productDiscountPriceText.getText())) {
+            productDiscountPriceText.setError("price can't be empty");
+        } else if (TextUtils.isEmpty(productCartonQuantityText.getText())) {
+            productCartonQuantityText.setError("quantity can't be empty");
+        } else if (TextUtils.isEmpty(productSetQuantityText.getText())) {
+            productSetQuantityText.setError("quantity can't be empty");
+        } else if (TextUtils.isEmpty(productSizeText.getText())) {
+            productSizeText.setError("size can't be empty");
+        } else if (TextUtils.isEmpty(productSizeSelectionText.getText())) {
+            productSizeSelectionText.setError("size selection can't be empty");
+        } else if(TextUtils.isEmpty(productColorText.getText())){
+            productColorText.setError("color can't be empty");
+        } else if(TextUtils.isEmpty(productColorSelectionText.getText())){
+            productColorSelectionText.setError("color selection cant be empty");
+        } else if(TextUtils.isEmpty(productCatagoryText.getText())) {
+            productCatagoryText.setError("category can't be empty");
+        } else if(TextUtils.isEmpty(productSortTagsText.getText())){
+            productSortTagsText.setError("sort tags can't be empty");
+        } else if(TextUtils.isEmpty(productGenderText.getText())){
+            productGenderText.setError("gender can't be empty");
+        } else if(TextUtils.isEmpty(productSoleNameText.getText())){
+            productSoleNameText.setError("sole name cant be empty");
+        } else if(TextUtils.isEmpty(productDescriptionText.getText())){
+            productDescriptionText.setError("description can't be empty");
+        } else {
+            try {
+                productViewModel.setProductName(productNameText.getText().toString());
+                productViewModel.setPrice(Integer.parseInt(productPriceText.getText().toString()));
+                productViewModel.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
+                productViewModel.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
+                productViewModel.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
+                productViewModel.setSize(productSizeText.getText().toString());
+                productViewModel.setSizeSelection(productSizeSelectionText.getText().toString());
+                productViewModel.setColor(productColorText.getText().toString());
+                productViewModel.setColorSelection(productColorSelectionText.getText().toString());
+                productViewModel.setSortTags(productSortTagsText.getText().toString());
+                productViewModel.setType(productGenderText.getText().toString());
+                productViewModel.setSoleName(productSoleNameText.getText().toString());
+                productViewModel.setDescription(productDescriptionText.getText().toString());
+                productViewModel.setCategoryName(productCatagoryText.getText().toString());
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Fill all the details correctly", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+            Logger.e("CatalogueItemInfo " + productViewModel.getProductName().getValue());
+            Logger.e("CatalogueItemInfo " + productViewModel.getNotes().getValue());
 
 //        productList.add(product);
 //
 //        Config.setmStaticProduct(product);
 //        Config.setmStaticProductList(productList);
 
+        }
+    }
+    boolean myIsDigitsOnly(String str) {
+        if(str.isEmpty()) {
+            return false;
+        } else {
+            return TextUtils.isDigitsOnly(str);
+        }
     }
 
 

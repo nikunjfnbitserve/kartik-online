@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,12 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 
-public class Register2FireStore extends AppCompatActivity {
+public class RegisterToFireStore extends AppCompatActivity {
 
 
     EditText rUserNameEt, rEmailEt, rPassEt, rConfirmPassEt;
@@ -41,7 +39,7 @@ public class Register2FireStore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register2_fire_store);
+        setContentView(R.layout.activity_register_to_fire_store);
 
         rUserNameEt = (EditText) findViewById(R.id.r_un_et);
         rEmailEt = (EditText) findViewById(R.id.r_email_et);
@@ -117,7 +115,7 @@ public class Register2FireStore extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                 rRegBtn.setEnabled(false);
-                                Toast.makeText(Register2FireStore.this, "User Created in Auth .", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterToFireStore.this, "User Created in Auth .", Toast.LENGTH_SHORT).show();
                                 userID = fAuth.getCurrentUser().getUid();
                                 DocumentReference documentReference = fstore.collection("users").document(userID);
                                 HashMap<String, Object> user = new HashMap<>();
@@ -129,7 +127,7 @@ public class Register2FireStore extends AppCompatActivity {
                                     @Override
                                     public void onComplete(Task<Void> task) {
 
-                                        Toast.makeText(Register2FireStore.this, "User set in user table ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterToFireStore.this, "User set in user table ", Toast.LENGTH_SHORT).show();
 
                                     }
                                 });
@@ -139,7 +137,7 @@ public class Register2FireStore extends AppCompatActivity {
 
                             } else {
 
-                                Toast.makeText(Register2FireStore.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterToFireStore.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
 

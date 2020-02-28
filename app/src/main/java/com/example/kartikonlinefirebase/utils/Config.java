@@ -1,6 +1,7 @@
 package com.example.kartikonlinefirebase.utils;
 
 import android.net.Uri;
+import android.text.TextUtils;
 
 import com.example.kartikonlinefirebase.models.Catalogue;
 import com.example.kartikonlinefirebase.models.Product;
@@ -38,6 +39,8 @@ public class Config {
     public static void setmStaticProductList(List<Product> mStaticProductList) {
         Config.mStaticProductList = mStaticProductList;
     }
+
+
 
 
 }
