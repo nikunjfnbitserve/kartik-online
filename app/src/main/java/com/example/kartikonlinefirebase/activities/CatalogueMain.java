@@ -3,11 +3,14 @@ package com.example.kartikonlinefirebase.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -41,10 +44,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.kartikonlinefirebase.utils.Config.mStaticCatalogue;
 
@@ -58,7 +66,8 @@ public class CatalogueMain extends AppCompatActivity {
     final int CAMERA_CAPTURE = 2;
     //captured picture uri
     private Uri picUri;
-    final int PIC_CROP = 3;
+    Uri photoUri;
+    final int PIC_CROP = 8;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mFirebaseDatabaseReference;
@@ -67,31 +76,24 @@ public class CatalogueMain extends AppCompatActivity {
     private List<Catalogue> mCatalogueList;
     private FirebaseRecyclerAdapter<Product, ProductViewHolder> mFirebaseAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogue_main);
-
         //Views initialisation
         textGallery = (TextView) findViewById(R.id.tv_add_gall);
         textCamera = (TextView) findViewById(R.id.tv_add_cam);
         catalogueText = (EditText) findViewById(R.id.et_add_title);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         //Firebase instances initialisation
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-
-
         mCatalogue = new Catalogue();
         mCatalogueList = new ArrayList<>();
-
 
         SnapshotParser<Product> parser = new SnapshotParser<Product>() {
             @Override
@@ -118,9 +120,6 @@ public class CatalogueMain extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(ProductViewHolder productViewHolder, int i, Product product) {
-
-
-
             }
         };
 
@@ -144,32 +143,47 @@ public class CatalogueMain extends AppCompatActivity {
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("image/*");
                 startActivityForResult(intent, REQUEST_IMAGE);
-
             }
         });
 
         textCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try {
                     //use standard intent to capture an image
                     Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
-                    File imageFile = new File(imageFilePath);
-                    picUri = Uri.fromFile(imageFile); // convert path to Uri
-                    takePictureIntent.putExtra( MediaStore.EXTRA_OUTPUT, picUri );
+                    //String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+                    //File imageFile = new File(imageFilePath);
+                    File photoFile = createImageFileWith();
+                    String path = photoFile.getAbsolutePath();
+                    photoUri = FileProvider.getUriForFile(CatalogueMain.this,
+                            getString(R.string.file_provider_authority),
+                            photoFile);
+                    //picUri = Uri.fromFile(imageFile); // convert path to Uri
+                    takePictureIntent.putExtra( MediaStore.EXTRA_OUTPUT, photoUri );
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                        takePictureIntent.setClipData(ClipData.newRawUri("", photoUri));
+                        takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    }
                     startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
                 }catch(ActivityNotFoundException anfe){
                     //display an error message
                     String errorMessage = "Whoops - your device doesn't support capturing images!";
                     Toast.makeText(CatalogueMain.this, errorMessage, Toast.LENGTH_SHORT).show();
+                }catch (IOException ex) {
+                    Log.e("TakePicture", ex.getMessage());
                 }
 
             }
         });
+    }
 
-
+    private File createImageFileWith() throws IOException {
+        final String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        final String imageFileName = "JPEG_" + timestamp;
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        storageDir.mkdirs();
+        return File.createTempFile(imageFileName, ".jpg", storageDir);
     }
 
     @Override
@@ -187,16 +201,15 @@ public class CatalogueMain extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_IMAGE){
             if(resultCode == RESULT_OK){
                 if(data != null){
                     final Uri uri = data.getData();
                     Config.selectedImageUri = uri;
                     Log.d("CatalogueMain", "Uri: " + uri.toString());
-
                     //TODO : add firestore logic here
                     Product tempProduct = Config.getmStaticProduct();
+                    Logger.e("test check"+ tempProduct.getProductName());
                     mFirebaseDatabaseReference.child("products").push().setValue(tempProduct, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -206,26 +219,20 @@ public class CatalogueMain extends AppCompatActivity {
                                                 .getReference(mFirebaseUser.getUid())
                                                 .child(key)
                                                 .child(uri.getLastPathSegment());
-
                                         putImageInStorage(storageReference, uri, key);
-
                                     }else{
                                         Log.w("CatalogueMain", "unable to write message to database", databaseError.toException());
                                     }
-
                                }
                             });
-
-
                     startActivity(new Intent(this, EditProductInfoActivity.class));
                 }
-
             }
         }
         else if(requestCode == CAMERA_CAPTURE){
 
             //get the Uri for the captured image
-            Uri uri = picUri;
+            Uri uri = photoUri;
             Log.d("picUri", uri.toString());
             //carry out the crop operation
             performCrop();
@@ -244,7 +251,7 @@ public class CatalogueMain extends AppCompatActivity {
             //call the standard crop action intent (the user device may not support it)
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
             //indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
+            cropIntent.setDataAndType(photoUri, "image/*");
             //set crop properties
             cropIntent.putExtra("crop", "true");
             //indicate aspect of desired crop
@@ -312,11 +319,6 @@ public class CatalogueMain extends AppCompatActivity {
     }
 
     private void saveCatalogue() {
-
         mStaticCatalogue.setCatalogueTitle(catalogueText.getText().toString());
-
-
     }
-
-
 }

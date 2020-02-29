@@ -17,9 +17,15 @@ import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
+import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
 import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.orhanobut.logger.Logger;
 
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
@@ -31,6 +37,7 @@ public class CatalogueItemNotesFragment extends Fragment implements OnMenuSaveBu
     private ProductViewModel productViewModel;
 
     EditProductInfoActivity editProductInfoActivity;
+    private DatabaseReference mFirebaseDatabaseReference;
 
     public CatalogueItemNotesFragment() {
 
@@ -52,6 +59,7 @@ public class CatalogueItemNotesFragment extends Fragment implements OnMenuSaveBu
         productNotesText = (EditText) view.findViewById(R.id.et_prod_notes);
 //        setHasOptionsMenu(true);
         editProductInfoActivity = (EditProductInfoActivity) getActivity();
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         return view;
     }
 
@@ -80,10 +88,25 @@ public class CatalogueItemNotesFragment extends Fragment implements OnMenuSaveBu
 
     private void setItemMoreDetails() {
 
-        mStaticProduct.setNotes(productNotesText.getText().toString());
+        //mStaticProduct.setNotes(productNotesText.getText().toString());
         Logger.e("CatalogueNotes "+ productViewModel.getProductName().getValue());
 
         productViewModel.setNotes(productNotesText.getText().toString());
+        mStaticProduct.setNotes(productViewModel.getNotes().getValue());
+
+
+
+        mFirebaseDatabaseReference.child("products").push().setValue(mStaticProduct, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null){
+                    String key = databaseReference.getKey();
+
+                }else{
+                    Log.w("CatalogueMain", "unable to write message to database", databaseError.toException());
+                }
+            }
+        });
 
 
     }

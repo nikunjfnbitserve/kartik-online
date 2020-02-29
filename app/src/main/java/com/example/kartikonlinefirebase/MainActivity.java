@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         //TODO: implement a toggle listener to update values of switches in realtime
+        //TODO: write firebase code to set all the product and catalogue related data
 
         /*navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

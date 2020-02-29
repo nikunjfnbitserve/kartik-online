@@ -1,7 +1,6 @@
 package com.example.kartikonlinefirebase.utils;
 
 import android.net.Uri;
-import android.text.TextUtils;
 
 import com.example.kartikonlinefirebase.models.Catalogue;
 import com.example.kartikonlinefirebase.models.Product;
@@ -10,12 +9,6 @@ import java.util.List;
 
 public class Config {
 
-    public static Product mStaticProduct;
-    public static Catalogue mStaticCatalogue;
-    public static List<Product> mStaticProductList;
-    public static List<Catalogue> mCatalogueList;
-    public static Uri selectedImageUri;
-
     public static Product getmStaticProduct() {
         return mStaticProduct;
     }
@@ -23,6 +16,14 @@ public class Config {
     public static void setmStaticProduct(Product mStaticProduct) {
         Config.mStaticProduct = mStaticProduct;
     }
+
+    public static Product mStaticProduct;
+    public static Catalogue mStaticCatalogue;
+    public static List<Product> mStaticProductList;
+    public static List<Catalogue> mCatalogueList;
+    public static Uri selectedImageUri;
+
+
 
     public static List<Catalogue> getmCatalogueList() {
         return mCatalogueList;

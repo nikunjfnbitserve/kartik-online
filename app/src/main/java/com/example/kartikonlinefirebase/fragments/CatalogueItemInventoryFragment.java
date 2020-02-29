@@ -81,15 +81,17 @@ public class CatalogueItemInventoryFragment extends Fragment implements OnMenuSa
 
     private void setItemInventoryInfo() {
 
-        mStaticProduct.setAvailableQuantity(Integer.parseInt(availableQtyText.getText().toString()));
-        mStaticProduct.setIsOutOfStock(outOfStockSwitch.isChecked());
-        mStaticProduct.setIsShowOutOfStock(showOutOfStockSwitch.isChecked());
-        mStaticProduct.setIsForceAllowOrder(forceAllowOrderSwitch.isChecked());
+
 
         productViewModel.setAvailableQuantity(Integer.parseInt(availableQtyText.getText().toString()));
         productViewModel.setIsOutOfStock(outOfStockSwitch.isChecked());
         productViewModel.setIsShowOutOfStock(showOutOfStockSwitch.isChecked());
         productViewModel.setIsForceAllowOrder(forceAllowOrderSwitch.isChecked());
+
+        mStaticProduct.setAvailableQuantity(productViewModel.getAvailableQuantity().getValue());
+        mStaticProduct.setIsOutOfStock(productViewModel.getIsOutOfStock().getValue());
+        mStaticProduct.setIsShowOutOfStock(productViewModel.getIsShowOutOfStock().getValue());
+        mStaticProduct.setIsForceAllowOrder(productViewModel.getIsForceAllowOrder().getValue());
 
         Logger.e("CatalogueItemInventory "+ productViewModel.getPrice().getValue());
 

@@ -125,21 +125,6 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
     public void setItemFromItemForm() {
 
-//        mStaticProduct.setProductName(productNameText.getText().toString());
-//        mStaticProduct.setPrice(Integer.parseInt(productPriceText.getText().toString()));
-//        mStaticProduct.setDiscountPrice(Double.parseDouble(productDiscountPriceText.getText().toString()));
-//        mStaticProduct.setCartonQuanity(Integer.parseInt(productCartonQuantityText.getText().toString()));
-//        mStaticProduct.setSetQuantity(Integer.parseInt(productSetQuantityText.getText().toString()));
-//        mStaticProduct.setSize(productSizeText.getText().toString());
-//        mStaticProduct.setSizeSelection(productSizeSelectionText.getText().toString());
-//        mStaticProduct.setColor(productColorText.getText().toString());
-//        mStaticProduct.setColorSelection(productColorSelectionText.getText().toString());
-//        mStaticProduct.setSortTags(productSortTagsText.getText().toString());
-//        mStaticProduct.setType(productGenderText.getText().toString());
-//        mStaticProduct.setSoleName(productSoleNameText.getText().toString());
-//        mStaticProduct.setDescription(productDescriptionText.getText().toString());
-//        mStaticProduct.setCategoryName(productCatagoryText.getText().toString());
-
         if (TextUtils.isEmpty(productNameText.getText())) {
             productNameText.setError("item Name can't be empty");
         } else if (TextUtils.isEmpty(productPriceText.getText())) {
@@ -190,6 +175,21 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
             }
             Logger.e("CatalogueItemInfo " + productViewModel.getProductName().getValue());
             Logger.e("CatalogueItemInfo " + productViewModel.getNotes().getValue());
+
+            mStaticProduct.setProductName(productViewModel.getProductName().getValue());
+            mStaticProduct.setPrice(productViewModel.getPrice().getValue());
+            mStaticProduct.setDiscountPrice(productViewModel.getDiscountPrice().getValue());
+            mStaticProduct.setCartonQuanity(productViewModel.getCartonQuanity().getValue());
+            mStaticProduct.setSetQuantity(productViewModel.getSetQuantity().getValue());
+            mStaticProduct.setSize(productViewModel.getSize().getValue());
+            mStaticProduct.setSizeSelection(productViewModel.getSizeSelection().getValue());
+            mStaticProduct.setColor(productViewModel.getColor().getValue());
+            mStaticProduct.setColorSelection(productViewModel.getColorSelection().getValue());
+            mStaticProduct.setSortTags(productViewModel.getSortTags().getValue());
+            mStaticProduct.setType(productViewModel.getType().getValue());
+            mStaticProduct.setSoleName(productViewModel.getSoleName().getValue());
+            mStaticProduct.setDescription(productViewModel.getDescription().getValue());
+            mStaticProduct.setCategoryName(productViewModel.getCategoryName().getValue());
 
 //        productList.add(product);
 //
