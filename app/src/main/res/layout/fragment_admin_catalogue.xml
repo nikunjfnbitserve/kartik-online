@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
-    tools:context=".activities.Admin_Catalogue">
+    tools:context=".fragments.AdminCatalogueFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -23,7 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         app:srcCompat="@android:drawable/ic_input_add"
-        android:tint="@android:color/white"
-        app:elevation="0dp"/>
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/colorAccent"
+        android:layout_margin="@dimen/fab_margin"
+        app:elevation="6dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

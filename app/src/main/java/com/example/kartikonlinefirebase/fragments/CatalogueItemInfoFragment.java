@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
@@ -61,6 +63,18 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_catalogue_item_info, container, false);
+
+        String[] COUNTRIES = new String[] {"Item 1", "Item 2", "Item 3", "Item 4"};
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        getContext(),
+                        R.layout.support_simple_spinner_dropdown_item,
+                        COUNTRIES);
+
+        AutoCompleteTextView editTextFilledExposedDropdown =
+                view.findViewById(R.id.filled_exposed_dropdown);
+        editTextFilledExposedDropdown.setAdapter(adapter);
 
         //setHasOptionsMenu(true);
 

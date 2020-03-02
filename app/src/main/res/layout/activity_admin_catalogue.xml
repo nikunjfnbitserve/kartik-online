@@ -70,19 +70,25 @@
                <Button
                    android:id="@+id/acat_bpreview_btn"
                    android:text="Preview"
-                   android:background="@drawable/backgroundbtn"
+                   app:icon="@drawable/viewbutton"
+                   app:backgroundTint="@color/colorAccent"
+                   android:textColor="@android:color/white"
                    android:textAllCaps="false"
                    android:layout_width="wrap_content"
-                   android:layout_height="25dp" />
+                   android:layout_height="wrap_content" />
 
                <Button
                    android:id="@+id/act_bedit_btn"
                    android:text="Edit"
                    android:background="@drawable/backgroundbtn"
+                   app:backgroundTint="@android:color/black"
+                   android:textColor="@android:color/white"
+                   app:icon="@drawable/ic_edit_black_24dp"
+                   app:iconTint="@android:color/white"
                    android:textAllCaps="false"
                    android:layout_width="wrap_content"
                    android:layout_marginTop="8dp"
-                   android:layout_height="25dp" />
+                   android:layout_height="wrap_content" />
 
            </LinearLayout>
 

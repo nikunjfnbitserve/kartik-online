@@ -8,6 +8,6 @@
         android:bottomLeftRadius="0.1dp"
         android:bottomRightRadius="0.1dp"/>
     <solid
-        android:color="@color/cardback"/>
+        android:color="#565656"/>
 
 </shape>

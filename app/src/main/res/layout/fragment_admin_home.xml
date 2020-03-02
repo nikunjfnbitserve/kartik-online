@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".fragments.AdminHomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
         android:padding="2dp">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/crdv_visitors"
             android:layout_weight="1"
             android:layout_width="164dp"
             android:layout_height="100dp"
@@ -66,6 +67,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/crdv_users"
             android:layout_weight="1"
             android:layout_width="164dp"
             android:layout_height="100dp"
