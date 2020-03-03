@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:layout_marginTop="48sp"
+        android:layout_marginTop="24dp"
         android:layout_gravity="center"
         android:textSize="24sp"
         android:textColor="@color/colorAccent"
@@ -24,13 +24,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Email">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/l_email_et"
-            android:hint="Email"
+
             android:text="mayank@gmail.com"
             android:textSize="16sp"
             android:layout_gravity="center" />
@@ -40,29 +42,30 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="24dp"
+        android:hint="Password">
 
-    <EditText
-        android:id="@+id/l_pwd_et"
-        android:hint="Password"
-        android:text="12345678"
-        android:inputType="textPassword"
-        android:layout_marginTop="28dp"
-        android:layout_gravity="center"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/l_pwd_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12345678"
+            android:inputType="textPassword"
+
+            android:layout_gravity="center"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/l_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:text="@string/login_text"
         android:background="@drawable/buttonbackground"
-        android:textColor="@color/colorAccent"
-        android:layout_marginTop="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColor="@android:color/white"
+        android:layout_marginTop="24dp" />
 
     <TextView
         android:id="@+id/login_forget_password_tv"
@@ -80,7 +83,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_create_account"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/colorAccent"

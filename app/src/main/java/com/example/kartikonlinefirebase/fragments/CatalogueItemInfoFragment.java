@@ -36,6 +36,9 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
     private List<Product> productList;
     EditProductInfoActivity editProductInfoActivity;
 
+    AutoCompleteTextView cnQtyDropdown, setQtyDropdown, sizeSelectDropdown,
+            colorSelectDropdown, catSelectDropdown, genderDropdown;
+
 
 
     private EditText productNameText, productPriceText, productDiscountPriceText,
@@ -64,17 +67,26 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
         View view = inflater.inflate(R.layout.fragment_catalogue_item_info, container, false);
 
-        String[] COUNTRIES = new String[] {"Item 1", "Item 2", "Item 3", "Item 4"};
+        genderDropdown = view.findViewById(R.id.gender_dropdown);
+        productNameText = view.findViewById(R.id.et_item_name);
+        productPriceText = view.findViewById(R.id.et_item_price);
+        productDiscountPriceText = view.findViewById(R.id.et_item_disc_price);
+        productSizeText = (EditText) view.findViewById(R.id.et_item_size);
+        productColorText = (EditText) view.findViewById(R.id.et_item_color);
+        productSortTagsText = (EditText) view.findViewById(R.id.et_item_sort_tags);
+        productSoleNameText = (EditText) view.findViewById(R.id.et_item_sole_name);
+        productDescriptionText = (EditText) view.findViewById(R.id.et_item_desc);
+
+        String[] GENDERS = new String[] {"Men", "Women", "Kids"};
 
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(
                         getContext(),
                         R.layout.support_simple_spinner_dropdown_item,
-                        COUNTRIES);
+                        GENDERS);
 
-        AutoCompleteTextView editTextFilledExposedDropdown =
-                view.findViewById(R.id.filled_exposed_dropdown);
-        editTextFilledExposedDropdown.setAdapter(adapter);
+
+        genderDropdown.setAdapter(adapter);
 
         //setHasOptionsMenu(true);
 
@@ -94,20 +106,17 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
         //TODO: populate spinner array from firebase realtimedatabase
         //TODO: in AdminOtherFragment create categories to add to firebase realtimedatabase
 
-        productNameText = (EditText) view.findViewById(R.id.et_item_name);
-        productPriceText = (EditText) view.findViewById(R.id.et_item_price);
-        productDiscountPriceText = (EditText) view.findViewById(R.id.et_item_disc_price);
-        productCartonQuantityText = (EditText) view.findViewById(R.id.et_item_cn_qty);
-        productSetQuantityText = (EditText) view.findViewById(R.id.et_item_set_qty);
-        productSizeText = (EditText) view.findViewById(R.id.et_item_size);
-        productSizeSelectionText = (EditText) view.findViewById(R.id.et_item_size_sel);
-        productColorText = (EditText) view.findViewById(R.id.et_item_color);
-        productColorSelectionText = (EditText) view.findViewById(R.id.et_item_color_sel);
-        productCatagoryText = (EditText) view.findViewById(R.id.et_item_cat);
-        productSortTagsText = (EditText) view.findViewById(R.id.et_item_sort_tags);
-        productGenderText = (EditText) view.findViewById(R.id.et_item_gender);
-        productSoleNameText = (EditText) view.findViewById(R.id.et_item_sole_name);
-        productDescriptionText = (EditText) view.findViewById(R.id.et_item_desc);
+
+//        productCartonQuantityText = (EditText) view.findViewById(R.id.et_item_cn_qty);
+//        productSetQuantityText = (EditText) view.findViewById(R.id.et_item_set_qty);
+//
+//        productSizeSelectionText = (EditText) view.findViewById(R.id.et_item_size_sel);
+//
+//        productColorSelectionText = (EditText) view.findViewById(R.id.et_item_color_sel);
+//        productCatagoryText = (EditText) view.findViewById(R.id.et_item_cat);
+//
+//        productGenderText = (EditText) view.findViewById(R.id.et_item_gender);
+
 
 
 

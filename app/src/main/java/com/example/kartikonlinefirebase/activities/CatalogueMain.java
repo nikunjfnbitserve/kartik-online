@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.Intent;
@@ -14,12 +17,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +42,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,6 +71,7 @@ public class CatalogueMain extends AppCompatActivity {
     private Toolbar mToolbar;
     private TextView textGallery;
     private TextView textCamera;
+    private AlertDialog catTitleDialog;
     //keep track of camera capture intent
     final int CAMERA_CAPTURE = 2;
     //captured picture uri
@@ -71,7 +81,7 @@ public class CatalogueMain extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mFirebaseDatabaseReference;
-    private EditText catalogueText;
+    //private EditText catalogueText;
     private Catalogue mCatalogue;
     private List<Catalogue> mCatalogueList;
     private FirebaseRecyclerAdapter<Product, ProductViewHolder> mFirebaseAdapter;
@@ -83,11 +93,12 @@ public class CatalogueMain extends AppCompatActivity {
         //Views initialisation
         textGallery = (TextView) findViewById(R.id.tv_add_gall);
         textCamera = (TextView) findViewById(R.id.tv_add_cam);
-        catalogueText = (EditText) findViewById(R.id.et_add_title);
+        //catalogueText = (EditText) findViewById(R.id.et_add_title);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Edit Name");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
         //Firebase instances initialisation
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -308,17 +319,56 @@ public class CatalogueMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         switch (itemId){
+            case R.id.item_edit:
+
+
+
+
+                TextInputEditText titleText = findViewById(R.id.et_catalogue_title);
+                catTitleDialog = new AlertDialog.Builder(this)
+                        .setTitle("Edit Title")
+                        .setView(getLayoutInflater().inflate(R.layout.dialogue_edit_title, null))
+                        .create();
+
+
+
+                Window window = catTitleDialog.getWindow();
+                WindowManager.LayoutParams wlp = window.getAttributes();
+                wlp.x = 0;
+                wlp.y = -100;
+                window.setAttributes(wlp);
+
+                catTitleDialog.show();
+
+//                Button saveTitleButton = findViewById(R.id.btn_save);
+//                Button cancelTitleButton = findViewById(R.id.btn_cancel);
+//                saveTitleButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if(!TextUtils.isEmpty(titleText.getText())){
+//                            getSupportActionBar().setTitle(titleText.getText());
+//
+//                        }
+//                    }
+//                });
+//                catTitleDialog.show();
+                break;
+
             case R.id.item_check:
                 Toast.makeText(this, "catalogue saved", Toast.LENGTH_SHORT).show();
                 saveCatalogue();
-                return true;
+                break;
+
             case R.id.item_publish:
                 mStaticCatalogue.setIsPublished(true);
+                break;
+
             default: return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     private void saveCatalogue() {
-        mStaticCatalogue.setCatalogueTitle(catalogueText.getText().toString());
+        //mStaticCatalogue.setCatalogueTitle(catalogueText.getText().toString());
     }
 }

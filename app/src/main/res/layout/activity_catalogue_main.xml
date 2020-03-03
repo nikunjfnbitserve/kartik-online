@@ -6,15 +6,12 @@
     android:layout_width="match_parent"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        android:id="@+id/container_appbar">
+
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/appbar">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 app:contentInsetStartWithNavigation="0dp"
@@ -22,6 +19,7 @@
                 android:background="#ffffff"
                 android:layout_height="?attr/actionBarSize">
 
+                <!--
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -35,18 +33,25 @@
                             android:hint="add title" />
 
                     </LinearLayout>
+                 -->
 
                 </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.AppBarLayout>
 
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/appbar"
+        android:id="@+id/drop_shadow"
+        android:background="@drawable/toolbar_dropshadow"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv_products"
-        android:layout_below="@+id/container_appbar">
+        android:layout_below="@+id/drop_shadow">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -59,7 +64,7 @@
         android:layout_gravity="bottom">
 
             <LinearLayout
-                android:layout_width="340dp"
+                android:layout_width="300dp"
                 android:gravity="center"
                 android:background="@drawable/add_products_card"
                 android:layout_height="130dp"
@@ -76,7 +81,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
 
                     android:orientation="horizontal">
 

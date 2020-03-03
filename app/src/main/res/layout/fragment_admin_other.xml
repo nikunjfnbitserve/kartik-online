@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/et_notify"
-            android:text="BroadCast Notification"
+            android:text="Broadcast Notification"
             android:padding="14dp"
             android:layout_marginTop="8dp"
             android:drawableRight="@drawable/addsymbol"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/adother_asiz_et"
+            android:id="@+id/et_add_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -79,6 +79,19 @@
         <EditText
             android:id="@+id/et_add_qty"
             android:text="Add Quantity"
+            android:padding="14dp"
+            android:layout_marginTop="8dp"
+            android:drawableRight="@drawable/addsymbol"
+            android:inputType="none"
+            android:clickable="true"
+            android:focusable="false"
+            android:editable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/et_add_set_qty"
+            android:text="Add Set Quantity"
             android:padding="14dp"
             android:layout_marginTop="8dp"
             android:drawableRight="@drawable/addsymbol"
