@@ -72,7 +72,7 @@
                     android:hint="CN Qty"
                     app:errorEnabled="true">
                     <AutoCompleteTextView
-                        android:id="@+id/filled_exposed_dropdown"
+                        android:id="@+id/cn_qty_dropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -82,16 +82,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:hint="Size"
                     app:errorEnabled="true">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_item_size"
+
+                    <AutoCompleteTextView
+                        android:id="@+id/size_dropdown"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -177,6 +176,10 @@
                         android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                 <!--TODO: remove this dropdown and add textview
+                that will have appended texts of multiple checkboxes
+                which can be opened with a dialog-->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

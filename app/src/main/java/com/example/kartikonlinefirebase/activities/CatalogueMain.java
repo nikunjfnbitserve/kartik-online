@@ -1,15 +1,16 @@
 package com.example.kartikonlinefirebase.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -96,7 +97,7 @@ public class CatalogueMain extends AppCompatActivity {
         //catalogueText = (EditText) findViewById(R.id.et_add_title);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Edit Name");
+        getSupportActionBar().setTitle("Edit Title");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
         //Firebase instances initialisation
@@ -321,24 +322,38 @@ public class CatalogueMain extends AppCompatActivity {
         switch (itemId){
             case R.id.item_edit:
 
-
-
-
-                TextInputEditText titleText = findViewById(R.id.et_catalogue_title);
+                /*TextInputEditText titleText = findViewById(R.id.et_catalogue_title);
                 catTitleDialog = new AlertDialog.Builder(this)
                         .setTitle("Edit Title")
                         .setView(getLayoutInflater().inflate(R.layout.dialogue_edit_title, null))
-                        .create();
+                        .create();*/
+
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle("Title")
+                        .setView(R.layout.dialog_add_attributes)
+                        .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                EditText edit = (EditText) ((AlertDialog) dialog).findViewById(R.id.et_dialog);
+                                String myString = edit.getText().toString();
+                                if(!TextUtils.isEmpty(myString)){
+                                    getSupportActionBar().setTitle(myString);
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
 
 
 
-                Window window = catTitleDialog.getWindow();
+                /*Window window = catTitleDialog.getWindow();
                 WindowManager.LayoutParams wlp = window.getAttributes();
                 wlp.x = 0;
                 wlp.y = -100;
                 window.setAttributes(wlp);
 
-                catTitleDialog.show();
+                catTitleDialog.show();*/
 
 //                Button saveTitleButton = findViewById(R.id.btn_save);
 //                Button cancelTitleButton = findViewById(R.id.btn_cancel);

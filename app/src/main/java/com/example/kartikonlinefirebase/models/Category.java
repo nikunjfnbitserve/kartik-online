@@ -3,7 +3,9 @@ package com.example.kartikonlinefirebase.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Catagory {
+import java.util.List;
+
+public class Category {
 
     @SerializedName("categoryId")
     @Expose
@@ -12,6 +14,10 @@ public class Catagory {
     @SerializedName("categoryName")
     @Expose
     private String categoryName;
+
+    @SerializedName("catagoryImages")
+    @Expose
+    private List<Image> catagoryImages = null;
 
     public String getCategoryId() {
         return categoryId;
@@ -27,6 +33,14 @@ public class Catagory {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public List<Image> getCatagoryImages() {
+        return catagoryImages;
+    }
+
+    public void setCatagoryImages(List<Image> catagoryImages) {
+        this.catagoryImages = catagoryImages;
     }
 
 }

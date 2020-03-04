@@ -2,6 +2,7 @@ package com.example.kartikonlinefirebase.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -24,19 +25,32 @@ import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
 import com.example.kartikonlinefirebase.viewmodels.CatalogueProductViewModel;
 import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
 
 public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveButonClickListener {
 
+    private static final String TAG = "CatalogueItemInfo";
+
     private List<Product> productList;
+    private List<String> list;
     EditProductInfoActivity editProductInfoActivity;
 
-    AutoCompleteTextView cnQtyDropdown, setQtyDropdown, sizeSelectDropdown,
+    private FirebaseFirestore mFirestore;
+    private Query mQuery;
+
+    AutoCompleteTextView cnQtyDropdown, setQtyDropdown, sizeDropdown,
             colorSelectDropdown, catSelectDropdown, genderDropdown;
 
 
@@ -68,25 +82,106 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
         View view = inflater.inflate(R.layout.fragment_catalogue_item_info, container, false);
 
         genderDropdown = view.findViewById(R.id.gender_dropdown);
+        cnQtyDropdown = view.findViewById(R.id.cn_qty_dropdown);
+        setQtyDropdown = view.findViewById(R.id.set_qty_dropdown);
+        catSelectDropdown = view.findViewById(R.id.catagory_dropdown);
+        sizeDropdown = view.findViewById(R.id.size_dropdown);
+
         productNameText = view.findViewById(R.id.et_item_name);
         productPriceText = view.findViewById(R.id.et_item_price);
         productDiscountPriceText = view.findViewById(R.id.et_item_disc_price);
-        productSizeText = (EditText) view.findViewById(R.id.et_item_size);
-        productColorText = (EditText) view.findViewById(R.id.et_item_color);
-        productSortTagsText = (EditText) view.findViewById(R.id.et_item_sort_tags);
-        productSoleNameText = (EditText) view.findViewById(R.id.et_item_sole_name);
-        productDescriptionText = (EditText) view.findViewById(R.id.et_item_desc);
+        //productSizeText = view.findViewById(R.id.et_item_size);
+        productColorText = view.findViewById(R.id.et_item_color);
+        productSortTagsText = view.findViewById(R.id.et_item_sort_tags);
+        productSoleNameText = view.findViewById(R.id.et_item_sole_name);
+        productDescriptionText = view.findViewById(R.id.et_item_desc);
 
         String[] GENDERS = new String[] {"Men", "Women", "Kids"};
+        final List<String> qtyList = new ArrayList<>();
+        final List<String> setList = new ArrayList<>();
+        final List<String> categoryList = new ArrayList<>();
+        final List<String> sizeList = new ArrayList<>();
 
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        getContext(),
-                        R.layout.support_simple_spinner_dropdown_item,
-                        GENDERS);
+        mFirestore = FirebaseFirestore.getInstance();
+        mQuery = mFirestore.collection("quantities");
+
+        mFirestore.collection("quantities").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        qtyList.add(document.getData().get("quantity").toString());
+                    }
+                    Log.d(TAG, qtyList.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+        mFirestore.collection("sets").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        setList.add(document.getData().get("setQty").toString());
+                    }
+                    Log.d(TAG, setList.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+        mFirestore.collection("categories").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        categoryList.add(document.getData().get("categoryName").toString());
+                    }
+                    Log.d(TAG, categoryList.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+        mFirestore.collection("sizes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        sizeList.add(document.getData().get("size").toString());
+                    }
+                    Log.d(TAG, sizeList.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+        ArrayAdapter<String> genderAdapter =
+                new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, GENDERS);
+
+        ArrayAdapter<String> qtyAdapter =
+                new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, qtyList);
+
+        ArrayAdapter<String> mSetAdapter =
+                new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, setList);
+
+        ArrayAdapter<String> categoryAdapter =
+                new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, categoryList);
+
+        ArrayAdapter<String> sizeAdapter =
+                new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, sizeList);
 
 
-        genderDropdown.setAdapter(adapter);
+        genderDropdown.setAdapter(genderAdapter);
+        cnQtyDropdown.setAdapter(qtyAdapter);
+        setQtyDropdown.setAdapter(mSetAdapter);
+        catSelectDropdown.setAdapter(categoryAdapter);
+        sizeDropdown.setAdapter(sizeAdapter);
 
         //setHasOptionsMenu(true);
 
@@ -102,9 +197,8 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
         //TODO: get data from firebase for already existing items in a catalogue
         //TODO: set this data in respective Views if the user has come from an already created catalogue
-        //TODO: create a spinner for categories
-        //TODO: populate spinner array from firebase realtimedatabase
-        //TODO: in AdminOtherFragment create categories to add to firebase realtimedatabase
+
+
 
 
 //        productCartonQuantityText = (EditText) view.findViewById(R.id.et_item_cn_qty);
@@ -116,10 +210,7 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 //        productCatagoryText = (EditText) view.findViewById(R.id.et_item_cat);
 //
 //        productGenderText = (EditText) view.findViewById(R.id.et_item_gender);
-
-
-
-
+        
 
         return view;
     }
