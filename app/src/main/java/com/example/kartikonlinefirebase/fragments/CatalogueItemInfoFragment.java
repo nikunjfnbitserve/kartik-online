@@ -197,6 +197,8 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
         //TODO: get data from firebase for already existing items in a catalogue
         //TODO: set this data in respective Views if the user has come from an already created catalogue
+        //TODO: make a dialogs for color selection and size seleection
+        //TODO: modify product model class for color, size slection
 
 
 

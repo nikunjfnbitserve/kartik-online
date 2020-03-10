@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "288308211249",
-    "firebase_url": "https://kartikonlinefirebase.firebaseio.com",
-    "project_id": "kartikonlinefirebase",
-    "storage_bucket": "kartikonlinefirebase.appspot.com"
+    "project_number": "871654657590",
+    "firebase_url": "https://kartikonlineadminfirebase.firebaseio.com",
+    "project_id": "kartikonlineadminfirebase",
+    "storage_bucket": "kartikonlineadminfirebase.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:288308211249:android:8cfb26f879957aad9c2f10",
+        "mobilesdk_app_id": "1:871654657590:android:c0169fdfd304746c4d9297",
         "android_client_info": {
           "package_name": "com.example.kartikonlinefirebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "288308211249-6em1u8b71htimqv25t3g4luhjdnl3ipm.apps.googleusercontent.com",
+          "client_id": "871654657590-b05o3luaalmbp2618lrv6liq6dvotjcv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.kartikonlinefirebase",
-            "certificate_hash": "7fd4c01758c356ab454243cde8fef66b658bfb08"
+            "certificate_hash": "7e2481635c6a54e507a4fbf4a37c51dfb2b4cef9"
           }
         },
         {
-          "client_id": "288308211249-a5co61prppfm6es1rh596s1n19ii8ggs.apps.googleusercontent.com",
+          "client_id": "871654657590-9v9d5eed86o898qahmlo06ctoftr8jof.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVUwAoy5MnttVNHeASNc3Web1kA_Ph7vo"
+          "current_key": "AIzaSyAAvgOD3f0a2G5YlvYO67a9Pg-FTWOZYoQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "288308211249-a5co61prppfm6es1rh596s1n19ii8ggs.apps.googleusercontent.com",
+              "client_id": "871654657590-9v9d5eed86o898qahmlo06ctoftr8jof.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

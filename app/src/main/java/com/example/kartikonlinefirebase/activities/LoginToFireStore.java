@@ -23,14 +23,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginToFireStore extends AppCompatActivity {
 
-    EditText lEmailEt;
-    EditText lPwdEt;
+    EditText lEmailEt, lPwdEt;
     Button lLoginBtn;
-    TextView createAccountText;
+    TextView createAccountText, loginWithPhoneText;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     String userID;
     String htmlTextForCreateAccount;
+    String htmlTextForSignInWithPhone;
 
     User currentUser;
 
@@ -58,8 +58,12 @@ public class LoginToFireStore extends AppCompatActivity {
         lPwdEt = (EditText) findViewById(R.id.l_pwd_et);
         lLoginBtn = (Button) findViewById(R.id.l_login_btn);
         createAccountText = (TextView) findViewById(R.id.tv_create_account);
+        loginWithPhoneText = findViewById(R.id.tv_phone_login);
 
         htmlTextForCreateAccount = "<u>Don't have an account ? create here</u>";
+        htmlTextForSignInWithPhone = "<u>Login with Phone Number instead</u>";
+
+        loginWithPhoneText.setText(Html.fromHtml(htmlTextForSignInWithPhone));
         createAccountText.setText(Html.fromHtml(htmlTextForCreateAccount));
 
 //        if(fAuth.getCurrentUser() != null) {
@@ -129,6 +133,15 @@ public class LoginToFireStore extends AppCompatActivity {
             public void onClick(View v) {
                 createAccountText.setEnabled(false);
                 startActivity(new Intent(getApplicationContext(), RegisterToFireStore.class));
+            }
+        });
+
+        loginWithPhoneText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginWithPhoneText.setEnabled(false);
+                startActivity(new Intent(getApplicationContext(), LoginWithPhone.class));
+                finish();
             }
         });
     }

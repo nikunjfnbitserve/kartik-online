@@ -4,14 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -51,6 +55,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -69,6 +75,7 @@ import static com.example.kartikonlinefirebase.utils.Config.mStaticCatalogue;
 public class CatalogueMain extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE = 3;
+    private static final int MY_PERMISSIONS_REQUEST = 11;
     private Toolbar mToolbar;
     private TextView textGallery;
     private TextView textCamera;
@@ -81,11 +88,16 @@ public class CatalogueMain extends AppCompatActivity {
     final int PIC_CROP = 8;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mFirebaseFirestoreReference;
     private DatabaseReference mFirebaseDatabaseReference;
     //private EditText catalogueText;
     private Catalogue mCatalogue;
     private List<Catalogue> mCatalogueList;
     private FirebaseRecyclerAdapter<Product, ProductViewHolder> mFirebaseAdapter;
+    String[] PERMISSIONS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +115,7 @@ public class CatalogueMain extends AppCompatActivity {
         //Firebase instances initialisation
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mFirestore = FirebaseFirestore.getInstance();
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mCatalogue = new Catalogue();
         mCatalogueList = new ArrayList<>();
@@ -161,34 +174,63 @@ public class CatalogueMain extends AppCompatActivity {
         textCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    //use standard intent to capture an image
-                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    //String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
-                    //File imageFile = new File(imageFilePath);
-                    File photoFile = createImageFileWith();
-                    String path = photoFile.getAbsolutePath();
-                    photoUri = FileProvider.getUriForFile(CatalogueMain.this,
-                            getString(R.string.file_provider_authority),
-                            photoFile);
-                    //picUri = Uri.fromFile(imageFile); // convert path to Uri
-                    takePictureIntent.putExtra( MediaStore.EXTRA_OUTPUT, photoUri );
-                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-                        takePictureIntent.setClipData(ClipData.newRawUri("", photoUri));
-                        takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                    }
-                    startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
-                }catch(ActivityNotFoundException anfe){
-                    //display an error message
-                    String errorMessage = "Whoops - your device doesn't support capturing images!";
-                    Toast.makeText(CatalogueMain.this, errorMessage, Toast.LENGTH_SHORT).show();
-                }catch (IOException ex) {
-                    Log.e("TakePicture", ex.getMessage());
-                }
 
+                if (!Config.hasPermissions(CatalogueMain.this, PERMISSIONS)) {
+                    ActivityCompat.requestPermissions(CatalogueMain.this, PERMISSIONS, MY_PERMISSIONS_REQUEST);
+                } else{
+                    takePicture();
+                }
             }
         });
     }
+
+    private void takePicture() {
+
+        try {
+            //use standard intent to capture an image
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            //String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+            //File imageFile = new File(imageFilePath);
+            File photoFile = createImageFileWith();
+            String path = photoFile.getAbsolutePath();
+            photoUri = FileProvider.getUriForFile(CatalogueMain.this,
+                    getString(R.string.file_provider_authority),
+                    photoFile);
+
+            Config.selectedImageUri = photoUri;
+            //picUri = Uri.fromFile(imageFile); // convert path to Uri
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                takePictureIntent.setClipData(ClipData.newRawUri("", photoUri));
+                takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            }
+            startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
+        } catch (ActivityNotFoundException anfe) {
+            //display an error message
+            String errorMessage = "Whoops - your device doesn't support capturing images!";
+            Toast.makeText(CatalogueMain.this, errorMessage, Toast.LENGTH_SHORT).show();
+        } catch (IOException ex) {
+            Log.e("TakePicture", ex.getMessage());
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST:
+                // If the permission is granted, get the location,
+                // otherwise, show a Toast
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePicture();
+                } else {
+                    Toast.makeText(CatalogueMain.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
 
     private File createImageFileWith() throws IOException {
         final String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -196,18 +238,6 @@ public class CatalogueMain extends AppCompatActivity {
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         storageDir.mkdirs();
         return File.createTempFile(imageFileName, ".jpg", storageDir);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, "catalogue saved", Toast.LENGTH_SHORT).show();
-        super.onBackPressed();
-    }
-
-    public boolean onSupportNavigateUp() {
-
-        onBackPressed();
-        return true;
     }
 
     @Override
@@ -237,17 +267,28 @@ public class CatalogueMain extends AppCompatActivity {
                                     }
                                }
                             });
-                    startActivity(new Intent(this, EditProductInfoActivity.class));
+                    Intent intent = new Intent(this, EditProductInfoActivity.class);
+                    intent.putExtras(data);
+                    startActivity(intent);
+                    //startActivity(new Intent(this, EditProductInfoActivity.class));
                 }
             }
         }
         else if(requestCode == CAMERA_CAPTURE){
 
-            //get the Uri for the captured image
-            Uri uri = photoUri;
-            Log.d("picUri", uri.toString());
-            //carry out the crop operation
-            performCrop();
+            if(resultCode == RESULT_OK) {
+                if (data != null) {
+
+                    //get the Uri for the captured image
+                    Uri uri = photoUri;
+                    Log.d("picUri", uri.toString());
+                    //carry out the crop operation
+                    //performCrop();
+                    Intent intent = new Intent(this, EditProductInfoActivity.class);
+                    //intent.putExtra("imageFile", data);
+                    startActivity(intent);
+                }
+            }
 
         }
         else if(requestCode == PIC_CROP){
@@ -380,6 +421,17 @@ public class CatalogueMain extends AppCompatActivity {
 
             default: return super.onOptionsItemSelected(item);
         }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "catalogue saved", Toast.LENGTH_SHORT).show();
+        super.onBackPressed();
+    }
+
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
         return true;
     }
 
