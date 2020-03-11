@@ -285,8 +285,11 @@ public class CatalogueMain extends AppCompatActivity {
                     //carry out the crop operation
                     //performCrop();
                     Intent intent = new Intent(this, EditProductInfoActivity.class);
-                    //intent.putExtra("imageFile", data);
+                    intent.putExtras(data);
                     startActivity(intent);
+                } else{
+                    Log.e("CatalogueMain", "data is null");
+
                 }
             }
 

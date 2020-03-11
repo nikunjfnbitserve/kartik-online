@@ -10,7 +10,9 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +32,8 @@ import com.example.kartikonlinefirebase.models.Product;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -66,11 +70,15 @@ public class EditProductInfoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Edit Product Info");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        imageDataIntent = getIntent();
-//        if(imageDataIntent != null) {
-//            photo = (Bitmap) imageDataIntent.getExtras().get("data");
-//            productImageView.setImageBitmap(photo);
-//        }
+        imageDataIntent = getIntent();
+        if(imageDataIntent != null) {
+            Uri imageUri = imageDataIntent.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 //        mCallback = (OnMenuSaveButonClickListener) this;
 

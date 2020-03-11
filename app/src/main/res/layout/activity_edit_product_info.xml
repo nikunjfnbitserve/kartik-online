@@ -20,6 +20,8 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
+                app:collapsedTitleGravity="start"
+                app:expandedTitleMarginBottom="60dp"
                 app:contentScrim="?attr/colorPrimary"
                 android:fitsSystemWindows="true"
                 android:id="@+id/collap_toolbar_layout"
@@ -71,8 +73,16 @@
         android:id="@+id/v_pager_prod"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-
-
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save_prod_info_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:srcCompat="@drawable/ic_check_black"
+        app:tint="@android:color/white"
+        android:visibility="gone"
+        app:backgroundTint="@color/colorAccent"
+        android:layout_margin="@dimen/fab_margin"
+        app:elevation="6dp"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
