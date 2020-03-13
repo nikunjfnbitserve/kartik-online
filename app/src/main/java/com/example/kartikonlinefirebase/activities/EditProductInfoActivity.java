@@ -18,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.adapters.AdminTabsViewPagerAdapter;
 import com.example.kartikonlinefirebase.adapters.ProductTabsViewPagerAdapter;
@@ -29,6 +31,7 @@ import com.example.kartikonlinefirebase.fragments.CatalogueItemInventoryFragment
 import com.example.kartikonlinefirebase.fragments.CatalogueItemNotesFragment;
 import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
 import com.example.kartikonlinefirebase.models.Product;
+import com.example.kartikonlinefirebase.utils.BitmapTransformer;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -48,6 +51,8 @@ public class EditProductInfoActivity extends AppCompatActivity {
     ImageView productImageView;
     Toolbar toolbar;
     Intent imageDataIntent;
+    private static final int MAX_WIDTH = 1024;
+    private static final int MAX_HEIGHT = 768;
     Bitmap photo;
 //    OnMenuSaveButonClickListener mCallback;
 
@@ -72,9 +77,10 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
         imageDataIntent = getIntent();
         if(imageDataIntent != null) {
-            Uri imageUri = imageDataIntent.getData();
+            Uri imageUri = Uri.parse(imageDataIntent.getStringExtra("imageUri"));
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                Glide.with(this).load(bitmap).transform(new BitmapTransformer(MAX_WIDTH, MAX_HEIGHT)).into(productImageView);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -193,6 +193,7 @@ public class CatalogueMain extends AppCompatActivity {
             //File imageFile = new File(imageFilePath);
             File photoFile = createImageFileWith();
             String path = photoFile.getAbsolutePath();
+
             photoUri = FileProvider.getUriForFile(CatalogueMain.this,
                     getString(R.string.file_provider_authority),
                     photoFile);
@@ -268,7 +269,7 @@ public class CatalogueMain extends AppCompatActivity {
                                }
                             });
                     Intent intent = new Intent(this, EditProductInfoActivity.class);
-                    intent.putExtras(data);
+                    intent.putExtra("imageUri", uri.toString());
                     startActivity(intent);
                     //startActivity(new Intent(this, EditProductInfoActivity.class));
                 }
@@ -277,7 +278,7 @@ public class CatalogueMain extends AppCompatActivity {
         else if(requestCode == CAMERA_CAPTURE){
 
             if(resultCode == RESULT_OK) {
-                if (data != null) {
+
 
                     //get the Uri for the captured image
                     Uri uri = photoUri;
@@ -285,12 +286,9 @@ public class CatalogueMain extends AppCompatActivity {
                     //carry out the crop operation
                     //performCrop();
                     Intent intent = new Intent(this, EditProductInfoActivity.class);
-                    intent.putExtras(data);
+                    intent.putExtra("imageUri", uri.toString());
                     startActivity(intent);
-                } else{
-                    Log.e("CatalogueMain", "data is null");
 
-                }
             }
 
         }

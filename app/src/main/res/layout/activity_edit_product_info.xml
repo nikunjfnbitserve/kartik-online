@@ -19,7 +19,7 @@
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
+                android:layout_height="wrap_content"
                 app:collapsedTitleGravity="start"
                 app:expandedTitleMarginBottom="60dp"
                 app:contentScrim="?attr/colorPrimary"
@@ -30,7 +30,7 @@
                 <ImageView
                     android:id="@+id/iv_header"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/prof_pic"
