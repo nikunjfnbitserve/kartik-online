@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,11 +31,18 @@ import com.example.kartikonlinefirebase.fragments.CatalogueItemInfoFragment;
 import com.example.kartikonlinefirebase.fragments.CatalogueItemInventoryFragment;
 import com.example.kartikonlinefirebase.fragments.CatalogueItemNotesFragment;
 import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
+import com.example.kartikonlinefirebase.interfaces.TextWatcherInterface;
 import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.BitmapTransformer;
+import com.example.kartikonlinefirebase.utils.TabChangedEvent;
+import com.example.kartikonlinefirebase.utils.TextChangedEvent;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -54,6 +62,9 @@ public class EditProductInfoActivity extends AppCompatActivity {
     private static final int MAX_WIDTH = 1024;
     private static final int MAX_HEIGHT = 768;
     Bitmap photo;
+    EventBus bus = EventBus.getDefault();
+    EventBus mBus = EventBus.getDefault();
+    FloatingActionButton save_prod_info_fab;
 //    OnMenuSaveButonClickListener mCallback;
 
 //    public Product product;
@@ -61,13 +72,30 @@ public class EditProductInfoActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
+    public void onStart() {
+        super.onStart();
+        mBus.register(this);
+        bus.register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mBus.unregister(this);
+        bus.unregister(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product_info);
 
+
+
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         mViewPager = (ViewPager) findViewById(R.id.v_pager_prod);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        save_prod_info_fab = (FloatingActionButton) findViewById(R.id.save_prod_info_fab);
         collapsingToolbarLayout = findViewById(R.id.collap_toolbar_layout);
         productImageView = findViewById(R.id.iv_header);
 
@@ -93,6 +121,25 @@ public class EditProductInfoActivity extends AppCompatActivity {
         fragments.add(new CatalogueItemInventoryFragment());
         fragments.add(new CatalogueItemNotesFragment());
         initViewPager();
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                bus.post(new TabChangedEvent());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 
 
 
@@ -129,6 +176,11 @@ public class EditProductInfoActivity extends AppCompatActivity {
 
     }
 
+    @Subscribe
+    public void onEvent(TextChangedEvent event){
+        save_prod_info_fab.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "product saved", Toast.LENGTH_SHORT).show();
@@ -158,6 +210,7 @@ public class EditProductInfoActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.item_info_menu, menu);
@@ -178,8 +231,5 @@ public class EditProductInfoActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 
 }

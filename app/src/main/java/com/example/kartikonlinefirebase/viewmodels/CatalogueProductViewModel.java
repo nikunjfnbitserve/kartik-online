@@ -21,15 +21,15 @@ public class CatalogueProductViewModel extends ViewModel {
 
         @SerializedName("catalogueTitle")
         @Expose
-        private MutableLiveData<String> catalogueTitle = new MutableLiveData<>();
+        private MutableLiveData<String> catalogueTitle = new MutableLiveData<>("Blank");
 
         @SerializedName("isPublished")
         @Expose
-        private MutableLiveData<Boolean> isPublished = new MutableLiveData<>();
+        private MutableLiveData<Boolean> isPublished = new MutableLiveData<>(false);
 
         @SerializedName("visitors")
         @Expose
-        private MutableLiveData<Integer> visitors = new MutableLiveData<>();
+        private MutableLiveData<Integer> visitors = new MutableLiveData<>(0);
 
         @SerializedName("products")
         @Expose
@@ -80,7 +80,6 @@ public class CatalogueProductViewModel extends ViewModel {
         }
 
     }
-
 
 
 }

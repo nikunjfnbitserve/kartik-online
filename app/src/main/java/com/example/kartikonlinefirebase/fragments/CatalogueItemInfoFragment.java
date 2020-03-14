@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,13 +18,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
+import com.example.kartikonlinefirebase.interfaces.TextWatcherInterface;
 import com.example.kartikonlinefirebase.models.Product;
 import com.example.kartikonlinefirebase.utils.Config;
+import com.example.kartikonlinefirebase.utils.TabChangedEvent;
+import com.example.kartikonlinefirebase.utils.TextChangedEvent;
 import com.example.kartikonlinefirebase.viewmodels.CatalogueProductViewModel;
 import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,25 +39,33 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 import static com.example.kartikonlinefirebase.utils.Config.mStaticProduct;
 
-public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveButonClickListener {
+public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveButonClickListener{
 
     private static final String TAG = "CatalogueItemInfo";
 
     private List<Product> productList;
     private List<String> list;
     EditProductInfoActivity editProductInfoActivity;
+    EventBus bus = EventBus.getDefault();
+    EventBus mBus = EventBus.getDefault();
+
 
     private FirebaseFirestore mFirestore;
     private Query mQuery;
+    TextWatcherInterface textWatcherInterface;
 
     AutoCompleteTextView cnQtyDropdown, setQtyDropdown, sizeDropdown,
             colorSelectDropdown, catSelectDropdown, genderDropdown;
+    Button testButton;
 
 
 
@@ -74,6 +88,26 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
         super.onCreate(savedInstanceState);
         catalogueProductViewModel = ViewModelProviders.of(requireActivity()).get(CatalogueProductViewModel.class);
         productViewModel = ViewModelProviders.of(requireActivity()).get(ProductViewModel.class);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        bus.register(this);
+        mBus.register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        bus.register(this);
+        mBus.unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(TabChangedEvent event){
+        setItemFromItemForm();
     }
 
     @Override
@@ -86,6 +120,7 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
         setQtyDropdown = view.findViewById(R.id.set_qty_dropdown);
         catSelectDropdown = view.findViewById(R.id.catagory_dropdown);
         sizeDropdown = view.findViewById(R.id.size_dropdown);
+        testButton = view.findViewById(R.id.btn_test);
 
         productNameText = view.findViewById(R.id.et_item_name);
         productPriceText = view.findViewById(R.id.et_item_price);
@@ -104,6 +139,29 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
         mFirestore = FirebaseFirestore.getInstance();
         mQuery = mFirestore.collection("quantities");
+
+
+
+        productNameText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mBus.post(new TextChangedEvent());
+
+            }
+        });
+//        productPriceText.addTextChangedListener(textWatcher);
+//        productDiscountPriceText.addTextChangedListener(textWatcher);
+
 
         mFirestore.collection("quantities").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -247,7 +305,7 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
             productPriceText.setError("price can't be empty");
         } else if (TextUtils.isEmpty(productDiscountPriceText.getText())) {
             productDiscountPriceText.setError("price can't be empty");
-        } else if (TextUtils.isEmpty(productCartonQuantityText.getText())) {
+        } else if (TextUtils.isEmpty(cnQtyDropdown.getText())) {
             productCartonQuantityText.setError("quantity can't be empty");
         } else if (TextUtils.isEmpty(productSetQuantityText.getText())) {
             productSetQuantityText.setError("quantity can't be empty");
@@ -327,4 +385,5 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
     public void onMenuButonClick() {
         setItemFromItemForm();
     }
+
 }

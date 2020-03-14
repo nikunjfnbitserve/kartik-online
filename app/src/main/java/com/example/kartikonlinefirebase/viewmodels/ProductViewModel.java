@@ -18,31 +18,31 @@ public class ProductViewModel extends ViewModel {
 
     @SerializedName("availableQuantity")
     @Expose
-    private MutableLiveData<Integer> availableQuantity = new MutableLiveData<>();
+    private MutableLiveData<Integer> availableQuantity = new MutableLiveData<>(0);
 
     @SerializedName("cartonQuanity")
     @Expose
-    private MutableLiveData<Integer> cartonQuanity = new MutableLiveData<>();
+    private MutableLiveData<Integer> cartonQuanity = new MutableLiveData<>(0);
 
     @SerializedName("categoryName")
     @Expose
-    private MutableLiveData<String> categoryName = new MutableLiveData<>();
+    private MutableLiveData<String> categoryName = new MutableLiveData<>("Blank");
 
     @SerializedName("color")
     @Expose
-    private MutableLiveData<String> color = new MutableLiveData<>();
+    private MutableLiveData<String> color = new MutableLiveData<>("Blank");
 
     @SerializedName("colorSelection")
     @Expose
-    private MutableLiveData<String> colorSelection = new MutableLiveData<>();
+    private MutableLiveData<String> colorSelection = new MutableLiveData<>("Blank");
 
     @SerializedName("description")
     @Expose
-    private MutableLiveData<String> description = new MutableLiveData<>();
+    private MutableLiveData<String> description = new MutableLiveData<>("Blank");
 
     @SerializedName("discountPrice")
     @Expose
-    private MutableLiveData<Double> discountPrice = new MutableLiveData<>();
+    private MutableLiveData<Double> discountPrice = new MutableLiveData<>(0.0);
 
     @SerializedName("images")
     @Expose
@@ -50,55 +50,55 @@ public class ProductViewModel extends ViewModel {
 
     @SerializedName("isOutOfStock")
     @Expose
-    private MutableLiveData<Boolean> isOutOfStock = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isOutOfStock = new MutableLiveData<>(true);
 
     @SerializedName("productName")
     @Expose
-    private MutableLiveData<String> productName = new MutableLiveData<>();
+    private MutableLiveData<String> productName = new MutableLiveData<>("Blank");
 
     @SerializedName("price")
     @Expose
-    private MutableLiveData<Integer> price = new MutableLiveData<>();
+    private MutableLiveData<Integer> price = new MutableLiveData<>(0);
 
     @SerializedName("setQuantity")
     @Expose
-    private MutableLiveData<Integer> setQuantity = new MutableLiveData<>();
+    private MutableLiveData<Integer> setQuantity = new MutableLiveData<>(0);
 
     @SerializedName("size")
     @Expose
-    private MutableLiveData<String> size = new MutableLiveData<>();
+    private MutableLiveData<String> size = new MutableLiveData<>("0-0");
 
     @SerializedName("sizeSelection")
     @Expose
-    private MutableLiveData<String> sizeSelection = new MutableLiveData<>();
+    private MutableLiveData<String> sizeSelection = new MutableLiveData<>("Blank");
 
     @SerializedName("soleName")
     @Expose
-    private MutableLiveData<String> soleName = new MutableLiveData<>();
+    private MutableLiveData<String> soleName = new MutableLiveData<>("Blank");
 
     @SerializedName("sortTags")
     @Expose
-    private MutableLiveData<String> sortTags = new MutableLiveData<>();
+    private MutableLiveData<String> sortTags = new MutableLiveData<>("Blank");
 
     @SerializedName("type")
     @Expose
-    private MutableLiveData<String> type = new MutableLiveData<>();
+    private MutableLiveData<String> type = new MutableLiveData<>("Blank");
 
     @SerializedName("notes")
     @Expose
-    private MutableLiveData<String> notes = new MutableLiveData<>();
+    private MutableLiveData<String> notes = new MutableLiveData<>("Blank");
 
     @SerializedName("videoUrl")
     @Expose
-    private MutableLiveData<String> videoUrl = new MutableLiveData<>();
+    private MutableLiveData<String> videoUrl = new MutableLiveData<>("Blank");
 
     @SerializedName("isShowOutOfStock")
     @Expose
-    private MutableLiveData<Boolean> isShowOutOfStock = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isShowOutOfStock = new MutableLiveData<>(true);
 
     @SerializedName("isForceAllowOrder")
     @Expose
-    private MutableLiveData<Boolean> isForceAllowOrder = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isForceAllowOrder = new MutableLiveData<>(false);
 
     public String getProductId() {
         return productId;
