@@ -7,6 +7,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.kartikonlinefirebase.adapters.ProductAdapter;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import android.Manifest;
@@ -48,6 +52,7 @@ import com.firebase.ui.database.SnapshotParser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,7 +61,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -80,6 +88,9 @@ public class CatalogueMain extends AppCompatActivity {
     private TextView textGallery;
     private TextView textCamera;
     private AlertDialog catTitleDialog;
+    private RecyclerView productRecycler;
+    private ProductAdapter productAdapter;
+    private ViewGroup mEmptyView;
     //keep track of camera capture intent
     final int CAMERA_CAPTURE = 2;
     //captured picture uri
@@ -90,6 +101,7 @@ public class CatalogueMain extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
     private FirebaseFirestore mFirestore;
     private CollectionReference mFirebaseFirestoreReference;
+    private DocumentReference mProductRef;
     private DatabaseReference mFirebaseDatabaseReference;
     //private EditText catalogueText;
     private Catalogue mCatalogue;
@@ -108,6 +120,9 @@ public class CatalogueMain extends AppCompatActivity {
         textCamera = (TextView) findViewById(R.id.tv_add_cam);
         //catalogueText = (EditText) findViewById(R.id.et_add_title);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        productRecycler = findViewById(R.id.rv_products);
+        mEmptyView = findViewById(R.id.view_empty);
+
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Edit Title");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -182,6 +197,34 @@ public class CatalogueMain extends AppCompatActivity {
                 }
             }
         });
+
+        Query productsQuery = mFirestore.collection("products");
+
+        productAdapter = new ProductAdapter(productsQuery){
+
+            @Override
+            protected void onDataChanged() {
+                // Show/hide content if the query returns empty.
+                if (getItemCount() == 0) {
+                    productRecycler.setVisibility(View.GONE);
+                    mEmptyView.setVisibility(View.VISIBLE);
+                } else {
+                    productRecycler.setVisibility(View.VISIBLE);
+                    mEmptyView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            protected void onError(FirebaseFirestoreException e) {
+                // Show a snackbar on errors
+                Snackbar.make(findViewById(android.R.id.content),
+                        "Error: check logs for info.", Snackbar.LENGTH_LONG).show();
+            }
+        };
+
+        productRecycler.setLayoutManager(new LinearLayoutManager(this));
+        productRecycler.setAdapter(productAdapter);
+
     }
 
     private void takePicture() {

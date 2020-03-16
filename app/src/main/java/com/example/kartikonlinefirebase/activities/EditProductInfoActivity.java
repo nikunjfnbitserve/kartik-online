@@ -62,8 +62,8 @@ public class EditProductInfoActivity extends AppCompatActivity {
     private static final int MAX_WIDTH = 1024;
     private static final int MAX_HEIGHT = 768;
     Bitmap photo;
-    EventBus bus = EventBus.getDefault();
-    EventBus mBus = EventBus.getDefault();
+    //EventBus bus = EventBus.getDefault();
+    //EventBus mBus = EventBus.getDefault();
     FloatingActionButton save_prod_info_fab;
 //    OnMenuSaveButonClickListener mCallback;
 
@@ -74,15 +74,15 @@ public class EditProductInfoActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mBus.register(this);
-        bus.register(this);
+        //mBus.register(this);
+        //bus.register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mBus.unregister(this);
-        bus.unregister(this);
+        //mBus.unregister(this);
+        //bus.unregister(this);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditProductInfoActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                bus.post(new TabChangedEvent());
+                //bus.post(new TabChangedEvent());
             }
 
             @Override
@@ -205,7 +205,6 @@ public class EditProductInfoActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setText("Product Info");
         tabLayout.getTabAt(1).setText("Inventory");
         tabLayout.getTabAt(2).setText("Notes");
-
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.kartikonlinefirebase.fragments;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +21,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class AdminOtherFragment extends Fragment implements View.OnClickListener {
 
@@ -121,12 +124,38 @@ public class AdminOtherFragment extends Fragment implements View.OnClickListener
                         .show();
                 break;
             case R.id.et_add_color:
-                new MaterialAlertDialogBuilder(getContext())
+                /*new MaterialAlertDialogBuilder(getContext())
                         .setTitle("Add Color")
                         .setView(R.layout.dialog_add_attributes)
                         .setPositiveButton("Save", null)
                         .setNegativeButton("Cancel", null)
+                        .show();*/
+
+                final ColorPicker colorPicker = new ColorPicker(getActivity());
+                colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+                    @Override
+                    public void onChooseColor(int position,int color) {
+                        // put code
+                    }
+
+                    @Override
+                    public void onCancel(){
+                        // put code
+                    }
+                })
+                        .addListenerButton("newButton", new ColorPicker.OnButtonListener() {
+                            @Override
+                            public void onClick(View v, int position, int color) {
+                                // put code
+                            }
+                        })
+                        .disableDefaultButtons(false)
+                        .setDefaultColorButton(Color.parseColor("#f84c44"))
+                        .setColumns(5)
+                        .setRoundColorButton(true)
+                        .setTitlePadding(0,0,0,14)
                         .show();
+
                 break;
             case R.id.et_add_qty:
                 new MaterialAlertDialogBuilder(getContext())

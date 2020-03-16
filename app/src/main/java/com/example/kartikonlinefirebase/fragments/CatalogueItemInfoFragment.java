@@ -1,8 +1,10 @@
 package com.example.kartikonlinefirebase.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -21,6 +23,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.kartikonlinefirebase.R;
 import com.example.kartikonlinefirebase.activities.EditProductInfoActivity;
 import com.example.kartikonlinefirebase.interfaces.OnMenuSaveButonClickListener;
@@ -33,6 +36,7 @@ import com.example.kartikonlinefirebase.viewmodels.CatalogueProductViewModel;
 import com.example.kartikonlinefirebase.viewmodels.ProductViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -55,8 +59,8 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
     private List<Product> productList;
     private List<String> list;
     EditProductInfoActivity editProductInfoActivity;
-    EventBus bus = EventBus.getDefault();
-    EventBus mBus = EventBus.getDefault();
+//    EventBus bus = EventBus.getDefault();
+//    EventBus mBus = EventBus.getDefault();
 
 
     private FirebaseFirestore mFirestore;
@@ -94,15 +98,15 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
     @Override
     public void onStart() {
         super.onStart();
-        bus.register(this);
-        mBus.register(this);
+        //bus.register(this);
+        //mBus.register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        bus.register(this);
-        mBus.unregister(this);
+        //bus.register(this);
+        //mBus.unregister(this);
     }
 
     @Subscribe
@@ -115,27 +119,33 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
         View view = inflater.inflate(R.layout.fragment_catalogue_item_info, container, false);
 
+
+
+
         genderDropdown = view.findViewById(R.id.gender_dropdown);
         cnQtyDropdown = view.findViewById(R.id.cn_qty_dropdown);
         setQtyDropdown = view.findViewById(R.id.set_qty_dropdown);
         catSelectDropdown = view.findViewById(R.id.catagory_dropdown);
         sizeDropdown = view.findViewById(R.id.size_dropdown);
+        colorSelectDropdown = view.findViewById(R.id.color_dropdown);
         testButton = view.findViewById(R.id.btn_test);
 
         productNameText = view.findViewById(R.id.et_item_name);
         productPriceText = view.findViewById(R.id.et_item_price);
         productDiscountPriceText = view.findViewById(R.id.et_item_disc_price);
+        productSizeSelectionText = view.findViewById(R.id.et_size_selec);
         //productSizeText = view.findViewById(R.id.et_item_size);
-        productColorText = view.findViewById(R.id.et_item_color);
         productSortTagsText = view.findViewById(R.id.et_item_sort_tags);
         productSoleNameText = view.findViewById(R.id.et_item_sole_name);
         productDescriptionText = view.findViewById(R.id.et_item_desc);
 
         String[] GENDERS = new String[] {"Men", "Women", "Kids"};
+        final String[] items = {" PHP", " JAVA", " JSON", " C#", " Objective-C"};
         final List<String> qtyList = new ArrayList<>();
         final List<String> setList = new ArrayList<>();
         final List<String> categoryList = new ArrayList<>();
         final List<String> sizeList = new ArrayList<>();
+        final List<String> colorList = new ArrayList<>();
 
         mFirestore = FirebaseFirestore.getInstance();
         mQuery = mFirestore.collection("quantities");
@@ -155,7 +165,7 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
 
             @Override
             public void afterTextChanged(Editable s) {
-                mBus.post(new TextChangedEvent());
+                //mBus.post(new TextChangedEvent());
 
             }
         });
@@ -219,6 +229,20 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
             }
         });
 
+        mFirestore.collection("colors").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        colorList.add(document.getData().get("colorName").toString());
+                    }
+                    Log.d(TAG, colorList.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
         ArrayAdapter<String> genderAdapter =
                 new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, GENDERS);
 
@@ -234,12 +258,94 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
         ArrayAdapter<String> sizeAdapter =
                 new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, sizeList);
 
+        ArrayAdapter<String> colorAdapter =
+                new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, colorList);
+
 
         genderDropdown.setAdapter(genderAdapter);
         cnQtyDropdown.setAdapter(qtyAdapter);
         setQtyDropdown.setAdapter(mSetAdapter);
         catSelectDropdown.setAdapter(categoryAdapter);
         sizeDropdown.setAdapter(sizeAdapter);
+        colorSelectDropdown.setAdapter(colorAdapter);
+
+        productSizeSelectionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(productSizeSelectionText.getText().toString())){
+                    productSizeSelectionText.setText("");
+                }
+                String[] sizeStringArray = sizeList.toArray(new String[0]);
+                final List<Integer> sizesSelected = new ArrayList<>();
+
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle("Select Sizes")
+                        .setMultiChoiceItems(sizeStringArray, null, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked) {
+                                    sizesSelected.add(which);
+                                } else if (sizesSelected.contains(which)) {
+                                    sizesSelected.remove(Integer.valueOf(which));
+                                }
+                            }
+                        })
+                        .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                for (int i : sizesSelected){
+                                    productSizeSelectionText.append(sizeList.get(i) + ", ");
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create()
+                        .show();
+
+            }
+        });
+
+        productSizeSelectionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(productSizeSelectionText.getText().toString())){
+                    productSizeSelectionText.setText("");
+                }
+                String[] sizeStringArray = sizeList.toArray(new String[0]);
+                final List<Integer> sizesSelected = new ArrayList<>();
+
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle("Select Sizes")
+                        .setMultiChoiceItems(sizeStringArray, null, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked) {
+                                    sizesSelected.add(which);
+                                } else if (sizesSelected.contains(which)) {
+                                    sizesSelected.remove(Integer.valueOf(which));
+                                }
+                            }
+                        })
+                        .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                for (int i : sizesSelected){
+                                    productSizeSelectionText.append(sizeList.get(i) + ", ");
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create()
+                        .show();
+
+            }
+        });
+
+
+
+
 
         //setHasOptionsMenu(true);
 
@@ -306,11 +412,11 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
         } else if (TextUtils.isEmpty(productDiscountPriceText.getText())) {
             productDiscountPriceText.setError("price can't be empty");
         } else if (TextUtils.isEmpty(cnQtyDropdown.getText())) {
-            productCartonQuantityText.setError("quantity can't be empty");
-        } else if (TextUtils.isEmpty(productSetQuantityText.getText())) {
-            productSetQuantityText.setError("quantity can't be empty");
-        } else if (TextUtils.isEmpty(productSizeText.getText())) {
-            productSizeText.setError("size can't be empty");
+            cnQtyDropdown.setError("quantity can't be empty");
+        } else if (TextUtils.isEmpty(setQtyDropdown.getText())) {
+            setQtyDropdown.setError("quantity can't be empty");
+        } else if (TextUtils.isEmpty(sizeDropdown.getText())) {
+            sizeDropdown.setError("size can't be empty");
         } else if (TextUtils.isEmpty(productSizeSelectionText.getText())) {
             productSizeSelectionText.setError("size selection can't be empty");
         } else if(TextUtils.isEmpty(productColorText.getText())){
