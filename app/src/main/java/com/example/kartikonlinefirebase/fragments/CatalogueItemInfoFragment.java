@@ -417,7 +417,7 @@ public class CatalogueItemInfoFragment extends Fragment implements OnMenuSaveBut
             setQtyDropdown.setError("quantity can't be empty");
         } else if (TextUtils.isEmpty(sizeDropdown.getText())) {
             sizeDropdown.setError("size can't be empty");
-        } else if (TextUtils.isEmpty(productSizeSelectionText.getText())) {
+        } else if (TextUtils.isEmpty(productSizeSelectionText.getText().toString())) {
             productSizeSelectionText.setError("size selection can't be empty");
         } else if(TextUtils.isEmpty(productColorText.getText())){
             productColorText.setError("color can't be empty");

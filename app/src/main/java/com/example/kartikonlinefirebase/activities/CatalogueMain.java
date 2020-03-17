@@ -135,6 +135,8 @@ public class CatalogueMain extends AppCompatActivity {
         mCatalogue = new Catalogue();
         mCatalogueList = new ArrayList<>();
 
+        mFirebaseFirestoreReference = mFirestore.collection("products");
+
         SnapshotParser<Product> parser = new SnapshotParser<Product>() {
             @Override
             public Product parseSnapshot(DataSnapshot dataSnapshot) {
@@ -179,10 +181,11 @@ public class CatalogueMain extends AppCompatActivity {
         textGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("image/*");
-                startActivityForResult(intent, REQUEST_IMAGE);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_IMAGE);
             }
         });
 
@@ -290,12 +293,26 @@ public class CatalogueMain extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE){
             if(resultCode == RESULT_OK){
                 if(data != null){
+                    if(data.getClipData() != null) {
+                        int count = data.getClipData().getItemCount();//evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
+                        List<Uri> imageUriList = new ArrayList<>();
+                        for(int i = 0; i < count; i++)
+                            imageUriList.add(data.getClipData().getItemAt(i).getUri());
+                        //do something with the image (save it to some directory or whatever you need to do with it here)
+                    }
+                } else if(data.getData() != null) {
+                    String imagePath = data.getData().getPath();
+                    //do something with the image (save it to some directory or whatever you need to do with it here)
+                }
                     final Uri uri = data.getData();
                     Config.selectedImageUri = uri;
                     Log.d("CatalogueMain", "Uri: " + uri.toString());
                     //TODO : add firestore logic here
                     Product tempProduct = Config.getmStaticProduct();
                     Logger.e("test check"+ tempProduct.getProductName());
+
+                    //DocumentReference documentReference = mFirebaseFirestoreReference.document(userID);
+
                     mFirebaseDatabaseReference.child("products").push().setValue(tempProduct, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -317,7 +334,7 @@ public class CatalogueMain extends AppCompatActivity {
                     //startActivity(new Intent(this, EditProductInfoActivity.class));
                 }
             }
-        }
+
         else if(requestCode == CAMERA_CAPTURE){
 
             if(resultCode == RESULT_OK) {
