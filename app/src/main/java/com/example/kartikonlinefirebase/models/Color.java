@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Color {
 
-    @SerializedName("colorId")
-    @Expose
-    private String colorId;
-
     @SerializedName("colorName")
     @Expose
     private String colorName;
@@ -16,14 +12,6 @@ public class Color {
     @SerializedName("colorHexCode")
     @Expose
     private String colorHexCode;
-
-    public String getColorId() {
-        return colorId;
-    }
-
-    public void setColorId(String colorId) {
-        this.colorId = colorId;
-    }
 
     public String getColorName() {
         return colorName;

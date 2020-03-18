@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Quantity {
 
-    @SerializedName("quantityId")
-    @Expose
-    private String quantityId;
-
     @SerializedName("quantity")
     @Expose
     private int quantity;
@@ -21,12 +17,5 @@ public class Quantity {
         this.quantity = quantity;
     }
 
-    public String getQuantityId() {
-        return quantityId;
-    }
-
-    public void setQuantityId(String quantityId) {
-        this.quantityId = quantityId;
-    }
 
 }

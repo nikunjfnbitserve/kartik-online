@@ -6,10 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Catalogue {
 
-    @SerializedName("catalogueId")
-    @Expose
-    private String catalogueId;
-
     @SerializedName("catalogueTitle")
     @Expose
     private String catalogueTitle;
@@ -28,14 +24,6 @@ public class Catalogue {
 
     public Catalogue(){
 
-    }
-
-    public String getCatalogueId() {
-        return catalogueId;
-    }
-
-    public void setCatalogueId(String catalogueId) {
-        this.catalogueId = catalogueId;
     }
 
     public String getCatalogueTitle() {

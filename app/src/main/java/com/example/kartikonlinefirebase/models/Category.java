@@ -7,10 +7,6 @@ import java.util.List;
 
 public class Category {
 
-    @SerializedName("categoryId")
-    @Expose
-    private String categoryId;
-
     @SerializedName("categoryName")
     @Expose
     private String categoryName;
@@ -18,14 +14,6 @@ public class Category {
     @SerializedName("catagoryImages")
     @Expose
     private List<Image> catagoryImages = null;
-
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public String getCategoryName() {
         return categoryName;

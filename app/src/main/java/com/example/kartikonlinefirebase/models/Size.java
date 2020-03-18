@@ -5,21 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Size {
 
-    @SerializedName("sizeId")
-    @Expose
-    private String sizeId;
-
     @SerializedName("size")
     @Expose
     private String size;
-
-    public String getSizeId() {
-        return sizeId;
-    }
-
-    public void setSizeId(String sizeId) {
-        this.sizeId = sizeId;
-    }
 
     public String getSize() {
         return size;

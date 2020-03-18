@@ -6,9 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Product {
 
-    @SerializedName("productId")
-    @Expose
-    private String productId;
     @SerializedName("availableQuantity")
     @Expose
     private Integer availableQuantity;
@@ -73,13 +70,6 @@ public class Product {
     @Expose
     private Boolean isForceAllowOrder;
 
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
 
     public Integer getAvailableQuantity() {
         return availableQuantity;
